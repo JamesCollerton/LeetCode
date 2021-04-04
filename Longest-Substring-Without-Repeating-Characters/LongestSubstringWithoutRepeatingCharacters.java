@@ -5,44 +5,64 @@ class Solution {
         char[] charArray = s.toCharArray();
         
         int maxLength = 0;
+        int position = 0;
         
-        // Loop through all characters
-        for(int i = 0; i < charArray.length; i++) {
-            char[] subArray = Arrays.copyOfRange(charArray, i, charArray.length);
-            if(subArray.length <= maxLength) {
-                break;    
-            }
-            int potentialMaxLength = findMaxSubstringLength(subArray, new HashSet<Character>(), 0);
+        while(position <= charArray.length) {
+            
+            FindMaxSubstringLengthResult result = findMaxSubstringLength(
+                charArray, 
+                new HashMap<Character, Integer>(), 
+                0,
+                position
+            );
+            
+            int potentialMaxLength = result.maxLength;
+            position = result.nextPosition;
+            
             maxLength = potentialMaxLength > maxLength ? potentialMaxLength : maxLength;
+        
         }
         
         return maxLength;
     }
     
     // Max substring length finder (can this be recursive)
-    private int findMaxSubstringLength(char[] charArray, HashSet<Character> seenCharHashSet, int maxLength) {
+    private FindMaxSubstringLengthResult findMaxSubstringLength(
+        char[] charArray, 
+        HashMap<Character, Integer> seenCharHashMap, 
+        int maxLength, 
+        int position
+    ) {
+                
         // Break clause         
-        if(charArray == null || charArray.length == 0) {
-            return maxLength;
+        if(charArray == null || charArray.length == 0 || position >= charArray.length) {
+            return new FindMaxSubstringLengthResult(maxLength, position + 1);
         }
         
         // Check to see if current character has been seen
-        char currentChar = charArray[0];
+        char currentChar = charArray[position];
         
-        // If it has then return current max length
-        if(seenCharHashSet.contains(currentChar)) {
-            return maxLength;
+        // If it has then return current max length and index of first repetition
+        if(seenCharHashMap.containsKey(currentChar)) {
+            int firstRepetition = seenCharHashMap.get(currentChar);
+            return new FindMaxSubstringLengthResult(maxLength, firstRepetition + 1);
         }
     
         // Otherwise increase max length by 1
         int newMaxLength = maxLength + 1;
     
         // Add current character to seen characters
-        seenCharHashSet.add(currentChar);
+        seenCharHashMap.put(currentChar, position);
     
-        // Call with the next substring
-        char[] subArray = Arrays.copyOfRange(charArray, 1, charArray.length);
-        
-        return findMaxSubstringLength(subArray, seenCharHashSet, newMaxLength);
+        return findMaxSubstringLength(charArray, seenCharHashMap, newMaxLength, position + 1);
+    }
+    
+    class FindMaxSubstringLengthResult {
+        int maxLength;
+        int nextPosition;
+        FindMaxSubstringLengthResult(int maxLength, int nextPosition) {
+            this.maxLength = maxLength;
+            this.nextPosition = nextPosition;
+        }
     }
 }
