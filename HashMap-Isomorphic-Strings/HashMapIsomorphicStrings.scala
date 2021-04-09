@@ -1,22 +1,22 @@
-import scala.collection.immutable.List 
+import scala.collection.mutable.HashMap 
 
 object Solution {
     def isIsomorphic(s: String, t: String): Boolean = {
         makeStringCharCountArr(s) == makeStringCharCountArr(t)
     }
     
-    def makeStringCharCountArr(s: String): List[Int] = {
-        val stringCharList = s.foldLeft(List[(Char,Int)]())((arr, value) => {
-            if(arr.length == 0) {
-                arr :+ (value, 1)
-            } else if(arr.last._1 == value) {
-                val lastCount = arr.last
-                val toAddArr = arr.dropRight(1)
-                toAddArr :+ (value, lastCount._2 + 1)
+    def makeStringCharCountArr(s: String): Set[List[Int]] = {
+        val stringCharList = s.zipWithIndex.foldLeft(HashMap[Char, List[Int]]())((map, c) => {
+            
+            val currentChar = c._1
+            val currentIndex = c._2
+            
+            if(!map.contains(currentChar)) {
+                map + (currentChar -> List(currentIndex))
             } else {
-                arr :+ (value, 1)
+                map + (currentChar -> (map(currentChar) :+ currentIndex))
             }
         })
-        stringCharList.map(_._2)
+        stringCharList.values.toSet
     }
 }
