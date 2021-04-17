@@ -12,53 +12,98 @@ import scala.collection.immutable.HashMap
 object Solution {
     
     def findDuplicateSubtrees(root: TreeNode): List[TreeNode] = {
-        val hashMap = findDuplicateSubtreesStep(
-            new TreeNodeWrapper(root),  
-            HashMap[TreeNodeWrapper, List[TreeNode]]()
+        
+        val firstSplit = findFirstSplit(root)
+        
+        if(firstSplit == null) {
+            return List[TreeNode]()
+        }
+        
+        val list = findDuplicateSubtreesStep(
+            new TreeNodeWrapper(root.right),  
+            new TreeNodeWrapper(root.left),  
+            new TreeNodeWrapper(root.right),  
+            List[TreeNodeWrapper]()
         )
-        hashMap.filter(kv => kv._2.length > 1).map(kv => kv._2(0)).toList
+        list.distinct.flatMap(generateSubTrees).distinct.map(_.node)
+    }
+    
+    def findFirstSplit(root: TreeNode): TreeNode = {
+        if(root == null) {
+            return null
+        } 
+        if(root.left != null && root.right != null) {
+            return root
+        } 
+        if(root.left == null) {
+            return findFirstSplit(root.right)
+        } 
+        else {
+            return findFirstSplit(root.left)
+        }
+    }
+    
+    def generateSubTrees(root: TreeNodeWrapper): List[TreeNodeWrapper] = {
+        if(root.node == null) {
+            return List[TreeNodeWrapper]()
+        }
+        return generateSubTrees(new TreeNodeWrapper(root.node.left)) ++ 
+                generateSubTrees(new TreeNodeWrapper(root.node.left)) :+ 
+                root
     }
     
     def findDuplicateSubtreesStep(
-        nodeWrapper: TreeNodeWrapper,
-        hashMap: HashMap[TreeNodeWrapper, List[TreeNode]]
-    ): Map[TreeNodeWrapper, List[TreeNode]] = {
+        nodeWrapperRootRightStart: TreeNodeWrapper,
+        nodeWrapperLeft: TreeNodeWrapper,
+        nodeWrapperRight: TreeNodeWrapper,
+        list: List[TreeNodeWrapper]
+    ): List[TreeNodeWrapper] = {
         
-        // If we get to the bottom just return the HashMap         
-        if(nodeWrapper.node == null) {
-            return hashMap
+        // If we get to the bottom left then we want to stop as we'll have
+        // been down the whole tree
+        if(nodeWrapperLeft.node == null) {
+            return list
         }
         
-        // If we've seen this node stop and return
-        if(hashMap.contains(nodeWrapper)) {
-            return hashMap + (nodeWrapper -> (hashMap(nodeWrapper) :+ nodeWrapper.node))
-        }
-        
-        val newHashMap = hashMap.get(nodeWrapper).map(list => {
-            hashMap + (nodeWrapper -> (list :+ nodeWrapper.node))
-            // Stop here
-        }).getOrElse(
-            hashMap + (nodeWrapper -> List(nodeWrapper.node))
-        )
-        
-        val leftMap = findDuplicateSubtreesStep(
-            new TreeNodeWrapper(nodeWrapper.node.left), 
-            newHashMap
-        )
-        val rightMap = findDuplicateSubtreesStep(
-            new TreeNodeWrapper(nodeWrapper.node.right), 
-            newHashMap
-        )
-        
-        val allKeys = leftMap.keySet ++ rightMap.keySet
-        allKeys.map(key => {
-            (
-                key -> (
-                    (leftMap.get(key).getOrElse(List[TreeNode]()) ++ 
-                    rightMap.get(key).getOrElse(List[TreeNode]())).distinct
+        // If we get to the bottom right then we want to move to the next
+        // two items on the node wrapper left column
+        if(nodeWrapperRight.node == null) {
+            return list ++ 
+                findDuplicateSubtreesStep(
+                    nodeWrapperRootRightStart, 
+                    new TreeNodeWrapper(nodeWrapperLeft.node.left), 
+                    nodeWrapperRootRightStart,
+                    list
+                ) ++ 
+                findDuplicateSubtreesStep(
+                    nodeWrapperRootRightStart, 
+                    new TreeNodeWrapper(nodeWrapperLeft.node.right), 
+                    nodeWrapperRootRightStart,
+                    list
                 )
-            )
-        }).toMap
+        }
+        
+        // If we've seen this node stop and return, doesn't matter which
+        // node we add as they're equivalent
+        if(nodeWrapperLeft == nodeWrapperRight) {
+            return list :+ nodeWrapperLeft
+        }
+        
+        // Otherwise we want to compare the left node with the next two right
+        // nodes
+        return list ++                 
+                findDuplicateSubtreesStep(
+                    nodeWrapperRootRightStart, 
+                    nodeWrapperLeft, 
+                    new TreeNodeWrapper(nodeWrapperRight.node.left),
+                    list
+                ) ++ 
+                findDuplicateSubtreesStep(
+                    nodeWrapperRootRightStart, 
+                    nodeWrapperLeft,
+                    new TreeNodeWrapper(nodeWrapperRight.node.right),
+                    list
+                )
     }
     
     def compareNodes(node1: TreeNode, node2: TreeNode): Boolean = {
