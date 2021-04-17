@@ -17,7 +17,6 @@ object Solution {
             HashMap[TreeNodeWrapper, List[TreeNode]]()
         )
         hashMap.filter(kv => kv._2.length > 1).map(kv => kv._2(0)).toList
-        // List[TreeNode]()
     }
     
     def findDuplicateSubtreesStep(
@@ -25,13 +24,20 @@ object Solution {
         hashMap: HashMap[TreeNodeWrapper, List[TreeNode]]
     ): Map[TreeNodeWrapper, List[TreeNode]] = {
         
+        // If we get to the bottom just return the HashMap         
         if(nodeWrapper.node == null) {
             return hashMap
         }
         
-        val newHashMap = hashMap.get(nodeWrapper).map(
-            list => hashMap + (nodeWrapper -> (list :+ nodeWrapper.node))
-        ).getOrElse(
+        // If we've seen this node stop and return
+        if(hashMap.contains(nodeWrapper)) {
+            return hashMap + (nodeWrapper -> (hashMap(nodeWrapper) :+ nodeWrapper.node))
+        }
+        
+        val newHashMap = hashMap.get(nodeWrapper).map(list => {
+            hashMap + (nodeWrapper -> (list :+ nodeWrapper.node))
+            // Stop here
+        }).getOrElse(
             hashMap + (nodeWrapper -> List(nodeWrapper.node))
         )
         
