@@ -1,4 +1,4 @@
-import scala.collection.immutable.HashSet
+import scala.collection.immutable.HashMap
 
 /**
  * Definition for a binary tree node.
@@ -10,26 +10,49 @@ import scala.collection.immutable.HashSet
  */
 
 object Solution {
+    
     def findDuplicateSubtrees(root: TreeNode): List[TreeNode] = {
-        findDuplicateSubtreesStep(root.left, root.right, List[TreeNode]())
+        val hashMap = findDuplicateSubtreesStep(
+            new TreeNodeWrapper(root),  
+            HashMap[TreeNodeWrapper, List[TreeNode]]()
+        )
+        hashMap.filter(kv => kv._2.length > 1).map(kv => kv._2(0)).toList
+        // List[TreeNode]()
     }
     
     def findDuplicateSubtreesStep(
-        node1: TreeNode, 
-        node2: TreeNode, 
-        duplicateList: List[TreeNode]
-    ): List[TreeNode] = {
+        nodeWrapper: TreeNodeWrapper,
+        hashMap: HashMap[TreeNodeWrapper, List[TreeNode]]
+    ): Map[TreeNodeWrapper, List[TreeNode]] = {
         
-        if(node1 == null || node2 == null) {
-            return duplicateList
-        } 
-        if(compareNodes(node1, node2) && !duplicateList.exists(node => compareNodes(node, node1))) {
-            return duplicateList :+ node1
+        if(nodeWrapper.node == null) {
+            return hashMap
         }
-        findDuplicateSubtreesStep(node1, node2.left, duplicateList) ++
-        findDuplicateSubtreesStep(node1, node2.right, duplicateList) ++
-        findDuplicateSubtreesStep(node1.left, node2, duplicateList) ++
-        findDuplicateSubtreesStep(node1.right, node2, duplicateList)
+        
+        val newHashMap = hashMap.get(nodeWrapper).map(
+            list => hashMap + (nodeWrapper -> (list :+ nodeWrapper.node))
+        ).getOrElse(
+            hashMap + (nodeWrapper -> List(nodeWrapper.node))
+        )
+        
+        val leftMap = findDuplicateSubtreesStep(
+            new TreeNodeWrapper(nodeWrapper.node.left), 
+            newHashMap
+        )
+        val rightMap = findDuplicateSubtreesStep(
+            new TreeNodeWrapper(nodeWrapper.node.right), 
+            newHashMap
+        )
+        
+        val allKeys = leftMap.keySet ++ rightMap.keySet
+        allKeys.map(key => {
+            (
+                key -> (
+                    (leftMap.get(key).getOrElse(List[TreeNode]()) ++ 
+                    rightMap.get(key).getOrElse(List[TreeNode]())).distinct
+                )
+            )
+        }).toMap
     }
     
     def compareNodes(node1: TreeNode, node2: TreeNode): Boolean = {
@@ -44,21 +67,23 @@ object Solution {
         }
     }
     
-    class TreeNodeWrapper(node: TreeNode) {
-        
-      override def equals(that: Any): Boolean =
-        that match {
-          case that: TreeNode => compareNodes(this, that)
-          case _ => false
-       }
+    class TreeNodeWrapper(val node: TreeNode) {
 
-      override def hashCode:Int = {
-        val prime = 31
-        var result = node.value.hashCode
-        result = prime * result + age;
-        result = prime * result + (if (name == null) 0 else name.hashCode)
-        return result
-      }
-        
+        override def equals(that: Any): Boolean =
+            that match {
+              case that: TreeNodeWrapper => compareNodes(this.node, that.node)
+              case _ => false
+            }
+
+        override def hashCode: Int = {
+            if(node == null) {
+                return 1
+            }   
+            val leftHashCode = new TreeNodeWrapper(node.left).hashCode() 
+            val rightHashCode = new TreeNodeWrapper(node.right).hashCode() 
+            node.value.hashCode() * leftHashCode * rightHashCode
+        }
+
     }
+    
 }
