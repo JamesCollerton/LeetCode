@@ -20,12 +20,15 @@ object Solution {
         }
         
         val list = findDuplicateSubtreesStep(
-            new TreeNodeWrapper(root.right),  
-            new TreeNodeWrapper(root.left),  
-            new TreeNodeWrapper(root.right),  
-            List[TreeNodeWrapper]()
+            firstSplit.right,  
+            firstSplit.left,  
+            firstSplit.right,  
+            List[TreeNode]()
         )
-        list.distinct.flatMap(generateSubTrees).distinct.map(_.node)
+        list.flatMap(generateSubTrees)
+            .map(new TreeNodeWrapper(_))
+            .distinct
+            .map(_.node)
     }
     
     def findFirstSplit(root: TreeNode): TreeNode = {
@@ -43,65 +46,65 @@ object Solution {
         }
     }
     
-    def generateSubTrees(root: TreeNodeWrapper): List[TreeNodeWrapper] = {
-        if(root.node == null) {
-            return List[TreeNodeWrapper]()
+    def generateSubTrees(root: TreeNode): List[TreeNode] = {
+        if(root == null) {
+            return List[TreeNode]()
         }
-        return generateSubTrees(new TreeNodeWrapper(root.node.left)) ++ 
-                generateSubTrees(new TreeNodeWrapper(root.node.left)) :+ 
+        return generateSubTrees(root.left) ++ 
+                generateSubTrees(root.right) :+ 
                 root
     }
     
     def findDuplicateSubtreesStep(
-        nodeWrapperRootRightStart: TreeNodeWrapper,
-        nodeWrapperLeft: TreeNodeWrapper,
-        nodeWrapperRight: TreeNodeWrapper,
-        list: List[TreeNodeWrapper]
-    ): List[TreeNodeWrapper] = {
+        nodeRightStart: TreeNode,
+        nodeLeft: TreeNode,
+        nodeRight: TreeNode,
+        list: List[TreeNode]
+    ): List[TreeNode] = {
         
         // If we get to the bottom left then we want to stop as we'll have
         // been down the whole tree
-        if(nodeWrapperLeft.node == null) {
+        if(nodeLeft == null) {
             return list
         }
         
         // If we get to the bottom right then we want to move to the next
         // two items on the node wrapper left column
-        if(nodeWrapperRight.node == null) {
+        if(nodeRight == null) {
             return list ++ 
                 findDuplicateSubtreesStep(
-                    nodeWrapperRootRightStart, 
-                    new TreeNodeWrapper(nodeWrapperLeft.node.left), 
-                    nodeWrapperRootRightStart,
+                    nodeRightStart, 
+                    nodeLeft.left, 
+                    nodeRightStart,
                     list
                 ) ++ 
                 findDuplicateSubtreesStep(
-                    nodeWrapperRootRightStart, 
-                    new TreeNodeWrapper(nodeWrapperLeft.node.right), 
-                    nodeWrapperRootRightStart,
+                    nodeRightStart, 
+                    nodeLeft.right, 
+                    nodeRightStart,
                     list
                 )
         }
         
         // If we've seen this node stop and return, doesn't matter which
         // node we add as they're equivalent
-        if(nodeWrapperLeft == nodeWrapperRight) {
-            return list :+ nodeWrapperLeft
+        if(compareNodes(nodeLeft, nodeRight)) {
+            return list :+ nodeLeft
         }
         
         // Otherwise we want to compare the left node with the next two right
         // nodes
         return list ++                 
                 findDuplicateSubtreesStep(
-                    nodeWrapperRootRightStart, 
-                    nodeWrapperLeft, 
-                    new TreeNodeWrapper(nodeWrapperRight.node.left),
+                    nodeRightStart, 
+                    nodeLeft, 
+                    nodeRight.left,
                     list
                 ) ++ 
                 findDuplicateSubtreesStep(
-                    nodeWrapperRootRightStart, 
-                    nodeWrapperLeft,
-                    new TreeNodeWrapper(nodeWrapperRight.node.right),
+                    nodeRightStart, 
+                    nodeLeft,
+                    nodeRight.right,
                     list
                 )
     }
