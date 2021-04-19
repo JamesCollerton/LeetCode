@@ -9,82 +9,62 @@ class Solution {
         List<List<Integer>> res = new ArrayList<>();
         
         if(start == nums.length) {
-            System.out.println("We're at the end of the array, stop.");
+            // We're at the end of the array, stop.
             return res;
         } else if(nums[start] * k > target) {
-            System.out.println("The array is sorted, we can't get equal to target");
+            // The array is sorted, we can't get equal to target
             return res;
         } else if(target > nums[nums.length - 1] * k) {
-            System.out.println("The target is too big, we can't do it");   
+            // The target is too big, we can't do it
         }
         
-        System.out.println("Sorted array: " + Arrays.toString(nums));
-        
-        int currIncr = k - 1;
-        
-        System.out.println("Current increment: " + currIncr);
-        
-        int[] pointerArr = new int[k];
-        for(int i = 0; i < k; i++) {
-            pointerArr[i] = i;
+        // We have two pointers and we want to return any pair between the start and the
+        // end that matches the target
+        if (k == 2){
+            return twoSum(nums, target, start);
         }
         
-        System.out.println("Starting pointer array: " + Arrays.toString(pointerArr));
+        // Now move the current pointer from the start to the end of the array         
+        for (int i = start; i < nums.length; ++i) {
+            
+            // If the last pointer is the same as this pointer then don't bother as
+            // we'll end up with a repeated solution.             
+            if (i == start || nums[i - 1] != nums[i]){
+            
+                // Each time we want to decrease the target and the number of pointers we can
+                // use, as well as increment the start point             
+                for (var set : kSum(nums, target - nums[i], i + 1, k - 1)) {
+
+                    // We only enter this loop if we have a solution, in which case we want to 
+                    // add our current number to the solution, then add all of the other ones
+                    // on top of it.                 
+                    res.add(new ArrayList<>(Arrays.asList(nums[i])));
+                    res.get(res.size() - 1).addAll(set);
+                }
+                
+            }
+        }
         
-        return kSumStep(nums, target, k, currIncr, pointerArr);
+        return res;
+        
     }
     
-    private List<List<Integer>> kSumStep(int[] nums, int target, int k, int currIncr, int[] pointerArr) {
-
-        if(currIncr < 0) {
-            return new ArrayList<List<Integer>>();
+    // This finds us a pair of numbers that add up to a target by 
+    public List<List<Integer>> twoSum(int[] nums, int target, int start) {
+        List<List<Integer>> res = new ArrayList<>();
+        int lo = start, hi = nums.length - 1;
+        while (lo < hi) {
+            int sum = nums[lo] + nums[hi];
+            // Second part is if our current number is the same as the last one
+            // to stop us getting a repeat solution             
+            if (sum < target || (lo > start && nums[lo] == nums[lo - 1]))
+                ++lo;
+            else if (sum > target || (hi < nums.length - 1 && nums[hi] == nums[hi + 1]))
+                --hi;
+            else
+                res.add(Arrays.asList(nums[lo++], nums[hi--]));
         }
-        
-        List<Integer> newSolutions = new ArrayList<Integer>();
-        
-        int sum = 0;
-        
-        System.out.println("");
-        System.out.println("In k Sum Step");
-        System.out.println("Current increment " + currIncr);
-        System.out.println("Pointer array " + Arrays.toString(pointerArr));
-        
-        // Iterate along pointers and take the sum
-        for(int i = 0; i < pointerArr.length; i++) {
-            int currPointer = pointerArr[i];             
-            sum += nums[currPointer];
-            newSolutions.add(nums[currPointer]);
-        }
-                
-        System.out.println("Detected sum as " + sum);                
-        System.out.println("Pointer array current increment is " + pointerArr[currIncr]);
-        
-        if(pointerArr[currIncr] == nums.length - 1) {
-            System.out.println("Detected we're at the end of the array");
-            currIncr -= 1;
-            
-        } else if((currIncr < pointerArr.length - 1) && pointerArr[currIncr] + 1 == pointerArr[currIncr + 1]) {
-            System.out.println("Detected we're going to collide with the next pointer");
-            currIncr -= 1;
-        } else {
-            System.out.println("Moving the pointer along");
-            pointerArr[currIncr] = pointerArr[currIncr] + 1;
-        }
-        
-        System.out.println("Moved pointer along, pointer array now " + Arrays.toString(pointerArr));        
-        System.out.println("Current increment now " + currIncr);
-        
-        if(sum == target) {
-            System.out.println("Found a solution! " + newSolutions);
-            
-            List<List<Integer>> arrayList = kSumStep(nums, target, k, currIncr, pointerArr);
-            arrayList.add(newSolutions);
-            return arrayList;
-        } else {
-            System.out.println("Not a solution " + newSolutions);
-            
-            List<List<Integer>> arrayList = kSumStep(nums, target, k, currIncr, pointerArr);
-            return arrayList;
-        }
+        return res;
     }
+    
 }
