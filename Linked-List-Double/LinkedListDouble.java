@@ -40,8 +40,8 @@ class MyLinkedList {
     /** Add a node of value val before the first element of the linked list. After the insertion, the new node will be the first node of the linked list. */
     public void addAtHead(int val) {
         
-        System.out.println("Adding at head " + val);
-        printList();
+        // System.out.println("Adding at head " + val);
+        // printList();
         
         
         if(head == null) {
@@ -49,18 +49,17 @@ class MyLinkedList {
         } else {
             LinkedListNode newNode = new LinkedListNode(val, head, null);
             head.setPreviousNode(newNode);
-            // System.out.println("PreviousNode " + head);
             head = newNode;
         }
         
-        printList();
+        // printList();
     }
     
     /** Append a node of value val to the last element of the linked list. */
     public void addAtTail(int val) {
         
-        System.out.println("Adding at tail " + val);
-        printList();
+        // System.out.println("Adding at tail " + val);
+        // printList();
         
         if(head == null) {
             head = new LinkedListNode(val, null, null);
@@ -72,39 +71,46 @@ class MyLinkedList {
         LinkedListNode newNode = new LinkedListNode(val, null, node);
         node.setNextNode(newNode);
         
-        printList();
+        // printList();
     }
     
     /** Add a node of value val before the index-th node in the linked list. If index equals to the length of linked list, the node will be appended to the end of linked list. If index is greater than the length, the node will not be inserted. */
     public void addAtIndex(int index, int val) {
         
-        System.out.println("Adding at index " + index + " val " + val);
-        printList();
+        // System.out.println("Adding at index " + index + " val " + val);
+        // printList();
         
-        if(index == 0) {
-            addAtHead(val);
-        }
-        else {
-            LinkedListNode listNode = getLinkedListNode(index - 1);
-            if(listNode != null && listNode.getNextNode() != null) {
-                listNode = listNode.getNextNode();
-                LinkedListNode previousNode = listNode.getPreviousNode();
-                LinkedListNode newNode = new LinkedListNode(val, listNode, previousNode);
-                listNode.setPreviousNode(previousNode);
-                previousNode.setNextNode(newNode);
-            } else if (listNode != null) {
-                addAtTail(val);
+        if(index >= 0) { 
+        
+            if(index == 0) {
+                addAtHead(val);
             }
+            else {
+                LinkedListNode listNode = getLinkedListNode(index - 1);
+                // There's a node before the index we want, so putting in the middle
+                if(listNode.getNextNode() != null) {
+                    listNode = listNode.getNextNode();
+                    LinkedListNode previousNode = listNode.getPreviousNode();
+                    LinkedListNode newNode = new LinkedListNode(val, listNode, previousNode);
+                    listNode.setPreviousNode(newNode);
+                    if(previousNode != null) {
+                        previousNode.setNextNode(newNode);
+                    }
+                } else {
+                    addAtTail(val);
+                }
+            }
+            
         }
         
-        printList();
+        // printList();
     }
     
     /** Delete the index-th node in the linked list, if the index is valid. */
     public void deleteAtIndex(int index) {
         
-        System.out.println("Deleting at index " + index);
-        printList();
+        // System.out.println("Deleting at index " + index);
+        // printList();
         
         LinkedListNode listNode = getLinkedListNode(index);
         if(listNode!= null) {
@@ -122,7 +128,7 @@ class MyLinkedList {
             listNode.setPreviousNode(null);
         }
         
-        printList();
+        // printList();
     }
     
     private void printList() {
