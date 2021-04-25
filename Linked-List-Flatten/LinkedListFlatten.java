@@ -29,28 +29,6 @@ class Solution {
         return head;
     }
     
-//     private void printList(Node head) {
-        
-//         Node pointer = head;
-        
-//         while(pointer != null) {
-//             System.out.println("");
-//             System.out.println("Node value" + pointer.val);
-//             if(pointer.prev != null) {
-//                 System.out.println("Previous node value" + pointer.prev.val);
-//             } else {
-//                 System.out.println("Previous node value is null");
-//             }
-//             if(pointer.next != null) {
-//                 System.out.println("Next node value" + pointer.next.val);
-//             } else {
-//                 System.out.println("Next node value is null");
-//             }
-//             pointer = pointer.next;
-//         }
-        
-//     }
-    
     private void flattenStep(Node pointer, Node previousParentNext) {
         
         // While there are still elements available at this layer of the list         
@@ -79,17 +57,7 @@ class Solution {
                 
                 pointer.child = null;
                 
-                // If the next pointer is null then we are at the end
-                // of our level of the list
-                // if(next == null) {
-                //     pointer.next = previousParentNext;
-                //     if(previousParentNext != null) {
-                //         previousParentNext.prev = pointer;
-                //     }
-                //     pointer = null;
-                // } else {
-                    pointer = next;
-                // }
+                pointer = next;
             } else {
                 
                 // If we're at the end of this level of the list then we
