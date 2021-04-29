@@ -16,8 +16,31 @@ public class CreateBinarySearchTree {
         // Class for generating a binary search tree from the list
         Node root = new BinarySearchTreeGenerator().generate(vals);
 
-        boolean isBalanced = root.isBalanced();
-        System.out.println("Is balanced " + isBalanced);
+        System.out.println("Is balanced " + root.isBalanced());
+
+        // Values we would like to make a binary search tree from
+        vals = List.of(10, 15, 12);
+
+        // Class for generating a binary search tree from the list
+        root = new BinarySearchTreeGenerator().generate(vals);
+
+        System.out.println("Is balanced " + root.isBalanced());
+
+        // Values we would like to make a binary search tree from
+        vals = List.of(10, 7, 2);
+
+        // Class for generating a binary search tree from the list
+        root = new BinarySearchTreeGenerator().generate(vals);
+
+        System.out.println("Is balanced " + root.isBalanced());
+
+        // Values we would like to make a binary search tree from
+        vals = List.of(10, 5, 6, 4, 15, 12, 17);
+
+        // Class for generating a binary search tree from the list
+        root = new BinarySearchTreeGenerator().generate(vals);
+
+        System.out.println("Is balanced " + root.isBalanced());
 
 //        System.out.println("\nPre-order traversal");
 //        root.preOrderTraversal();

@@ -232,18 +232,13 @@ public class Node {
     public boolean isBalanced() {
         // Check to see if this tree is balanced. The current height is
         // 0
-        return isBalancedAndHeight(0).balanced;
+        return isBalancedAndHeight().balanced;
     }
 
-    private HeightBalanced isBalancedAndHeight(int currentHeight) {
-
-        // Increase the current height of the tree as we have moved down
-        // a level.
-        int height = currentHeight + 1;
+    private HeightBalanced isBalancedAndHeight() {
 
         System.out.println("");
         System.out.println("Current node value is " + val);
-        System.out.println("Current node height is " + height);
 
         // If left is null and right is null we have reached the bottom of
         // the tree, so we know it is balanced, and the maximum subheight
@@ -251,7 +246,7 @@ public class Node {
         if(left == null && right == null){
 
             System.out.println("Detected leaf node");
-            return new HeightBalanced(height, true);
+            return new HeightBalanced(1, true);
 
         // Otherwise we may have a case where the left branch is null, but
         // the right branch isn't.
@@ -261,10 +256,10 @@ public class Node {
 
             // Check to see if the right branch is balanced, if it isn't we can return
             // early as we know the rest of the tree isn't balanced.
-            HeightBalanced rightHeightBalanced = right.isBalancedAndHeight(height);
+            HeightBalanced rightHeightBalanced = right.isBalancedAndHeight();
 
-            System.out.println("Right balanced is" + rightHeightBalanced.balanced);
-            System.out.println("Right height is" + rightHeightBalanced.maxSubheight);
+            System.out.println("Right balanced is " + rightHeightBalanced.balanced);
+            System.out.println("Right height is " + rightHeightBalanced.maxSubheight);
 
             if(!rightHeightBalanced.balanced) {
 
@@ -276,18 +271,27 @@ public class Node {
             // will be too great
             } else {
                 if(rightHeightBalanced.maxSubheight != 1) {
-                    System.out.println("D");
+                    System.out.println("Discovered right node isn't balanced");
                     return new HeightBalanced(-1, false);
                 } else {
-                    return new HeightBalanced(rightHeightBalanced.maxSubheight, true);
+                    System.out.println("Right node is balanced, returning max subheight " + rightHeightBalanced.maxSubheight);
+                    return new HeightBalanced(rightHeightBalanced.maxSubheight + 1, true);
                 }
             }
         } else if(left != null && right == null) {
 
+            System.out.println("Detected left node is not null, but right node is");
+
             // Check to see if the left branch is balanced, if it isn't we can return
             // early.
-            HeightBalanced leftHeightBalanced = left.isBalancedAndHeight(height);
+            HeightBalanced leftHeightBalanced = left.isBalancedAndHeight();
+
+            System.out.println("Left balanced is " + leftHeightBalanced.balanced);
+            System.out.println("Left height is " + leftHeightBalanced.maxSubheight);
+
             if(!leftHeightBalanced.balanced) {
+
+                System.out.println("Returning left isn't balanced");
                 return new HeightBalanced(-1, false);
 
                 // Otherwise we know the max subtree height of the right branch is zero,
@@ -295,23 +299,35 @@ public class Node {
                 // will be too great
             } else {
                 if(leftHeightBalanced.maxSubheight != 1) {
+                    System.out.println("Discovered left node isn't balanced " + val);
                     return new HeightBalanced(-1, false);
                 } else {
-                    return new HeightBalanced(leftHeightBalanced.maxSubheight, true);
+                    System.out.println("Left node is balanced, returning max subheight " + leftHeightBalanced.maxSubheight);
+                    return new HeightBalanced(leftHeightBalanced.maxSubheight + 1, true);
                 }
             }
 
         // This is the case where both nodes are not null, and we need to
         } else {
-            HeightBalanced leftHeightBalanced = left.isBalancedAndHeight(height);
-            HeightBalanced rightHeightBalanced = right.isBalancedAndHeight(height);
+
+            System.out.println("Both nodes are not null");
+
+            HeightBalanced leftHeightBalanced = left.isBalancedAndHeight();
+            HeightBalanced rightHeightBalanced = right.isBalancedAndHeight();
+
+            System.out.println("Left hand node is balanced " + leftHeightBalanced.balanced + " " + leftHeightBalanced.maxSubheight);
+            System.out.println("Right hand node is balanced " + rightHeightBalanced.balanced + " " + rightHeightBalanced.maxSubheight);
+
             if(!(rightHeightBalanced.balanced && leftHeightBalanced.balanced)) {
+                System.out.println("Both nodes are not balanced");
                 return new HeightBalanced(-1, false);
             } else {
                 if(abs(leftHeightBalanced.maxSubheight - rightHeightBalanced.maxSubheight) > 1) {
+                    System.out.println("Difference in heights is greater than one");
                     return new HeightBalanced(-1, false);
                 } else {
                     int maxSubheight = max(leftHeightBalanced.maxSubheight, rightHeightBalanced.maxSubheight) + 1;
+                    System.out.println("Max sub height is " + maxSubheight);
                     return new HeightBalanced(maxSubheight, true);
                 }
             }
