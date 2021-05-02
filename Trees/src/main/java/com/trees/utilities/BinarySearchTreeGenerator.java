@@ -1,8 +1,8 @@
 package com.trees.utilities;
 
+import com.trees.model.AvlNode;
 import com.trees.model.Node;
 
-import java.util.Arrays;
 import java.util.List;
 
 public class BinarySearchTreeGenerator {
@@ -26,4 +26,5 @@ public class BinarySearchTreeGenerator {
 
         return root;
     }
+
 }
