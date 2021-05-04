@@ -1,10 +1,11 @@
 class Solution {
     
-    ArrayList<String> seen = new ArrayList<String>();
+    HashSet<String> seen = new HashSet<String>();
     
     public int openLock(String[] deadends, String target) {
                 
         int level = 0;
+        HashSet<String> deadSet = new HashSet<>(Arrays.asList(deadends));
         List<Integer> initialSetting = List.of(0, 0, 0, 0);
         
         Queue<List<Integer>> queue = new LinkedList();
@@ -26,7 +27,7 @@ class Solution {
                 // If we've already seen this then we know this route goes nowhere,
                 // or if we're at a deadend the same applies
                 if(!(
-                    deadendsContainsSetting(deadends, currentSettingString) || 
+                    deadSet.contains(currentSettingString) || 
                     seen.contains(currentSettingString)
                 )){
 
@@ -79,11 +80,5 @@ class Solution {
                         .map(Object::toString)
                         .collect(Collectors.joining(""));
     }
-    
-    private boolean deadendsContainsSetting(String deadends[], String setting) {
-        return Arrays.stream(deadends)
-                    .filter(deadend -> setting.equals(deadend))
-                    .findAny()
-                    .isPresent();
-    }
+
 }
