@@ -2,8 +2,7 @@ class Solution {
         
     public boolean isValid(String s) {
         
-        Stack<Character> openStack = new Stack<>();
-        Stack<Character> closeStack = new Stack<>();
+        Stack<Character> stack = new Stack<>();
         
         HashMap<Character, Character> openCloseMap = new HashMap<>();
         openCloseMap.put('(', ')');
@@ -12,27 +11,22 @@ class Solution {
         
         for(char c: s.toCharArray()) {
             if(openCloseMap.containsKey(c)) {
-                openStack.push(c);
+                stack.push(c);
             } else {
-                closeStack.push(c);
+                if(stack.isEmpty()) {
+                    return false;
+                }
+                Character lastC = stack.pop();
+                if(!openCloseMap.containsKey(lastC) || !openCloseMap.get(lastC).equals(c)){
+                    return false;
+                }
             }
         }
         
-        while(!openStack.isEmpty() && !closeStack.isEmpty()) {
-            
-            Character openBracket = openStack.pop();
-            Character closeBracket = closeStack.pop();
-            
-            if(!closeBracket.equals(openCloseMap.get(openBracket))){
-                return false;
-            }
-            
-        }
-        
-        if(!closeStack.isEmpty() || !openStack.isEmpty()) {
+        if(!stack.isEmpty()) {
             return false;
         }
-        
+                
         return true;
     }
 }
