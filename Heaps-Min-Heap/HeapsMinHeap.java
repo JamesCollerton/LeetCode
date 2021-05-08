@@ -5,7 +5,11 @@ public class Solution {
 
     public static void main(String[] args) {
         
-        int numberQueries = args[0]
+        for(String arg: args) {
+            System.out.println(arg);    
+        }
+        
+        int numberQueries = Integer.parseInt(args[0]);
         
         if(numberQueries == 0) {
             return;
@@ -21,16 +25,17 @@ public class Solution {
     private class MinIntHeap {
         
         int[] items;
+        private int size = 0;
         
         MinIntHeap(int heapSize) {
-            int[] items = items[heapSize];
+            int[] items = new int[heapSize];
         }
         
         public int getLeftChildIndex(int parentIndex) {
             return 2 * parentIndex + 1;
         }
         
-        public int getLeftChildIndex(int parentIndex) {
+        public int getRightChildIndex(int parentIndex) {
             return 2 * parentIndex + 2;
         }
         
@@ -50,15 +55,15 @@ public class Solution {
             return getParentIndex(index) >= 0;
         }
         
-        public int leftChild(index) {
-            return items[getLeftChild(index)];
+        public int leftChild(int index) {
+            return items[getLeftChildIndex(index)];
         }
         
-        public int rightChild(index) {
-            return items[getRightChild(index)];
+        public int rightChild(int index) {
+            return items[getRightChildIndex(index)];
         }
         
-        public int parent(index) {
+        public int parent(int index) {
             return items[getParentIndex(index)];
         }
         
@@ -93,7 +98,7 @@ public class Solution {
         }
         
         public void heapifyUp() {
-            int index = size() - 1;
+            int index = size - 1;
             while(hasParent(index) && parent(index) > items[index]) {
                 swap(getParentIndex(index), index);
                 index = getParentIndex(index);
