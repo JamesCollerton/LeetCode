@@ -1,79 +1,59 @@
 class Solution {
     
     public int[] findOrder(int numCourses, int[][] prerequisites) {
-                
+        int[] incLinkCounts = new int[numCourses];
+        List<List<Integer>> adjs = new ArrayList<>(numCourses);
+        initialiseGraph(incLinkCounts, adjs, prerequisites);
         // Create a graph from the prerequisites representing edges
-        Graph graph = new Graph(prerequisites, numCourses);
+        // Graph graph = new Graph(prerequisites, numCourses);
+        return solveByBFS(incLinkCounts, adjs);
         
-        // For each node in the graph do DFS. If we can get to a state
-        // where we have seen all of the nodes then this represents a
-        // successful ordering and we can return it
-        for(int i = 0; i < numCourses; i++) {
-            List<Integer> order = dfs(graph, i, new HashSet<Integer>(), numCourses);
-            if(!order.isEmpty()) {
-                return order.stream().mapToInt(v -> v).toArray();
-            }
-        }
-        
-        return new int[0];
     }
     
-    // Perform DFS on the graph starting from vertex 'v'
-    private List<Integer> dfs(Graph graph, int v, Set<Integer> seen, int target) {
-        
-        // mark the current node as discovered
-        seen.add(v);
- 
-        List<Integer> resultList = new ArrayList<Integer>();
-        
-        // If we've got to the point where we've seen all of the 
-        // courses then we can begin returning a successful list.
-        if(seen.size() == target) {
-            resultList.add(v);
-            return resultList;
+    private void initialiseGraph(int[] incLinkCounts, List<List<Integer>> adjs, int[][] prerequisites){
+        // This is a list of the number of prerequisites for
+        // each course
+        int n = incLinkCounts.length;
+        // Create a list of lists. Each index represents a course,
+        // then each list represents its prerequisites.
+        while (n-- > 0) {
+            adjs.add(new ArrayList<>());
         }
-        
-        // do for every edge `v —> u`
-        for (int u: graph.adjacencyList.get(v)) {
-            
-            // if `u` is not yet discovered
-            if (!seen.contains(u)) {
-                
-                List<Integer> potentialResultList = dfs(graph, u, seen, target);
-                
-                if(!potentialResultList.isEmpty()) {
-                    resultList.add(v);
-                    resultList.addAll(potentialResultList);
+        for (int[] edge : prerequisites) {
+            incLinkCounts[edge[0]]++;
+            adjs.get(edge[1]).add(edge[0]);
+        }
+    }
+    
+    private int[] solveByBFS(int[] incLinkCounts, List<List<Integer>> adjs){
+        // Create a new array for returning the order
+        int[] order = new int[incLinkCounts.length];
+        // This generates a queue of all of the courses with no prerequisites
+        Queue<Integer> toVisit = new ArrayDeque<>();
+        for (int i = 0; i < incLinkCounts.length; i++) {
+            if (incLinkCounts[i] == 0) toVisit.offer(i);
+        }
+        int visited = 0;
+        // Keep going through queue
+        while (!toVisit.isEmpty()) {
+            // Get the from 
+            int from = toVisit.poll();
+            // Add this to the visited list
+            order[visited++] = from;
+            // Go through all of the nodes
+            // connected to this node and take away
+            // one. If any of these now reaches zero
+            // then it means that this node has had
+            // all of its prerequisites visited and
+            // we can add it to the queue.
+            for (int to : adjs.get(from)) {
+                incLinkCounts[to]--;
+                if (incLinkCounts[to] == 0) {
+                    toVisit.offer(to);
                 }
             }
         }
-        
-        return resultList;
+        return visited == incLinkCounts.length ? order : new int[0]; 
     }
     
-    private class Graph {
-        
-        // A list of lists to represent an adjacency list. Each
-        // index in the list represents a source node, then the
-        // list at that index represents all of the nodes that this
-        // source node connects to
-        List<List<Integer>> adjacencyList = null;
-
-        Graph(int[][] edges, int N) {
-            adjacencyList = new ArrayList<>();
-
-            for (int i = 0; i < N; i++) {
-                adjacencyList.add(new ArrayList<>());
-            }
-
-            // add edges to the undirected graph
-            for (int[] edge: edges) {
-                int src = edge[0];
-                int dest = edge[1];
-
-                // adjacencyList.get(src).add(dest);
-                adjacencyList.get(dest).add(src);
-            }
-        }
-    }
 }
