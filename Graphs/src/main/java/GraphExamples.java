@@ -56,12 +56,48 @@ public class GraphExamples {
         return false;
     }
 
-    // Small wrapper method where we initialise a set of seen nodes
-    // to pass to the recursive method.
+    // This uses a stack and can be used to avoid StackOverflowError which
+    // can be caused by using the call stack.
     private static boolean dfs(List<List<Integer>> adjacencyList, int target) {
+
+        // Initialise our list of seen variables and
+        // our stack
         HashSet<Integer> seen = new HashSet<>();
+        Stack<Integer> stack = new Stack<>();
+
+        // Push the first node we would like to visit
+        // onto our stack
         int start = 1;
-        return dfs(adjacencyList, start, target, seen);
+        stack.push(start);
+
+        // Keep cycling through the stack and popping items
+        // from it. As we pop the last seen item this is what
+        // means we pursue a path all the way to its base, then
+        // follow the next one.
+        while(!stack.isEmpty()) {
+            int currentNode = stack.pop();
+
+            // If we found our target we can stop
+            if(currentNode == target) {
+                return true;
+            }
+
+            // We need to keep track of nodes we
+            // have seen to prevent repeated visiting
+            seen.add(currentNode);
+
+            // For each node connected to this one, visit it
+            // if any of them match our target we can stop and
+            // return true. Otherwise return false as we have
+            // not found it!
+            for(int connectedNode: adjacencyList.get(currentNode)) {
+                if(!seen.contains(connectedNode)) {
+                    stack.push(connectedNode);
+                }
+            }
+        }
+
+        return false;
     }
 
     // Recursively call this method in order to go down any of the paths
