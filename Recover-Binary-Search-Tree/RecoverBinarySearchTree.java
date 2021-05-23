@@ -15,10 +15,10 @@
  */
 class Solution {
     
-    private TreeNode nodeA;
-    private TreeNode nodeB;
+    private TreeNode root;
     
     public void recoverTree(TreeNode root) {
+        this.root = root;
         checkNode(root, null, null);
     }
     
@@ -28,6 +28,7 @@ class Solution {
             int val = lessThanNode.val;
             lessThanNode.val = node.val;
             node.val = val;
+            checkNode(root, null, null);
             return;
         }
         
@@ -35,6 +36,7 @@ class Solution {
             int val = moreThanNode.val;
             moreThanNode.val = node.val;
             node.val = val;
+            checkNode(root, null, null);
             return;
         }
         
