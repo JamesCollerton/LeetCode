@@ -14,52 +14,30 @@
  * }
  */
 class Solution {
+    
+    private HashMap<Integer, Integer> map = new HashMap<>();
+    private int preorderIndex = 0;
+    
     public TreeNode buildTree(int[] preorder, int[] inorder) {
-        TreeNode root = new TreeNode(preorder[0]);
-        int preorderIndex = 1;
         
-        insertNode(root, null, preorder, inorder, preorderIndex);
+        for(int i = 0; i < inorder.length; i++) {
+            map.put(inorder[i], i);
+        }
         
-        return root;
+        return arrayToTree(preorder, 0, preorder.length - 1);
     }
     
-    private void insertNode(TreeNode node, TreeNode parent, int[] preorder, int[] inorder, int preorderIndex) {
-        
-        if(preorderIndex >= preorder.length) {
-            return;
+    private TreeNode arrayToTree(int preorder[], int start, int end) {
+        if(start > end) {
+            return null;
         }
         
-        int valToInsert = preorder[preorderIndex];
-        int currentNodeVal = node.val;
-        int parentNodeVal = parent == null ? Integer.MIN_VALUE : parent.val;
+        int val = preorder[preorderIndex];
+        preorderIndex++;
+        TreeNode node = new TreeNode(val);
         
-        boolean beforeCurrentNode = true;
-        boolean beforeParentNode = true;
-        
-        boolean found = false;
-        int inorderIndex = 0;
-        
-        while(!found) {
-            if(inorder[inorderIndex] == valToInsert) {
-                found = true;
-            } else if(inorder[inorderIndex] == currentNodeVal) {
-                beforeCurrentNode = false; 
-            } else if(inorder[inorderIndex] == parentNodeVal) {
-                beforeParentNode = false;
-            }
-            inorderIndex++;
-        }
-        
-        if(beforeCurrentNode) {
-            TreeNode newNode = new TreeNode(preorder[preorderIndex]);
-            node.left = newNode;
-            insertNode(newNode, node, preorder, inorder, preorderIndex + 1);
-        } else if(beforeParentNode) {
-            TreeNode newNode = new TreeNode(preorder[preorderIndex]);
-            node.right = newNode;
-            insertNode(newNode, node, preorder, inorder, preorderIndex + 1);
-        } else {
-            insertNode(parent, null, preorder, inorder, preorderIndex);
-        }
+        node.left = arrayToTree(preorder, start, map.get(val) - 1);
+        node.right = arrayToTree(preorder, map.get(val) + 1, end);
+        return node;
     }
 }
