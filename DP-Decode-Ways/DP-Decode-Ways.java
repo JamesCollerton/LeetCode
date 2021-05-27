@@ -1,30 +1,34 @@
 class Solution {
         
-    public int numDecodings(String s) {
-        int[] array = s.chars()
-                            .map(Character::getNumericValue)
-                            .toArray();
-       
-        return createNode(array, 0);
-    }
-    
-    private int createNode(int[] array, int index) {
-        
-        if(index >= array.length) {
-            return 1;
-        }
-        int potentialLeft = array[index];
-        if(potentialLeft == 0) {
+    public int numDecodings(String s) {        
+        if(s.isEmpty() || s.charAt(0) == '0') {
             return 0;
         }
-        int result = createNode(array, index + 1);
-        if(index + 1 < array.length) {
-            int potentialRight = 10 * array[index] + array[index + 1];
-            if(potentialRight <= 26) {
-                result += createNode(array, index + 2);
-            }
-        }
+
+        int[] waysToArrive = new int[s.length() + 1];
+        waysToArrive[0] = 1;
+        waysToArrive[1] = 1;
         
-        return result;
+        for(int i = 1; i < s.length(); i++) {
+            
+            int current = s.charAt(i) - '0';
+            int previous = s.charAt(i - 1) - '0';
+            
+            boolean previousValid = (previous > 0 && (previous * 10 + current) <= 26);
+            boolean currentValid = current > 0;
+            
+            if(!previousValid && !currentValid) {
+                return 0;
+            } else if(previousValid && currentValid) {
+                waysToArrive[i + 1] = waysToArrive[i] + waysToArrive[i - 1];
+            } else if(previousValid) {
+                waysToArrive[i + 1] = waysToArrive[i - 1];
+            } else {
+                waysToArrive[i + 1] = waysToArrive[i];
+            }
+            
+        }
+       
+        return waysToArrive[waysToArrive.length - 1];
     }
 }
