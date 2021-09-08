@@ -13,6 +13,7 @@ public class Solution extends GuessGame {
     }
     
     private Long guessNumber(Long lb, Long hb) {
+        // Could change this to use lb + (hb - lb) / 2 to get round overflow
         long potentialAnswer = (lb + hb) / 2;
         int result = guess((int) potentialAnswer);
         if(result < 0) {
