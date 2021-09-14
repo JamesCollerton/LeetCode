@@ -5,9 +5,9 @@ class Solution {
         
         int nearestIndex = findNearestIndex(arr, x);
         
-        while(nearestIndex - 1 >= 0 && arr[nearestIndex - 1] == arr[nearestIndex]) {
-            nearestIndex--;
-        }
+        // while(nearestIndex - 1 >= 0 && arr[nearestIndex - 1] == arr[nearestIndex]) {
+        //     nearestIndex--;
+        // }
         
         System.out.println("Nearest index " + nearestIndex);
         
@@ -42,11 +42,11 @@ class Solution {
     }
     
     private int findNearestIndex(int[] arr, int target) {
-        if(target < arr[0]) {
+        if(target <= arr[0]) {
             return 0;
         }
         
-        if(target > arr[arr.length - 1]) {
+        if(target >= arr[arr.length - 1]) {
             return arr.length - 1;
         }
         
@@ -57,16 +57,36 @@ class Solution {
             
             int mid = left + (right - left) / 2;
             
-            int distanceOne = Math.abs(arr[mid] - target);
-            int distanceTwo = Math.abs(arr[mid + 1] - target);
+            if(arr[mid] == target) {
+                return mid;
+            }
             
-            if(distanceTwo <= distanceOne) {
+            int leftIndex = mid - 1;
+            if(leftIndex < 0) {
+                return 0;
+            }
+            
+            int leftValue = arr[leftIndex];
+            int midValue = arr[mid];
+            
+            if(leftValue <= target && midValue >= target) {
+                int leftDistance = Math.abs(leftValue - target);
+                int rightDistance = Math.abs(midValue - target);
+
+                if (leftDistance <= rightDistance) {
+                    return leftIndex;
+                } else {
+                    return mid;
+                }
+            }
+
+            if (midValue <= target) {
                 left = mid + 1;
             } else {
                 right = mid;
-            } 
+            }
         }
         
-        return right;
+        throw new RuntimeException("Ahh");
     }
 }
