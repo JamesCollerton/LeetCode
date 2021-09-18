@@ -3,18 +3,16 @@ class Solution {
         if(n == 1) {
             return "1";
         } else {
-            long result = 1;
+            String result = "1";
             for(int i = 1; i < n; i++) {
                 result = createResult(result);
-                // System.out.println(result);
             }
-            return Long.toString(result);
+            return result;
         }
     }
     
-    private long createResult(long n) {
-        // System.out.println("n " + n);
-        char[] arr = Long.toString(n).toCharArray();
+    private String createResult(String n) {
+        char[] arr = n.toCharArray();
         int p = 0;
         String result = "";
         while(p < arr.length) {
@@ -24,12 +22,8 @@ class Solution {
                 count++;
                 p++;
             }
-            // System.out.println("Char " + c);
-            // System.out.println("Count " + count);
-            // System.out.println("P " + p);
             result += count + Character.toString(c);
-            // p++;
         }
-        return Long.parseLong(result);
+        return result;
     }
 }
