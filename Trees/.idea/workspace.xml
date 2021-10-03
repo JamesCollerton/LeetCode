@@ -13,14 +13,36 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Fibonacci.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Fibonacci.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/trees/Fibonacci.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-326">
-              <caret line="23" selection-start-line="23" selection-end-line="62" selection-end-column="5" />
+            <state relative-caret-position="443">
+              <caret line="65" lean-forward="true" selection-start-line="65" selection-end-line="65" />
               <folding>
                 <element signature="e#89#90#0" expanded="true" />
                 <element signature="e#110#111#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DigitDp.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/trees/DigitDp.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="148">
+              <caret line="10" column="35" lean-forward="true" selection-start-line="10" selection-start-column="35" selection-end-line="10" selection-end-column="35" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DigitDpSolver.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/trees/DigitDpSolver.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="113">
+              <caret line="14" column="88" selection-start-line="14" selection-start-column="88" selection-end-line="14" selection-end-column="88" />
+              <folding>
+                <element signature="e#294#295#0" expanded="true" />
+                <element signature="e#345#346#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -60,6 +82,9 @@
         <option value="$PROJECT_DIR$/src/main/java/com/trees/model/AvlTree.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/trees/AVLNodeExamples.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/trees/Fibonacci.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/trees/utilities/DigitDp.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/trees/DigitDp.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/trees/DigitDpSolver.java" />
       </list>
     </option>
   </component>
@@ -144,7 +169,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Fibonacci">
+  <component name="RunManager" selected="Application.DigitDp">
     <configuration name="AVLNodeExamples" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.trees.AVLNodeExamples" />
       <module name="Trees" />
@@ -158,6 +183,17 @@
     </configuration>
     <configuration name="CreateBinarySearchTree" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.trees.CreateBinarySearchTree" />
+      <module name="Trees" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.trees.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+    </configuration>
+    <configuration name="DigitDp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.trees.DigitDp" />
       <module name="Trees" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <extension name="coverage">
@@ -223,9 +259,11 @@
       <item itemvalue="Application.CreateBinarySearchTree" />
       <item itemvalue="Application.AVLNodeExamples" />
       <item itemvalue="Application.Fibonacci" />
+      <item itemvalue="Application.DigitDp" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.DigitDp" />
         <item itemvalue="Application.Fibonacci" />
         <item itemvalue="Application.AVLNodeExamples" />
         <item itemvalue="Application.CreateBinarySearchTree" />
@@ -410,11 +448,29 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/trees/Fibonacci.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-326">
-          <caret line="23" selection-start-line="23" selection-end-line="62" selection-end-column="5" />
+        <state relative-caret-position="443">
+          <caret line="65" lean-forward="true" selection-start-line="65" selection-end-line="65" />
           <folding>
             <element signature="e#89#90#0" expanded="true" />
             <element signature="e#110#111#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/trees/DigitDp.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="148">
+          <caret line="10" column="35" lean-forward="true" selection-start-line="10" selection-start-column="35" selection-end-line="10" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/trees/DigitDpSolver.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="113">
+          <caret line="14" column="88" selection-start-line="14" selection-start-column="88" selection-end-line="14" selection-end-column="88" />
+          <folding>
+            <element signature="e#294#295#0" expanded="true" />
+            <element signature="e#345#346#0" expanded="true" />
           </folding>
         </state>
       </provider>
