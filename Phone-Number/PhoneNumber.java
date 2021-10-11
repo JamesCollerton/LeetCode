@@ -16,15 +16,15 @@ class Solution {
         map.put('9', Arrays.asList('w', 'x', 'y', 'z'));
                 
         // Return the list from the function
-        return recurse(new ArrayList<String>(), digits.toCharArray());
+        return recurse(new ArrayList<String>(), digits.toCharArray(), 0);
     }
     
-    private List<String> recurse(List<String> list, char[] digitArr) {
-        if(digitArr.length == 0) {
+    private List<String> recurse(List<String> list, char[] digitArr, int pointer) {
+        if(pointer > digitArr.length - 1) {
             return list;
         }
         
-        List<Character> charList = map.get(digitArr[0]);
+        List<Character> charList = map.get(digitArr[pointer]);
         
         List<String> newList = new ArrayList<>();
         
@@ -35,13 +35,12 @@ class Solution {
         } else {
             for(int i = 0; i < charList.size(); i++) {
                 for(int j = 0; j < list.size(); j++) {
-                    // This could maybe be optimised
                     newList.add(list.get(j) + charList.get(i));
                 }
             }
         }
         
         // Array copy could maybe be optimised using pointers      
-        return recurse(newList, Arrays.copyOfRange(digitArr, 1, digitArr.length));
+        return recurse(newList, digitArr, pointer + 1);
     } 
 }
