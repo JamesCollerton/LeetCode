@@ -16,23 +16,35 @@
 class Solution {
     
     private int counter;
+    private int result = -1;
     
     public int kthSmallest(TreeNode root, int k) {
         
-        List<Integer> list = new ArrayList<>();
+        counter = k;
         
-        recurse(root, list);
+        recurse(root);
         
-        return list.get(k - 1);
+        return result;
     }
     
-    private void recurse(TreeNode node, List<Integer> list) {
+    private void recurse(TreeNode node) {
+        
         if(node == null) {
             return;
         }
         
-        recurse(node.left, list);
-        list.add(node.val);
-        recurse(node.right, list);
+        if(result == -1) {
+            recurse(node.left);
+        }
+        
+        counter--;
+        if(counter == 0) {
+            result = node.val;
+        }
+        
+        if(result == -1) {
+            recurse(node.right);
+        }
+        
     }
 }
