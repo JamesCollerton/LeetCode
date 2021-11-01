@@ -14,18 +14,39 @@ class Solution {
             return null;
         }
         
+        ListNode newHead = head;
         ListNode node = head;
+        ListNode previousNode = null;
         
         while(node != null) {
             
-            ListNode firstNode = node;
-            
-            while(node != null && firstNode.val == node.val) {
-                node = node.next;   
+            if(node.next != null && node.val == node.next.val) {
+                
+                node = skipCycles(node);
+                
+                if(previousNode != null) {
+                    previousNode.next = node;
+                    previousNode = node;
+                } else {
+                    newHead = node;
+                }
+                
+            } else {
+                previousNode = node;
+                node = node.next;
             }
-            firstNode.next = node;
         }
         
-        return head;
+        return newHead;
+    }
+    
+    private ListNode skipCycles(ListNode node) {
+        if(node != null && node.next != null && node.val == node.next.val) {
+            while(node.next != null && node.val == node.next.val) {
+                node = node.next;
+            }
+            return skipCycles(node.next);
+        } 
+        return node;
     }
 }
