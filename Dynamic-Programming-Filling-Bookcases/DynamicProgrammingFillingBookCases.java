@@ -1,19 +1,20 @@
 class Solution {
     
     public int minHeightShelves(int[][] books, int shelf_width) {
-        
-        int n = books.length;
-        int[] dp = new int[n+1];
 
-        for (int i = 1; i <= n; i++) {
-            
-            // This is the same as putting the book on the next shelf
-            dp[i] = dp[i - 1] + books[i - 1][1];
+        // Initialise DP      
+        int[] dp = new int[books.length + 1];  
+
+        // For each book
+        for(int i = 1; i <= books.length; i++) {
             
             // Set the height/ width to the height/ width of this book
             int height = books[i - 1][1];
             int width = books[i - 1][0];
-            
+
+            // This is the same as putting the book on the next shelf
+            dp[i] = dp[i - 1] + height;
+                        
             // Get the first book before this one
             int j = i - 1;
             
@@ -31,13 +32,14 @@ class Solution {
                 
                 //The minimum height we can achieve at book i is
                 // the min of the current, or 
-                dp[i] = Math.min(dp[i], height + dp[j - 1]);
+                dp[i] = Math.min(dp[i], dp[j - 1] + height);
                 
                 // Move back a book
                 j--;
             }
             
         }
-        return dp[n];
+        
+        return dp[books.length];
     }
 }
