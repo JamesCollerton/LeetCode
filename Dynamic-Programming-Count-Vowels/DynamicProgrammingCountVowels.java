@@ -15,39 +15,13 @@ class Solution {
         
         n--;
         
-        // For every end with A count add one to a, e, i, o, u
-        // For every end with E count add one to e, i, o, u
-        // ...
-        // We want to create a new map every time as we only want
-        // strings with length n
-        
         while(n > 0) {
             int[] newDp = new int[6];
-            for(int l = 0; l < dp[a]; l++) {
-                newDp[a] = newDp[a] + 1;
-                newDp[e] = newDp[e] + 1;
-                newDp[i] = newDp[i] + 1;
-                newDp[o] = newDp[o] + 1;
-                newDp[u] = newDp[u] + 1;
-            }
-            for(int l = 0; l < dp[e]; l++) {
-                newDp[e] = newDp[e] + 1;
-                newDp[i] = newDp[i] + 1;
-                newDp[o] = newDp[o] + 1;
-                newDp[u] = newDp[u] + 1;
-            }
-            for(int l = 0; l < dp[i]; l++) {
-                newDp[i] = newDp[i] + 1;
-                newDp[o] = newDp[o] + 1;
-                newDp[u] = newDp[u] + 1;
-            }
-            for(int l = 0; l < dp[o]; l++) {
-                newDp[o] = newDp[o] + 1;
-                newDp[u] = newDp[u] + 1;
-            }
-            for(int l = 0; l < dp[u]; l++) {
-                newDp[u] = newDp[u] + 1;
-            }
+            newDp[a] = dp[a];
+            newDp[e] = dp[a] + dp[e];
+            newDp[i] = dp[a] + dp[e] + dp[i];
+            newDp[o] = dp[a] + dp[e] + dp[i] + dp[o];
+            newDp[u] = dp[a] + dp[e] + dp[i] + dp[o] + dp[u];
             dp = newDp;
             n--;
         }
