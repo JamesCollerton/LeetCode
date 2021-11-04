@@ -14,40 +14,36 @@
  * }
  */
 class Solution {
-    
-    private List<TreeNode> result = new ArrayList<>();
-    private int remaining;
-    
+        
     public List<TreeNode> allPossibleFBT(int n) {
         
-        TreeNode root = new TreeNode(0);
+        List<TreeNode> result = new ArrayList<>();
         
-        remaining = n - 1;
+        if(n == 1) {
+            result.add(new TreeNode(0));
         
-        recurse(root, root);
-        
+        // We need the odd number so we can have a node and
+        // a left and right one
+        } else if(n % 2 != 0) {
+            
+            for(int i = 2; i <= n; i += 2) {
+                List<TreeNode> leftNodes = allPossibleFBT(i - 1);
+                List<TreeNode> rightNodes = allPossibleFBT(n - i);
+                
+                for(TreeNode left : leftNodes) {
+                    for(TreeNode right : rightNodes) {
+                        TreeNode node = new TreeNode(0);
+                        node.left = clone(left);
+                        node.right = clone(right);
+                        result.add(node);
+                    }   
+                }
+            }    
+        }
+            
         return result;
     }
     
-    private void recurse(TreeNode root, TreeNode currentNode) {
-        
-        currentNode.left = new TreeNode(0);
-        currentNode.right = new TreeNode(0);
-        
-        remaining -= 2;
-        
-        if(remaining >= 2) {            
-            recurse(root, currentNode.left);
-            recurse(root, currentNode.right);
-        } else {
-            result.add(clone(root));
-        }
-        
-        currentNode.left = null;
-        currentNode.right = null;
-        
-        remaining += 2;
-    }
     
     private TreeNode clone(TreeNode node) {
         if(node == null) {
