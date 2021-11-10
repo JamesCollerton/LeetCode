@@ -1,24 +1,25 @@
 class NumMatrix {
 
-    private Map<List<Integer>, Integer> dp = new HashMap();
+    private int[][] dp;
     private int[][] matrix;
     
     public NumMatrix(int[][] matrix) {
         this.matrix = matrix;
+        
+        // Do everything starting from 1 to stop
+        // us having to check if what is before
+        // exists
+        this.dp = new int[matrix.length + 1][matrix[0].length + 1];
+        
+        for(int i = 1; i < dp.length; i++) {
+            for(int j = 1; j < dp[i].length; j++) {
+                dp[i][j] = dp[i - 1][j] + dp[i][j - 1] - dp[i - 1][j - 1] + matrix[i - 1][j - 1];    
+            }
+        }
     }
     
     public int sumRegion(int row1, int col1, int row2, int col2) {
-        if(dp.containsKey(Arrays.asList(row1, col1, row2, col2))) {
-            return dp.get(Arrays.asList(row1, col1, row2, col2));
-        }
-        int sum = 0;
-        for(int i = row1; i <= row2; i++) {
-            for(int j = col1; j <= col2; j++) {
-                sum += matrix[i][j];
-            }
-        }
-        dp.put(Arrays.asList(row1, col1, row2, col2), sum);
-        return sum;
+        return dp[row2 + 1][col2 + 1] - dp[row1][col2 + 1] - dp[row2 + 1][col1] + dp[row1][col1];
     }
 }
 
