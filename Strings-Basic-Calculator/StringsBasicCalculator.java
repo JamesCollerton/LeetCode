@@ -1,57 +1,35 @@
-class Solution {
-    
-    private List<String> splitExpression = new ArrayList<>();
-    
-    public int calculate(String s) {
-        return recurse(s.replaceAll("\\s+",""), 0, 0, '+');
-    }
-    
-    private int recurse(String s, int pointer, int runningResult, char lastFunction) {
-        
-        int pointerEnd = pointer + 1;
-        boolean isInt = true;
-        
-        // Will set pointerEnd to either the first character where it
-        // isn't part of an int, and put the last valid int in the
-        // result variable
-        
-        int result = 0;
-        while(pointerEnd <= s.length() && isInt) {
-            try { 
-                result = Integer.parseInt(s.substring(pointer, pointerEnd));
-                pointerEnd++;
-            } catch(NumberFormatException e) { 
-                isInt = false; 
+public class Solution {
+public int calculate(String s) {
+    int len;
+    if(s==null || (len = s.length())==0) return 0;
+    Stack<Integer> stack = new Stack<Integer>();
+    int num = 0;
+    char sign = '+';
+    for(int i=0;i<len;i++){
+        if(Character.isDigit(s.charAt(i))){
+            num = num*10+s.charAt(i)-'0';
+        }
+        if((!Character.isDigit(s.charAt(i)) &&' '!=s.charAt(i)) || i==len-1){
+            if(sign=='-'){
+                stack.push(-num);
             }
+            if(sign=='+'){
+                stack.push(num);
+            }
+            if(sign=='*'){
+                stack.push(stack.pop()*num);
+            }
+            if(sign=='/'){
+                stack.push(stack.pop()/num);
+            }
+            sign = s.charAt(i);
+            num = 0;
         }
-        
-        System.out.println("Result " + result);
-        
-        // If the pointer has reached the end of the string then
-        // we don't need to do a function and can return result
-        if(pointerEnd > s.length()) {
-            return result;
-        }
-        
-        // Otherwise find the function from the string. The pointer
-        // end will be at the character         
-        char function = s.charAt(pointerEnd - 1);
-                
-        switch(function) {
-            case '*':
-                result *= recurse(s, pointerEnd);
-                break;
-            case '+':
-                result += recurse(s, pointerEnd);
-                break;
-            case '/':
-                result /= recurse(s, pointerEnd);
-                break;
-            case '-':
-                result -= recurse(s, pointerEnd);
-                break;
-        }
-        
-        return result;
     }
-}
+
+    int re = 0;
+    for(int i:stack){
+        re += i;
+    }
+    return re;
+}}
