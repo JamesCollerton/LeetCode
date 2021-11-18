@@ -1,46 +1,62 @@
 class Solution {
-    
-    private boolean[] seen = new boolean[26];
-    
+        
     public String removeDuplicateLetters(String s) {
+
+        // Counts the number of times different characters
+        // appear
+        int[] characterCount = new int[26];
         
-        int[] lastLetterAppearance = new int[26];
+        // Keep track of which characters have been visited
+        boolean[] seen = new boolean[26];
         
-        for(int i = 0; i < lastLetterAppearance.length; i++) {
-            lastLetterAppearance = -1;
-        }
-        
+        // Convert to array
         char[] arr = s.toCharArray();
-        
-        for(int i = 0; arr.length; i++) {
-            lastLetterAppearance[arr[i] - 'a'] = i;
+
+        // Find the number of times we have visited the character
+        for(char c: arr) {
+            characterCount[c - 'a']++;
         }
-        
-        return recurse(lastLetterAppearance, 0);
-    }
-    
-    private String recurse(int[] lastLetterAppearance, int pointer) {
-        if(pointer >= lastLetterAppearance.size() || seen[pointer] || lastLetterAppearance[pointer] == -1) {
-            return "";
-        }
+
+        // Create a stack and an index
+        Stack<Character> stack = new Stack<>();
+        int index;
+
+        // Go through all characters in array
+        for(char c: arr) {
+
+            // Get the index of the character
+            index = c - 'a';
+            
+            // Decrease the count of the character
+            characterCount[index]--;
+            
+            // If we've already seen it then skip it
+            if(!seen[index]) {
+
+                // While the stack is empty and this character is less than the next one
+                // and we will still see the next character after this one
+                while(!stack.isEmpty() && c < stack.peek() && characterCount[stack.peek() - 'a'] != 0) {
+                    // Remove the character and say we haven't seen it
+                    seen[stack.pop() - 'a'] = false;
+                }
                 
-        int[] newLastLetterAppearance = new int[26];
-        int currentLastLetterAppearance = lastLetterAppearance[pointer]
-        
-        for(int i = pointer + 1; i < lastLetterAppearance.length; i++) {
-            if(
-                lastLetterAppearance[i] != -1 && 
-                lastLetterAppearance[i] < currentLastLetterAppearance &&
-                !seen[i]
-            ) {
-                newLastLetterAppearance[i] = lastLetterAppearance[i];
-            } else {
-                newLastLetterAppearance[i] = -1;
+                // Add the character on
+                stack.push(c);
+                
+                // Say we've visited it
+                seen[c - 'a'] = true;
             }
+            
+        }
+
+        StringBuilder sb = new StringBuilder();
+        
+        while(!stack.isEmpty()){
+            sb.insert(0, stack.pop());
         }
         
-        seen[pointer] = true;
+        return sb.toString();
         
-        return Character.toString('a' + pointer) + recurse(lastLetterAppearance, pointer + 1);
     }
+
 }
