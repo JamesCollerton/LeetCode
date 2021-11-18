@@ -1,18 +1,46 @@
 class Solution {
+    
+    private boolean[] seen = new boolean[26];
+    
     public String removeDuplicateLetters(String s) {
         
-        Set<Character> set = new HashSet<>();
+        int[] lastLetterAppearance = new int[26];
+        
+        for(int i = 0; i < lastLetterAppearance.length; i++) {
+            lastLetterAppearance = -1;
+        }
         
         char[] arr = s.toCharArray();
         
-        for(int i = 0; i < arr.length; i++) {
-            set.add(arr[i]);
+        for(int i = 0; arr.length; i++) {
+            lastLetterAppearance[arr[i] - 'a'] = i;
         }
         
-        List<Character> list = new ArrayList<>(set);
+        return recurse(lastLetterAppearance, 0);
+    }
+    
+    private String recurse(int[] lastLetterAppearance, int pointer) {
+        if(pointer >= lastLetterAppearance.size() || seen[pointer] || lastLetterAppearance[pointer] == -1) {
+            return "";
+        }
+                
+        int[] newLastLetterAppearance = new int[26];
+        int currentLastLetterAppearance = lastLetterAppearance[pointer]
         
-        Collections.sort(list);
+        for(int i = pointer + 1; i < lastLetterAppearance.length; i++) {
+            if(
+                lastLetterAppearance[i] != -1 && 
+                lastLetterAppearance[i] < currentLastLetterAppearance &&
+                !seen[i]
+            ) {
+                newLastLetterAppearance[i] = lastLetterAppearance[i];
+            } else {
+                newLastLetterAppearance[i] = -1;
+            }
+        }
         
-        return list.stream().map(c -> c.toString()).collect(Collectors.joining(""));
+        seen[pointer] = true;
+        
+        return Character.toString('a' + pointer) + recurse(lastLetterAppearance, pointer + 1);
     }
 }
