@@ -2,37 +2,41 @@ class Solution {
     
     public int characterReplacement(String s, int k) {
         
-        int result = 1;
+        // This is the count of letters in the current window
+        int[] freq = new int[26];
         
-        if(k > 0 && s.length() > 1) {
-            char[] arr = s.toCharArray();
-            arr[0] = arr[1];
-            result = Math.max(result, recurse(arr, 1, k - 1, 1));
-        }
+        // This is the most frequent letter in the window
+        int mostFreqLetter = 0;
         
+        // Start off at the left
+        int left = 0;
         
-        for(int i = 1; i < s.length(); i++) {
-            result = Math.max(result, recurse(s.toCharArray(), i, k, 1));
-        }
-        
-        return result;
-    }
-    
-    private int recurse(char[] arr, int pointer, int k, int max) {
-        
-        if(pointer >= arr.length) {
-            return max;
-        } 
-        
-        if(arr[pointer] == arr[pointer - 1]) {
-            return recurse(arr, pointer + 1, k, max + 1);
-        } else {
-            if(k > 0) {
-                arr[pointer] = arr[pointer - 1];
-                return recurse(arr, pointer + 1, k - 1, max + 1);
+        // Max to be returned
+        int max = 0;
+
+        // Start at first character
+        for(int right = 0; right < s.length(); right++){
+            // Increase the character count at the right
+            freq[s.charAt(right) - 'A']++;
+            
+            // Change most frequent letter depending on the new character on right
+            mostFreqLetter = Math.max(mostFreqLetter, freq[s.charAt(right) - 'A']);
+
+            // This is the number of characters to change, all in the window apart 
+            // from the most frequent one
+            int lettersToChange = (right - left + 1) - mostFreqLetter;
+            
+            // If we can't change it then move the left pointer along
+            if(lettersToChange > k){
+                freq[s.charAt(left) - 'A']--;
+                left++;
             }
+    
+            // Max is now the maximum or this window             
+            max = Math.max(max, right - left + 1);
         }
-        
+
         return max;
     }
+    
 }
