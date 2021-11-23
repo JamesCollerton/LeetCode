@@ -14,23 +14,7 @@ class Solution {
                 
         // We want n > 1 as we have manually done our first step.
         while(n > 1) {
-            
-//             for(int i = 0; i < result.size(); i++) {
-//                 System.out.println(result.get(i));
-//             }
-            
-//             System.out.println("");
-            
-//             for (Map.Entry<Integer, List<Integer>> entry : map.entrySet()) {
-//                 System.out.print(entry.getKey() + ": ");
-//                 for(int i = 0; i < entry.getValue().size(); i++) {
-//                     System.out.print(entry.getValue().get(i) + " ");
-//                 }
-//                 System.out.println("");
-//             }
-            
-//             System.out.println("");
-            
+                        
             // This is the ugly number we need to use to generate
             // the next one. We keep track so we can remove the
             // first multiplier from the list after we use it.
@@ -46,6 +30,7 @@ class Solution {
             // the next number is greater than the current min
             int i = 0;
             long currentUglyNumber = result.get(0);
+            List<Integer> toRemove = new ArrayList<>();
             
             while(i < result.size() && currentUglyNumber < currentNextMinUglyNumber) {
                 
@@ -74,9 +59,15 @@ class Solution {
                     } else {
                         map.get(currentUglyNumber).remove(0);
                     }
+                } else {
+                    toRemove.add(i);
                 }
-                
+                                
                 i++;
+            }
+            
+            for(int j = 0; j < toRemove.size(); j++) {
+                result.remove(j);
             }
             
             // Now we add the next calculated number
@@ -91,7 +82,7 @@ class Solution {
             
             n--;
         }
-                
+        
         return Math.toIntExact(result.get(result.size() - 1));
     }
 }
