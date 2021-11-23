@@ -2,15 +2,15 @@ class Solution {
     public int nthUglyNumber(int n) {
         
         // Create a map from ugly numbers to their potential multipliers
-        Map<Integer, List<Integer>> map = new HashMap<>();
+        Map<Long, List<Integer>> map = new HashMap<>();
         
         // This is our list of ugly numbers
-        List<Integer> result = new ArrayList<>();
+        List<Long> result = new ArrayList<>();
         
         // The first thing we can do is take 1, our seed, and multiply by
         // 2, 3 or 5
-        map.put(1, new ArrayList<>(Arrays.asList(2, 3, 5)));
-        result.add(1);
+        map.put(1L, new ArrayList<>(Arrays.asList(2, 3, 5)));
+        result.add(1L);
                 
         // We want n > 1 as we have manually done our first step.
         while(n > 1) {
@@ -34,18 +34,18 @@ class Solution {
             // This is the ugly number we need to use to generate
             // the next one. We keep track so we can remove the
             // first multiplier from the list after we use it.
-            int uglyNumberGeneratingMin = 0;
+            long uglyNumberGeneratingMin = 0L;
             
             // This is the minimum next one we can generate, this
             // keeps us in order
-            int currentNextMinUglyNumber = Integer.MAX_VALUE;
+            long currentNextMinUglyNumber = Long.MAX_VALUE;
             
             // Go through all previous ugly numbers and look for the
             // one that can generate the next min. Adding a small
             // optimisation to stop looking up the list when we have
             // the next number is greater than the current min
             int i = 0;
-            int currentUglyNumber = result.get(0);
+            long currentUglyNumber = result.get(0);
             
             while(i < result.size() && currentUglyNumber < currentNextMinUglyNumber) {
                 
@@ -60,7 +60,7 @@ class Solution {
                     
                     // Calculate the next ugly number if we multiply this ugly
                     // number by the next multiplier
-                    int potentialNextUglyNumber = lowestMultiplier * currentUglyNumber;
+                    long potentialNextUglyNumber = lowestMultiplier * currentUglyNumber;
                     
                     // We need to check we haven't seen it before because
                     // we can generate same number different ways
@@ -91,11 +91,7 @@ class Solution {
             
             n--;
         }
-        
-        // for(int i = 0; i < result.size(); i++) {
-        //     System.out.println(result.get(i));
-        // }
-        
-        return result.get(result.size() - 1);
+                
+        return Math.toIntExact(result.get(result.size() - 1));
     }
 }
