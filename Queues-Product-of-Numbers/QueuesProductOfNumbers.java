@@ -1,38 +1,25 @@
 class ProductOfNumbers {
 
-    private Stack<Integer> stack;
+    private List<Integer> list;
     
     public ProductOfNumbers() {
-        stack = new Stack<>();
+        list = new ArrayList<>();
+        list.add(1);
     }
     
     public void add(int num) {
-        // if(stack.empty()) {
-            stack.push(num);
-        // } else {
-            // int previous = stack.peek();
-            // stack.push(previous * num);
-        // }
+        if(num == 0) {
+            list = new ArrayList<>();
+            list.add(1);
+        } else {
+            list.add(list.get(list.size() - 1) * num);
+        }
     }
     
     public int getProduct(int k) {
-        
-        Stack<Integer> tempStack = new Stack<>();
-        int result = 1;
-        
-        while(k > 0) {
-            int number = stack.pop(); 
-            result *= number;
-            tempStack.push(number);
-            k--;
-        }
-        
-        while(!tempStack.empty()) {
-            stack.push(tempStack.pop());
-        }
-        
-        return result;
+        return k >= list.size() ? 0 : list.get(list.size() - 1) / list.get(list.size() - k - 1);
     }
+    
 }
 
 /**
