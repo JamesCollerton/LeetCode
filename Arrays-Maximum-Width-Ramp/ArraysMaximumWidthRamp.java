@@ -1,36 +1,29 @@
 class Solution {
     public int maxWidthRamp(int[] nums) {
+
+        int[] maxFromRight = new int[nums.length];
         
-        int startPointer = 0;
-        int maxRamp = 0;
+        maxFromRight[nums.length - 1] = nums[nums.length - 1];
         
-        while(startPointer < nums.length) {
+        for(int i = nums.length - 2; i >= 0; i--) {
+            maxFromRight[i] = Math.max(maxFromRight[i + 1], nums[i]);
+        }
+
+        int left = 0;
+        int right = 0;
+        int ans = 0;
+        
+        while(right < nums.length) {
             
-            int endPointer = nums.length - 1;
-            
-            if(endPointer - startPointer <= maxRamp) {
-                startPointer = nums.length + 1;
+            if(left < right && nums[left] > maxFromRight[right]) {
+                left++;
             } else {
-            
-                while(endPointer >= startPointer && endPointer - startPointer > maxRamp) {
-
-                    if(nums[endPointer] >= nums[startPointer]) {
-                        // TODO: Can remove this later
-                        maxRamp = Math.max(maxRamp, endPointer - startPointer);
-                        endPointer = startPointer - 1;
-                    } else {
-                        endPointer--;
-                    }
-                    
-                }
-
-                startPointer++;
-                
+                ans = Math.max(ans, right - left);
+                right++;
             }
             
         }
         
-        
-        return maxRamp;
+        return ans;
     }
 }
