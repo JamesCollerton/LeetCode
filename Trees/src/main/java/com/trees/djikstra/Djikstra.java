@@ -44,48 +44,46 @@ public class Djikstra {
 
     private static void djikstra(Graph graph, Node source) {
 
-        source.distance = 0;
-
-        Set<Node> seenNodes = new HashSet<>();
-
+        Set<Node> seen = new HashSet<>();
         Queue<Node> priorityQueue = new PriorityQueue<>();
 
+        source.distance = 0;
         priorityQueue.add(source);
 
         while(!priorityQueue.isEmpty()) {
 
             Node currentNode = priorityQueue.remove();
 
-            for (Map.Entry<Node, Integer> adjacencyPair: currentNode.adjacentNodes.entrySet()) {
+            if(!seen.contains(currentNode)) {
+                for(Map.Entry<Node, Integer> entry: currentNode.adjacentNodes.entrySet()) {
 
-                Node node = adjacencyPair.getKey();
-                Integer weight = adjacencyPair.getValue();
+                    Node node = entry.getKey();
+                    Integer weight = entry.getValue();
 
-                if (!seenNodes.contains(node)) {
                     calculateMinimumDistance(node, weight, currentNode);
+
                     priorityQueue.add(node);
                 }
-
+                seen.add(currentNode);
             }
-
-            seenNodes.add(currentNode);
         }
 
         for(Node node: graph.nodes) {
-            System.out.println("Node: " + node.name);
-            System.out.println("Distance: " + node.distance);
+            System.out.println(node);
         }
-
     }
 
     private static void calculateMinimumDistance(Node currentNode, int weight, Node previousNode) {
-        Integer previousDistance = previousNode.distance;
-        if (previousDistance + weight < currentNode.distance) {
-            currentNode.distance = previousDistance + weight;
-            LinkedList<Node> shortestPath = new LinkedList<>(previousNode.shortestPath);
-            shortestPath.add(previousNode);
-            currentNode.shortestPath = shortestPath;
+
+        int newDistance = previousNode.distance + weight;
+
+        if(newDistance < currentNode.distance) {
+            currentNode.distance = newDistance;
+            List<Node> newPath = new LinkedList<>(previousNode.path);
+            newPath.add(previousNode);
+            currentNode.path = newPath;
         }
+
     }
 
 }
