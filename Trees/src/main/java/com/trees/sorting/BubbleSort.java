@@ -4,7 +4,7 @@ public class BubbleSort {
 
     public static void main(String[] args) {
 
-        int[] arr = new int[]{1, 2, 5, 4, 3, 7, 9, 7, 10};
+        int[] arr = new int[]{1, 5, 4, 7, 9, 10, 11, 7};
 
         int pointer = 0;
 
@@ -21,7 +21,7 @@ public class BubbleSort {
             pointer++;
         }
 
-        for(int i: arr) {
+        for(int i : arr) {
             System.out.print(i + " ");
         }
 
