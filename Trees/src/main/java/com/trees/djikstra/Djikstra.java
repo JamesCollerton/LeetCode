@@ -45,43 +45,45 @@ public class Djikstra {
     private static void djikstra(Graph graph, Node source) {
 
         Set<Node> seen = new HashSet<>();
-        Queue<Node> priorityQueue = new PriorityQueue<>();
+        Queue<Node> queue = new PriorityQueue<>();
 
         source.distance = 0;
-        priorityQueue.add(source);
+        queue.add(source);
 
-        while(!priorityQueue.isEmpty()) {
+        while(!queue.isEmpty()) {
 
-            Node currentNode = priorityQueue.remove();
+            Node currentNode = queue.remove();
 
-            if(!seen.contains(currentNode)) {
-                for(Map.Entry<Node, Integer> entry: currentNode.adjacentNodes.entrySet()) {
+            for(Map.Entry<Node, Integer> entry: currentNode.adjacentNodes.entrySet()) {
+                Node node = entry.getKey();
+                int distance = entry.getValue();
 
-                    Node node = entry.getKey();
-                    Integer weight = entry.getValue();
+                if(!seen.contains(node)) {
+                    calculateMinimumDistance(node, distance, currentNode);
 
-                    calculateMinimumDistance(node, weight, currentNode);
-
-                    priorityQueue.add(node);
+                    queue.add(node);
                 }
-                seen.add(currentNode);
             }
+
+            seen.add(currentNode);
+
         }
 
         for(Node node: graph.nodes) {
             System.out.println(node);
         }
+
     }
 
-    private static void calculateMinimumDistance(Node currentNode, int weight, Node previousNode) {
+    private static void calculateMinimumDistance(Node node, int distance, Node previousNode) {
 
-        int newDistance = previousNode.distance + weight;
+        int newDistance = previousNode.distance + distance;
 
-        if(newDistance < currentNode.distance) {
-            currentNode.distance = newDistance;
+        if(newDistance < node.distance) {
+            node.distance = newDistance;
             List<Node> newPath = new LinkedList<>(previousNode.path);
             newPath.add(previousNode);
-            currentNode.path = newPath;
+            node.path = newPath;
         }
 
     }
