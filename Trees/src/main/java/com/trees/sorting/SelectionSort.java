@@ -1,13 +1,10 @@
 package com.trees.sorting;
 
-import java.util.Arrays;
-import java.util.stream.Collectors;
-
 public class SelectionSort {
 
     public static void main(String[] args) {
 
-        int[] arr = new int[]{4, 3, 2, 1, 0};
+        int[] arr = new int[]{7, 3, 1, 4, 2, 9, 7};
 
         int pointer = 0;
 
@@ -26,9 +23,10 @@ public class SelectionSort {
             pointer++;
         }
 
-        for(Integer i : arr) {
+        for(int i: arr) {
             System.out.print(i + " ");
         }
+
     }
 
 }
