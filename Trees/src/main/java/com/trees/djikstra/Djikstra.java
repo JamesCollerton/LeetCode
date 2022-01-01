@@ -54,24 +54,23 @@ public class Djikstra {
 
             Node currentNode = queue.remove();
 
-            for(Map.Entry<Node, Integer> entry: currentNode.adjacentNodes.entrySet()) {
-                Node node = entry.getKey();
-                int distance = entry.getValue();
+            if(!seen.contains(currentNode)) {
 
-                if(!seen.contains(node)) {
+                seen.add(currentNode);
+
+                for(Map.Entry<Node, Integer> entry: currentNode.adjacentNodes.entrySet()) {
+                    Node node = entry.getKey();
+                    int distance = entry.getValue();
+
                     calculateMinimumDistance(node, distance, currentNode);
-
                     queue.add(node);
                 }
+
             }
 
-            seen.add(currentNode);
-
         }
 
-        for(Node node: graph.nodes) {
-            System.out.println(node);
-        }
+        graph.nodes.forEach(System.out::println);
 
     }
 

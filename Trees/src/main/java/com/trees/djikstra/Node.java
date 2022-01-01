@@ -10,22 +10,34 @@ public class Node implements Comparable<Node> {
 
     String name;
     int distance = Integer.MAX_VALUE;
-    Map<Node, Integer> adjacentNodes = new HashMap<>();
     List<Node> path = new LinkedList<>();
+    Map<Node, Integer> adjacentNodes = new HashMap<>();
 
     Node(String name) {
         this.name = name;
     }
 
+
     @Override
     public int compareTo(Node that) {
-        return -Integer.compare(that.distance, this.distance);
+
+        if(this.distance < that.distance) {
+            return -1;
+        }
+
+        if(this.distance > that.distance) {
+            return 1;
+        }
+
+        return 0;
     }
 
     @Override
     public String toString() {
         return "Node: " + name + "\n" +
                 "Distance: " + distance + "\n" +
-                "Path: " + path.stream().map(n -> n.name).collect(Collectors.joining("-")) + "\n";
+                "Path: " + path.stream().map(n -> n.name).collect(Collectors.joining("-"));
+
     }
+
 }
