@@ -14,7 +14,7 @@ public class QuickSort {
 
     }
 
-    public static void quickSort(int arr[], int start, int finish) {
+    private static void quickSort(int[] arr, int start, int finish) {
 
         if(start < finish) {
 
@@ -22,25 +22,25 @@ public class QuickSort {
 
             quickSort(arr, start, partitionIndex - 1);
             quickSort(arr, partitionIndex + 1, finish);
-
         }
 
     }
 
-    // Thw whole idea is that the pivot ends up in the correct place. Item
-    // by item we're putting the pivot in the correct location.
     private static int partition(int[] arr, int start, int finish) {
 
         int pivot = arr[finish];
         int i = start - 1;
 
         for(int j = start; j < finish; j++) {
-            if(arr[j] <= pivot) {
+
+            if(arr[j] < pivot) {
                 i++;
+
                 int temp = arr[j];
                 arr[j] = arr[i];
                 arr[i] = temp;
             }
+
         }
 
         int temp = arr[i + 1];
@@ -49,6 +49,5 @@ public class QuickSort {
 
         return i + 1;
     }
-
 
 }

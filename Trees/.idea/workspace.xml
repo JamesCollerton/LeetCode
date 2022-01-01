@@ -13,20 +13,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="QuickSort.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="QuickSort.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/trees/sorting/QuickSort.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="30" column="63" selection-start-line="30" selection-start-column="63" selection-end-line="30" selection-end-column="63" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MergeSort.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/trees/sorting/MergeSort.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="237">
-              <caret line="47" column="20" selection-start-line="47" selection-start-column="20" selection-end-line="47" selection-end-column="20" />
+            <state relative-caret-position="291">
+              <caret line="47" column="27" selection-start-line="47" selection-start-column="27" selection-end-line="47" selection-end-column="27" />
             </state>
           </provider>
         </entry>
@@ -82,9 +73,9 @@
         <option value="$PROJECT_DIR$/src/main/java/com/trees/djikstra/Node.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/trees/sorting/SelectionSort.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/trees/sorting/BubbleSort.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/trees/sorting/QuickSort.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/trees/sorting/InsertionSort.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/trees/sorting/MergeSort.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/trees/sorting/QuickSort.java" />
       </list>
     </option>
   </component>
@@ -194,7 +185,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.MergeSort">
+  <component name="RunManager" selected="Application.QuickSort">
     <configuration name="BubbleSort" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.trees.sorting.BubbleSort" />
       <module name="Trees" />
@@ -300,9 +291,9 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.QuickSort" />
         <item itemvalue="Application.MergeSort" />
         <item itemvalue="Application.InsertionSort" />
-        <item itemvalue="Application.QuickSort" />
         <item itemvalue="Application.SelectionSort" />
         <item itemvalue="Application.BubbleSort" />
       </list>
@@ -347,14 +338,14 @@
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18680556" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18680556" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="2" />
       <window_info anchor="right" id="Theme Preview" order="3" />
       <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Debug" order="3" visible="true" weight="0.39945653" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.39945653" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -665,17 +656,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/trees/sorting/QuickSort.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/trees/sorting/MergeSort.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="30" column="63" selection-start-line="30" selection-start-column="63" selection-end-line="30" selection-end-column="63" />
+        <state relative-caret-position="541">
+          <caret line="48" column="19" selection-start-line="48" selection-start-column="19" selection-end-line="48" selection-end-column="19" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/trees/sorting/MergeSort.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/trees/sorting/QuickSort.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="237">
-          <caret line="47" column="20" selection-start-line="47" selection-start-column="20" selection-end-line="47" selection-end-column="20" />
+        <state relative-caret-position="291">
+          <caret line="47" column="27" selection-start-line="47" selection-start-column="27" selection-end-line="47" selection-end-column="27" />
         </state>
       </provider>
     </entry>
