@@ -46,25 +46,18 @@ public class MergeSort {
 
         while(i < leftArray.length && j < rightArray.length) {
             if(leftArray[i] <= rightArray[j]) {
-                arr[k] = leftArray[i];
-                i++;
+                arr[k++] = leftArray[i++];
             } else if(leftArray[i] > rightArray[j]) {
-                arr[k] = rightArray[j];
-                j++;
+                arr[k++] = rightArray[j++];
             }
-            k++;
         }
 
         while(i < leftArray.length) {
-            arr[k] = leftArray[i];
-            i++;
-            k++;
+            arr[k++] = leftArray[i++];
         }
 
         while(j < rightArray.length) {
-            arr[k] = rightArray[j];
-            j++;
-            k++;
+            arr[k++] = rightArray[j++];
         }
 
     }
