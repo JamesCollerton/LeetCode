@@ -13,11 +13,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="SelectionSort.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/trees/sorting/SelectionSort.java">
+      <file leaf-file-name="BubbleSort.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/trees/sorting/BubbleSort.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="337">
-              <caret line="28" column="37" selection-start-line="28" selection-start-column="37" selection-end-line="28" selection-end-column="37" />
+            <state relative-caret-position="240">
+              <caret line="16" column="38" selection-start-line="16" selection-start-column="38" selection-end-line="16" selection-end-column="38" />
             </state>
           </provider>
         </entry>
@@ -68,12 +68,12 @@
         <option value="$PROJECT_DIR$/src/main/java/com/trees/MergeSort.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/trees/QuickSort.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/trees/Djikstra.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/trees/sorting/BubbleSort.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/trees/sorting/InsertionSort.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/trees/djikstra/Graph.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/trees/djikstra/Djikstra.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/trees/djikstra/Node.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/trees/sorting/SelectionSort.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/trees/sorting/BubbleSort.java" />
       </list>
     </option>
   </component>
@@ -183,7 +183,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.SelectionSort">
+  <component name="RunManager" selected="Application.BubbleSort">
     <configuration name="BubbleSort" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.trees.sorting.BubbleSort" />
       <module name="Trees" />
@@ -289,10 +289,10 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.BubbleSort" />
         <item itemvalue="Application.SelectionSort" />
         <item itemvalue="Application.Djikstra" />
         <item itemvalue="Application.InsertionSort" />
-        <item itemvalue="Application.BubbleSort" />
         <item itemvalue="Application.QuickSort" />
       </list>
     </recent_temporary>
@@ -625,13 +625,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/trees/sorting/BubbleSort.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" column="13" lean-forward="true" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/trees/djikstra/Graph.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
@@ -663,8 +656,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/trees/sorting/SelectionSort.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="337">
-          <caret line="28" column="37" selection-start-line="28" selection-start-column="37" selection-end-line="28" selection-end-column="37" />
+        <state relative-caret-position="187">
+          <caret line="18" column="13" lean-forward="true" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/trees/sorting/BubbleSort.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="16" column="38" selection-start-line="16" selection-start-column="38" selection-end-line="16" selection-end-column="38" />
         </state>
       </provider>
     </entry>
