@@ -13,11 +13,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="InsertionSort.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/trees/sorting/InsertionSort.java">
+      <file leaf-file-name="MergeSort.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/trees/sorting/MergeSort.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="17" column="20" selection-start-line="17" selection-start-column="20" selection-end-line="17" selection-end-column="20" />
+            <state relative-caret-position="214">
+              <caret line="62" lean-forward="true" selection-start-line="62" selection-end-line="62" />
             </state>
           </provider>
         </entry>
@@ -74,6 +74,7 @@
         <option value="$PROJECT_DIR$/src/main/java/com/trees/sorting/SelectionSort.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/trees/sorting/BubbleSort.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/trees/sorting/InsertionSort.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/trees/sorting/MergeSort.java" />
       </list>
     </option>
   </component>
@@ -183,7 +184,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.InsertionSort">
+  <component name="RunManager" selected="Application.MergeSort">
     <configuration name="BubbleSort" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.trees.sorting.BubbleSort" />
       <module name="Trees" />
@@ -217,13 +218,13 @@
         </pattern>
       </extension>
     </configuration>
-    <configuration name="QuickSort" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.trees.QuickSort" />
+    <configuration name="MergeSort" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.trees.sorting.MergeSort" />
       <module name="Trees" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.trees.djikstra.*" />
+          <option name="PATTERN" value="com.trees.sorting.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -281,19 +282,19 @@
       <listeners />
     </configuration>
     <list>
-      <item itemvalue="Application.QuickSort" />
       <item itemvalue="Application.Djikstra" />
       <item itemvalue="Application.SelectionSort" />
       <item itemvalue="Application.BubbleSort" />
       <item itemvalue="Application.InsertionSort" />
+      <item itemvalue="Application.MergeSort" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.MergeSort" />
         <item itemvalue="Application.InsertionSort" />
         <item itemvalue="Application.SelectionSort" />
         <item itemvalue="Application.BubbleSort" />
         <item itemvalue="Application.Djikstra" />
-        <item itemvalue="Application.QuickSort" />
       </list>
     </recent_temporary>
   </component>
@@ -604,13 +605,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/trees/sorting/MergeSort.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="22" selection-start-line="2" selection-start-column="22" selection-end-line="2" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/trees/sorting/QuickSort.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
@@ -663,8 +657,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/trees/sorting/InsertionSort.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" column="20" selection-start-line="17" selection-start-column="20" selection-end-line="17" selection-end-column="20" />
+        <state relative-caret-position="216">
+          <caret line="15" column="25" lean-forward="true" selection-start-line="15" selection-start-column="25" selection-end-line="15" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/trees/sorting/MergeSort.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="214">
+          <caret line="62" lean-forward="true" selection-start-line="62" selection-end-line="62" />
         </state>
       </provider>
     </entry>
