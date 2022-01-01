@@ -8,18 +8,17 @@ public class InsertionSort {
 
         int pointer = 1;
 
-        while(pointer < arr.length - 1) {
+        while(pointer < arr.length) {
 
-            int value = arr[pointer];
+            int pointerValue = arr[pointer];
             int i = pointer;
 
-            // 1, 2, 4, 3
-            while(i > 0 && value < arr[i - 1]) {
+            while(i > 0 && arr[i - 1] > pointerValue) {
                 arr[i] = arr[i - 1];
                 i--;
             }
 
-            arr[i] = pointer;
+            arr[i] = pointerValue;
 
             pointer++;
         }

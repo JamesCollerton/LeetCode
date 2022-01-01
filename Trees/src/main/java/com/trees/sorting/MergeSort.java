@@ -18,7 +18,7 @@ public class MergeSort {
 
         int length = arr.length;
 
-        if(length < 2) {
+        if(arr.length < 2) {
             return;
         }
 
@@ -29,8 +29,7 @@ public class MergeSort {
         for(int i = 0; i < midPoint; i++) {
             leftArray[i] = arr[i];
         }
-
-        for(int i = midPoint; i < arr.length; i++) {
+        for(int i = midPoint; i < length; i++) {
             rightArray[i - midPoint] = arr[i];
         }
 

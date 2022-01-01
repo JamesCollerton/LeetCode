@@ -27,6 +27,8 @@ public class QuickSort {
 
     }
 
+    // Thw whole idea is that the pivot ends up in the correct place. Item
+    // by item we're putting the pivot in the correct location.
     private static int partition(int[] arr, int start, int finish) {
 
         int pivot = arr[finish];
