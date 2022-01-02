@@ -1,4 +1,4 @@
-package com.trees.sorting;
+package com.trees.sorting.array;
 
 public class SelectionSort {
 
