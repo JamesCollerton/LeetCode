@@ -52,8 +52,8 @@ public class TopologicalSort {
             }
         }
 
-        ordering[orderingPosition] = currentNode;
-        return orderingPosition - 1;
+        ordering[orderingPosition--] = currentNode;
+        return orderingPosition;
     }
 
 }
