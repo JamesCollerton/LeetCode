@@ -29,28 +29,26 @@ public class TopologicalSort {
 
         int[] ordering = new int[numberNodes];
         boolean[] visited = new boolean[numberNodes];
-
         int orderingPosition = numberNodes - 1;
 
-        for (int currentNode = 0; currentNode < numberNodes; currentNode++) {
-            if (!visited[currentNode]) {
-                orderingPosition = dfs(orderingPosition, currentNode, visited, ordering, adjacencyList);
+        for(int i = 0; i < numberNodes; i++) {
+            if(!visited[i]) {
+                orderingPosition = dfs(orderingPosition, i, visited, ordering, adjacencyList);
             }
         }
 
         return ordering;
     }
 
+    // Basically do DFS and add to ordering as we recurse back up
     private static int dfs(
             int orderingPosition, int currentNode, boolean[] visited, int[] ordering, List<List<Integer>> adjacencyList) {
 
         visited[currentNode] = true;
 
-        List<Integer> connectedNodes = adjacencyList.get(currentNode);
-
-        for (int connectedNode: connectedNodes) {
-            if (!visited[connectedNode]) {
-                orderingPosition = dfs(orderingPosition, connectedNode, visited, ordering, adjacencyList);
+        for(int node: adjacencyList.get(currentNode)) {
+            if(!visited[node]) {
+                orderingPosition = dfs(orderingPosition, node, visited, ordering, adjacencyList);
             }
         }
 
