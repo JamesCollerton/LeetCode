@@ -1,94 +1,55 @@
 class Solution {
-    
-    private class Graph {
-        List<Node> nodes = new ArrayList<>();
-    }
-    
+        
     private class Node {
-        Integer number;
-        int distance = Integer.MAX_VALUE;
-        Map<Node, Integer> adjacencyList = new HashMap<>();
-        List<Node> path = new LinkedList<>();
-        
-        Node(int number) {
-            this.number = number;
-        }
-        
-        @Override
-        public String toString() {
-            return "Node: " + number + "\n" +
-                    "Distance: " + distance + "\n" +
-                    "Path: " + path.stream().map(n -> n.number.toString()).collect(Collectors.joining("-"));
-
+        int price;
+        int city;
+        int remainingStops;
+        Node(int price, int city, int remainingStops) {
+            this.price = price;
+            this.city = city;
+            this.remainingStops = remainingStops;
         }
     }
     
     public int findCheapestPrice(int n, int[][] flights, int src, int dst, int k) {
-        
-        Graph graph = new Graph();
-        
-        for(int i = 0; i < n; i++) {
-            graph.nodes.add(new Node(i));
-        }
+    
+        Map<Integer, Map<Integer, Integer>> adjacencyList = new HashMap<>();
         
         for(int[] flight: flights) {
             int from = flight[0];
             int to = flight[1];
             int price = flight[2];
-            graph.nodes.get(from).adjacencyList.put(graph.nodes.get(to), price);
-        }
-        
-        // for(Node node: graph.nodes) {
-        //     System.out.println(node);
-        // }
-        
-        Set<Node> seen = new HashSet<>();
-        Queue<Node> queue = new PriorityQueue<>((a, b) -> b.distance - a.distance);
-        
-        Node source = graph.nodes.get(src);
-        
-        source.distance = 0;
-        queue.add(source);
-        
-        while(!queue.isEmpty()) {
             
-            Node currentNode = queue.remove();
-            
-            if(!seen.contains(currentNode) && currentNode.path.size() <= k) {
-                
-                for(Map.Entry<Node, Integer> entry: currentNode.adjacencyList.entrySet()) {
-                    
-                    Node node = entry.getKey();
-                    int distance = entry.getValue();
-                    
-                    calculateMinimumDistance(node, distance, currentNode);
-                    
-                    seen.add(currentNode);
-                    queue.add(node);
-                }
-                
+            if(!adjacencyList.containsKey(from)) {
+                adjacencyList.put(from, new HashMap<>());
             }
             
+            adjacencyList.get(from).put(to, price);
         }
         
-        for(Node node: graph.nodes) {
-            System.out.println(node);
+        Queue<Node> queue = new PriorityQueue<>((a, b) -> Integer.compare(a.price, b.price));
+        
+        queue.add(new Node(0, src, k + 1));
+        int[] minHops = new int[n];
+        
+        while (!queue.isEmpty()) {
+            Node node = queue.remove();
+            if (node.city == dst) {
+                return node.price;
+            }
+            if (node.remainingStops > 0) {
+                if(!(minHops[node.city] != -1 && minHops[node.city] >= node.remainingStops)) {
+                    minHops[node.city] = node.remainingStops;
+                    Map<Integer, Integer> adj = adjacencyList.getOrDefault(node.city, new HashMap<>());
+                    for (int a : adj.keySet()) {
+                        queue.add(new Node(node.price + adj.get(a), a, node.remainingStops - 1));
+                    }
+                }
+            }
         }
         
-        return graph.nodes.get(dst).distance == Integer.MAX_VALUE ? -1 : graph.nodes.get(dst).distance;
+        return -1;
     }
-    
-    private void calculateMinimumDistance(Node node, int distance, Node currentNode) {
-        
-        int newDistance = distance + currentNode.distance;
-        
-        if(newDistance < node.distance) {
-            node.distance = newDistance;
-            List<Node> newPath = new ArrayList<>(currentNode.path);
-            newPath.add(currentNode);
-            node.path = newPath;
-        }
-        
-    }
+
     
 }
