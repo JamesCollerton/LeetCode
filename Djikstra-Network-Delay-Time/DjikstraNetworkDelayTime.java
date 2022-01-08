@@ -26,10 +26,16 @@ class Solution {
         graph.get(k - 1).distance = 0;
         queue.offer(graph.get(k - 1));
         
+        int max = 0;
+        
         while(!queue.isEmpty()) {
             
             Node currentNode = queue.poll();
             seen.add(currentNode);
+            
+            if(seen.size() == n) {
+                return currentNode.distance;
+            }
             
             for(Map.Entry<Node, Integer> entry : currentNode.adjacencyList.entrySet()) {
                 Node node = entry.getKey();
@@ -47,16 +53,8 @@ class Solution {
             
         }
         
-        int result = -1;
+        return -1;
         
-        for(Node node: graph) {
-            if(node.distance == Integer.MAX_VALUE) {
-                return -1;
-            }
-            result = Math.max(result, node.distance);
-        }
-        
-        return result;
     }
     
 }
