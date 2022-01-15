@@ -14,41 +14,65 @@ class Solution {
             return null;
         }
         
-        boolean sorted = false;
-        ListNode newHead = head;
+        List<ListNode> list = new ArrayList<>();
         
-        while(!sorted) {
-            ListNode n = newHead;
-            sorted = true;
-            DoubleListNode node = new DoubleListNode(newHead, null);
-            while(node.node.next != null && (node.node.val > node.node.next.val)) {
-                
-                if(node.previous == null) {
-                    newHead = node.node.next;
-                } else {
-                    node.previous.next = node.node.next;
-                }
-                
-                ListNode previous = node.node.next;
-                ListNode temp = node.node.next.next;
-                node.node.next.next = node.node;
-                node.node.next = temp;
-                
-                node = new DoubleListNode(node.node, previous);
-                sorted = false;
-            }
+        ListNode node = head;
+        
+        while(node != null) {
+            list.add(node);
+            node = node.next;
         }
+            
+        quickSort(list);
         
-        return newHead;
+        for(int i = 0; i < list.size() - 1; i++) {
+            list.get(i).next = list.get(i + 1);
+        }
+        list.get(list.size() - 1).next = null;
+        
+        return list.get(0);
     }
     
-    private class DoubleListNode {
-        ListNode node;
-        ListNode previous;
+    private void quickSort(List<ListNode> list) {
+        quickSort(list, 0, list.size() - 1);
+    }
+    
+    private void quickSort(List<ListNode> list, int start, int finish) {
         
-        DoubleListNode(ListNode node, ListNode previous) {
-            this.node = node;
-            this.previous = previous;
+        if(start < finish) {
+            
+            int partitionIndex = partition(list, start, finish);
+            
+            quickSort(list, start, partitionIndex - 1);
+            quickSort(list, partitionIndex + 1, finish);
         }
+        
+    }
+    
+    private int partition(List<ListNode> list, int start, int finish) {
+        
+        int pivot = list.get(finish).val;
+        int i = start - 1;
+        
+        for(int j = start; j < finish; j++) {
+            
+            if(list.get(j).val < pivot) {
+                
+                i++;
+
+                ListNode temp = list.get(j);
+                list.set(j, list.get(i));
+                list.set(i, temp);
+                
+            }
+            
+        }
+        
+        ListNode temp = list.get(i + 1);
+        list.set(i + 1, list.get(finish));
+        list.set(finish, temp);
+
+        return i + 1;
+        
     }
 }
