@@ -6,15 +6,17 @@ class Solution {
     private final int COL = 1;
     private int numRows;
     private int numCols;
+    private int[][] matrix;
         
     public int longestIncreasingPath(int[][] matrix) {
                 
         numRows = matrix.length;
         numCols = matrix[0].length;
+        this.matrix = matrix;
                 
         for(int i = 0; i < numRows; i++) {
             for(int j = 0; j < numCols; j++) {
-                System.out.println();
+                // System.out.println();
                 dfs(i, j, initialiseSeen(), 0);
             }
         }
@@ -28,17 +30,12 @@ class Solution {
         
         max = Math.max(currentMax + 1, max);
         
-        // System.out.println(row + "," + col);
-        
         for(int[] move: moves) {
             int newRow = row + move[ROW];
             int newCol = col + move[COL];
-            System.out.println(move[ROW]);
-            System.out.println(move[COL]);
             
             if(newRow >= 0 && newCol >= 0 && newRow < numRows && newCol < numCols) {
-                System.out.println(row + "," + col + ": " + newRow + "," + newCol + " " + seen[newRow][newCol]);
-                if(!seen[newRow][newCol]) {
+                if(!seen[newRow][newCol] && matrix[newRow][newCol] > matrix[row][col]) {
                     dfs(newRow, newCol, cloneArray(seen), currentMax + 1);
                 }
             }
