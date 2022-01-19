@@ -4,14 +4,16 @@ class Solution {
         
         int jumps = 0;
         int currentLevelEnd = 0;
-        int max = 0;
+        int currentMax = 0;
+        int i = 0;    
         
-        for(int i = 0; i < nums.length - 1; i++) {
-            max = Math.max(max, i + nums[i]);
+        while(currentLevelEnd < nums.length - 1 && i < nums.length) {
+            currentMax = Math.max(currentMax, i + nums[i]);
             if(i == currentLevelEnd) {
+                currentLevelEnd = currentMax;
                 jumps++;
-                currentLevelEnd = max;
             }
+            i++;
         }
         
         return jumps;
