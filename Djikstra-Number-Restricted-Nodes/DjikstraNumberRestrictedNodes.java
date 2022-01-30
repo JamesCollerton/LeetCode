@@ -50,26 +50,24 @@ class Solution {
             
         }
         
-        return dfs(graph.get(0), new HashSet<>());
+        return dfs(graph.get(0));
     }
     
     private Map<Node, Integer> memoisation = new HashMap<>();
     
-    private int dfs(Node node, HashSet<Node> seen) {
+    private int dfs(Node node) {
         if(memoisation.containsKey(node)) {
             return memoisation.get(node);
         }
         if(node == graph.get(n - 1)) {
             return 1;
         }
-        
-        seen.add(node);
-        
+                
         int result = 0;
         
         for(Node connectedNode: node.adjacencyList.keySet()) {
-            if(!seen.contains(connectedNode) && node.distance > connectedNode.distance) {
-                result = (result + dfs(connectedNode, new HashSet<>(seen))) % 1000000007;
+            if(node.distance > connectedNode.distance) {
+                result = (result + dfs(connectedNode)) % 1000000007;
             }
         }
         
