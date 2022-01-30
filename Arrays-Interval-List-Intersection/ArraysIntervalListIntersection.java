@@ -1,59 +1,36 @@
 class Solution {
     public int[][] intervalIntersection(int[][] firstList, int[][] secondList) {
         
-        boolean[] firstCovered = createCoveredArray(firstList);
-        boolean[] secondCovered = createCoveredArray(secondList);
+        int i = 0, j = 0;
+        List<int[]> resultList = new ArrayList<>();
         
-        for(int i = 0; i < firstCovered.length; i++) {
-            System.out.println(i + " " + firstCovered[i]);
-        }
-        
-        for(int i = 0; i < secondCovered.length; i++) {
-            System.out.println(i + " " + secondCovered[i]);
-        }
-        
-        int minSize = Math.min(firstCovered.length, secondCovered.length);
-        
-        int pointer = 0;
-        
-        List<int[]> list = new ArrayList<>(); 
-        
-        while(pointer < minSize) {
-            int[] interval = new int[2];
-            while(pointer < minSize && (!firstCovered[pointer] || !secondCovered[pointer])) {
-                pointer++;
+        while(i < firstList.length && j < secondList.length) {
+            
+            int firstStart = firstList[i][0];
+            int firstEnd = firstList[i][1];
+            int secondStart = secondList[j][0];
+            int secondEnd = secondList[j][1];
+            
+            int maxStart = Math.max(firstStart, secondStart);
+            int minEnd = Math.min(firstEnd, secondEnd);
+            
+            if(maxStart <= minEnd) {
+                resultList.add(new int[]{maxStart, minEnd});
             }
-            if(pointer < minSize) {
-                interval[0] = pointer;
-                while(pointer < minSize && firstCovered[pointer] && secondCovered[pointer]) {
-                    pointer++;
-                }
-                interval[1] = pointer - 1;
-                list.add(interval);
-            }
+            
+            if(minEnd == firstEnd) {
+              i++;  
+            } 
+            if(minEnd == secondEnd) {
+              j++;  
+            } 
         }
         
-        int[][] result = new int[list.size()][2];
-        
-        for(int i = 0; i < list.size(); i++) {
-            result[i] = list.get(i);
+        int[][] result = new int[resultList.size()][2];
+        for(int l = 0; l < resultList.size(); l++) {
+            result[l] = resultList.get(l);
         }
-        
         return result;
     }
     
-    private boolean[] createCoveredArray(int[][] list) {
-        
-        int size = list[list.length - 1][1];
-                
-        boolean[] covered = new boolean[size + 1];
-        
-        for(int i = 0; i < list.length; i++) {
-            for(int j = list[i][0]; j <= list[i][1]; j++) {
-                covered[j] = true;
-            }
-        }
-        
-        return covered;
-    }
 }
