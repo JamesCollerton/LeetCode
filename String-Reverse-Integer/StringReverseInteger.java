@@ -1,37 +1,19 @@
 class Solution {
     public int reverse(int x) {
-        StringBuilder stringBuilder = new StringBuilder(String.valueOf(x));
-        if(x < 0) {
-            stringBuilder.deleteCharAt(0);
+        
+        int result = 0;
+        
+        while(x != 0) {
+            int lastDigit = x % 10;
+            int temp = result * 10 + lastDigit;
+            if(result != (temp - lastDigit) / 10) {
+                return 0;
+            }
+            result = temp;
+            x = x / 10;
         }
-        stringBuilder.reverse();
-        while(stringBuilder.length() != 1 && stringBuilder.charAt(0) == '0') {
-            stringBuilder.deleteCharAt(0);
-        }
-        String result = stringBuilder.toString();
-        if(tooLarge(result)) {
-            return 0;
-        }
-        if(!stringBuilder.isEmpty() && x < 0) {
-            result = "-" + result;
-        }
-        return Integer.valueOf(result);
+        
+        return result;
     }
     
-    private boolean tooLarge(String s) {
-        System.out.println(s);
-        if(s.length() >= 10) {
-            int[] numArray = new int[]{2,1,4,7,4,8,3,6,4,7};
-            for(int i = 0; i < numArray.length; i++) {
-                int digit = s.charAt(i) - '0';
-                if(digit > numArray[i]) {
-                    return true;
-                }
-                if(digit < numArray[i]) {
-                    return false;
-                }
-            }
-        }
-        return false;
-    }
 }
