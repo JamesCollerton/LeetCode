@@ -19,27 +19,28 @@ class Solution {
             return;
         }
         
-        List<TreeNode> nodeList = new ArrayList<>();
-        
-        recurse(root, nodeList);
-        
-        for(int i = 0; i < nodeList.size(); i++) {
-            TreeNode node = nodeList.get(i);
-            node.left = null;
-            if(i + 1 < nodeList.size()) {
-                node.right = nodeList.get(i + 1);
-            }
-        }
+        flatten(root, null);
     }
     
-    private void recurse(TreeNode node, List<TreeNode> nodeList) {
-        if(node == null) {
-            return;
+    private TreeNode flatten(TreeNode currentNode, TreeNode previousNode) {
+        
+        if(previousNode != null) {
+            previousNode.right = currentNode;
         }
         
-        nodeList.add(node);
+        TreeNode tempLeft = currentNode.left;
+        TreeNode tempRight = currentNode.right;
+        currentNode.left = null;
+        currentNode.right = null;
         
-        recurse(node.left, nodeList);
-        recurse(node.right, nodeList);
+        if(tempLeft != null) {
+            currentNode = flatten(tempLeft, currentNode);
+        }
+        if(tempRight != null) {
+            currentNode = flatten(tempRight, currentNode);
+        }
+        
+        return currentNode;
     }
+    
 }

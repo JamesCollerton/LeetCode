@@ -15,24 +15,17 @@
  */
 class Solution {
     public TreeNode sortedArrayToBST(int[] nums) {
-        return recurse(nums, 0, nums.length - 1);
+        return createBST(0, nums.length -1, nums);
     }
     
-    private TreeNode recurse(int[] nums, int left, int right) {
-        if(left > right) {
+    private TreeNode createBST(int start, int end, int[] nums) {
+        if(start > end) {
             return null;
-        }
-        
-        int mid = left + (right - left) / 2;
-        
-        TreeNode newNode = new TreeNode(nums[mid]);
-            
-        int newLeft = mid + 1;
-        int newRight = mid - 1;
-        
-        newNode.left = recurse(nums, left, newRight);
-        newNode.right = recurse(nums, newLeft, right);
-        
-        return newNode;
+        } 
+        int mid = start + (end - start) / 2;
+        TreeNode node = new TreeNode(nums[mid]);
+        node.left = createBST(start, mid - 1, nums);
+        node.right = createBST(mid + 1, end, nums);
+        return node;
     }
 }

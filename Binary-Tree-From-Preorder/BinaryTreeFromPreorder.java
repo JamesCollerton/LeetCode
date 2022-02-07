@@ -15,20 +15,20 @@
  */
 class Solution {
     
-    int i = 0;
+    int index = 0;
     
     public TreeNode bstFromPreorder(int[] preorder) {
-        return recurse(preorder, Integer.MAX_VALUE);
+        return helper(preorder, Integer.MAX_VALUE);
     }
     
-    private TreeNode recurse(int[] preorder, int bound) {
-        if(i >= preorder.length || preorder[i] > bound) {
-            return null;
+    private TreeNode helper(int[] preorder, int max) {
+        TreeNode node = new TreeNode(preorder[index++]);
+        if(index < preorder.length && preorder[index] < node.val) {
+            node.left = helper(preorder, node.val);
         }
-        TreeNode node = new TreeNode(preorder[i]);
-        i++;
-        node.left = recurse(preorder, node.val);
-        node.right = recurse(preorder, bound);
+        if(index < preorder.length && preorder[index] > node.val && preorder[index] < max) {
+            node.right = helper(preorder, max);
+        }
         return node;
     }
     
