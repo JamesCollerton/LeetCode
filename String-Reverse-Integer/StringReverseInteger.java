@@ -4,13 +4,16 @@ class Solution {
         int result = 0;
         
         while(x != 0) {
+            
             int lastDigit = x % 10;
-            int temp = result * 10 + lastDigit;
-            if(result != (temp - lastDigit) / 10) {
+            x /= 10;
+            
+            int before = result;
+            result = 10 * result + lastDigit;
+            int after = (result - lastDigit) / 10;
+            if(before != after) {
                 return 0;
             }
-            result = temp;
-            x = x / 10;
         }
         
         return result;

@@ -1,30 +1,13 @@
 class Solution {
     public int strStr(String haystack, String needle) {
-        
-        if(needle.isEmpty()) {
+        int n = needle.length();
+        if(n == 0) {
             return 0;
         }
         
-        char[] haystackArray = haystack.toCharArray();
-        char[] needleArray = needle.toCharArray();
-        
-        for(int i = 0; i < haystackArray.length; i++) {
-            
-            if(needleArray[0] == haystackArray[i]) {
-                
-                boolean solution = true;
-                
-                for(int j = 0; j < needleArray.length; j++) {
-                    
-                    int haystackIndex = i + j;
-                    solution = solution && 
-                                (haystackIndex < haystackArray.length) &&
-                                (needleArray[j] == haystackArray[haystackIndex]); 
-                    
-                }
-                if(solution) {
-                    return i;
-                }
+        for(int i = 0; i < haystack.length() - needle.length() + 1; i++) {
+            if(needle.equals(haystack.substring(i, i + n))) {
+                return i;
             }
         }
         
