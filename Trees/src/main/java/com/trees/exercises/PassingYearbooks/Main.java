@@ -5,71 +5,49 @@ import java.util.*;
 // Add any extra import statements you may need here
 
 
+import java.io.*;
+import java.util.*;
+// Add any extra import statements you may need here
+
+
 class Main {
 
     // Add any helper functions you may need here
 
-
     int[] findSignatureCounts(int[] arr) {
         // Write your code here
+        int[] rootNodes = new int[arr.length];
+        int[] counts = new int[arr.length];
+        boolean[] seen = new boolean[arr.length];
+
+        for(int i = 0; i < rootNodes.length; i++) {
+            rootNodes[i] = -1;
+        }
+
+        for(int i = 0; i < arr.length; i++) {
+            if(!seen[i]) {
+
+                int count = 1;
+                int nextIndex = arr[i] - 1;
+
+                seen[i] = true;
+                rootNodes[i] = i;
+                counts[i] = count;
+
+                while(nextIndex != i) {
+                    counts[i] = ++count;
+                    seen[nextIndex] = true;
+                    rootNodes[nextIndex] = i;
+                    nextIndex = arr[nextIndex] - 1;
+                }
+
+            }
+        }
 
         int[] result = new int[arr.length];
-        Set<Integer> seen = new HashSet<>();
-
         for(int i = 0; i < result.length; i++) {
-            result[i] = 1;
+            result[i] = counts[rootNodes[i]];
         }
-
-        int pointer = arr.length - 1;
-
-        boolean found = false;
-
-        // Find first value not in the space it should be
-        while(seen.size() != arr.length && !found) {
-            if(arr[pointer] == pointer + 1) {
-                seen.add(pointer);
-                if(pointer != 0) {
-                    pointer--;
-                } else {
-                    pointer = arr.length - 1;
-                }
-            } else {
-                found = true;
-            }
-        }
-
-        int pointerValue = arr[pointer];
-
-        while(seen.size() != arr.length) {
-
-            int newPointer = pointer == 0 ? arr.length - 1 : pointer - 1;
-
-            System.out.println(newPointer);
-            found = false;
-
-            while(seen.size() != arr.length && !found) {
-                if(arr[newPointer] == newPointer + 1) {
-                    seen.add(newPointer);
-                    if(newPointer != 0) {
-                        newPointer--;
-                    } else {
-                        newPointer = arr.length - 1;
-                    }
-                } else {
-                    found = true;
-                }
-            }
-
-            if(seen.size() != arr.length) {
-                result[pointer]++;
-                int temp = pointerValue;
-                pointerValue = arr[newPointer];
-                arr[newPointer] = temp;
-            }
-
-            pointer = newPointer;
-        }
-
         return result;
     }
 
@@ -133,11 +111,6 @@ class Main {
         int[] expected_2 = {1, 1};
         int[] output_2 = findSignatureCounts(arr_2);
         check(expected_2, output_2);
-
-        int[] arr_3 = {1, 2, 3};
-        int[] expected_3 = {1, 1, 1};
-        int[] output_3 = findSignatureCounts(arr_3);
-        check(expected_3, output_3);
 
         // Add your own test cases here
 
