@@ -14,21 +14,6 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/trees/exercises/RotationalCipher/Main.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="8" selection-start-line="8" selection-end-line="68" selection-end-column="40" />
-              <folding>
-                <element signature="e#2766#2767#0" expanded="true" />
-                <element signature="e#2819#2820#0" expanded="true" />
-                <element signature="e#3427#3428#0" expanded="true" />
-                <element signature="e#3459#3460#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/trees/exercises/CountSubarrays/Main.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="362">
@@ -130,14 +115,47 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/trees/exercises/FindMinArray/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="362">
-              <caret line="138" column="1" selection-start-line="138" selection-start-column="1" selection-end-line="138" selection-end-column="1" />
+            <state relative-caret-position="-1336">
+              <caret line="16" column="41" lean-forward="true" selection-start-line="16" selection-start-column="41" selection-end-line="16" selection-end-column="41" />
               <folding>
-                <element signature="e#3721#3722#0" expanded="true" />
-                <element signature="e#3753#3754#0" expanded="true" />
+                <element signature="e#3420#3421#0" expanded="true" />
+                <element signature="e#3452#3453#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/trees/exercises/MaxAwkwardness/Main.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="165">
+              <caret line="11" selection-start-line="11" selection-end-line="51" />
+              <folding>
+                <element signature="e#1288#1289#0" expanded="true" />
+                <element signature="e#1341#1342#0" expanded="true" />
+                <element signature="e#1378#1379#0" expanded="true" />
+                <element signature="e#1416#1417#0" expanded="true" />
+                <element signature="e#2171#2172#0" expanded="true" />
+                <element signature="e#2218#2219#0" expanded="true" />
+                <element signature="e#2650#2651#0" expanded="true" />
+                <element signature="e#2682#2683#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/trees/exercises/MedianStream/Main.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="209">
+              <caret line="46" column="67" selection-start-line="46" selection-start-column="67" selection-end-line="46" selection-end-column="67" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#3769#3770#0" expanded="true" />
+                <element signature="e#3801#3802#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -213,6 +231,8 @@
         <option value="$PROJECT_DIR$/src/main/java/com/trees/exercises/MaxCandies/Main.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/trees/exercises/SlowSums/Main.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/trees/exercises/FindMinArray/Main.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/trees/exercises/MaxAwkwardness/Main.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/trees/exercises/MedianStream/Main.java" />
       </list>
     </option>
   </component>
@@ -290,7 +310,7 @@
               <item name="com" type="462c0819:PsiDirectoryNode" />
               <item name="trees" type="462c0819:PsiDirectoryNode" />
               <item name="exercises" type="462c0819:PsiDirectoryNode" />
-              <item name="FindMinArray" type="462c0819:PsiDirectoryNode" />
+              <item name="MedianStream" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -323,36 +343,25 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Main (5)">
+  <component name="RunManager" selected="Application.Main (2)">
     <configuration name="Main (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.trees.exercises.CountSubarrays.Main" />
+      <option name="MAIN_CLASS_NAME" value="com.trees.exercises.MaxAwkwardness.Main" />
       <module name="Trees" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.trees.exercises.CountSubarrays.*" />
+          <option name="PATTERN" value="com.trees.exercises.MaxAwkwardness.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
     </configuration>
     <configuration name="Main (2)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.trees.exercises.ReverseToMakeEqual.Main" />
+      <option name="MAIN_CLASS_NAME" value="com.trees.exercises.MedianStream.Main" />
       <module name="Trees" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.trees.exercises.ReverseToMakeEqual.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-    </configuration>
-    <configuration name="Main (3)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.trees.exercises.PassingYearbooks.Main" />
-      <module name="Trees" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.trees.exercises.PassingYearbooks.*" />
+          <option name="PATTERN" value="com.trees.exercises.MedianStream.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -375,6 +384,17 @@
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.trees.exercises.SlowSums.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+    </configuration>
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.trees.exercises.FindMinArray.Main" />
+      <module name="Trees" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.trees.exercises.FindMinArray.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -421,19 +441,19 @@
       <listeners />
     </configuration>
     <list>
-      <item itemvalue="Application.Main (1)" />
-      <item itemvalue="Application.Main (2)" />
-      <item itemvalue="Application.Main (3)" />
       <item itemvalue="Application.Main (4)" />
       <item itemvalue="Application.Main (5)" />
+      <item itemvalue="Application.Main" />
+      <item itemvalue="Application.Main (1)" />
+      <item itemvalue="Application.Main (2)" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main (5)" />
-        <item itemvalue="Application.Main (4)" />
-        <item itemvalue="Application.Main (3)" />
         <item itemvalue="Application.Main (2)" />
         <item itemvalue="Application.Main (1)" />
+        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.Main (5)" />
+        <item itemvalue="Application.Main (4)" />
       </list>
     </recent_temporary>
   </component>
@@ -525,20 +545,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/trees/SelectionSort.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="15" column="24" lean-forward="true" selection-start-line="15" selection-start-column="24" selection-end-line="15" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/trees/BubbleSort.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="21" column="43" lean-forward="true" selection-start-line="21" selection-start-column="43" selection-end-line="21" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/trees/InsertionSort.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
@@ -937,11 +943,40 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/trees/exercises/FindMinArray/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="362">
-          <caret line="138" column="1" selection-start-line="138" selection-start-column="1" selection-end-line="138" selection-end-column="1" />
+        <state relative-caret-position="-1336">
+          <caret line="16" column="41" lean-forward="true" selection-start-line="16" selection-start-column="41" selection-end-line="16" selection-end-column="41" />
           <folding>
-            <element signature="e#3721#3722#0" expanded="true" />
-            <element signature="e#3753#3754#0" expanded="true" />
+            <element signature="e#3420#3421#0" expanded="true" />
+            <element signature="e#3452#3453#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/trees/exercises/MaxAwkwardness/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" selection-start-line="11" selection-end-line="51" />
+          <folding>
+            <element signature="e#1288#1289#0" expanded="true" />
+            <element signature="e#1341#1342#0" expanded="true" />
+            <element signature="e#1378#1379#0" expanded="true" />
+            <element signature="e#1416#1417#0" expanded="true" />
+            <element signature="e#2171#2172#0" expanded="true" />
+            <element signature="e#2218#2219#0" expanded="true" />
+            <element signature="e#2650#2651#0" expanded="true" />
+            <element signature="e#2682#2683#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/trees/exercises/MedianStream/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="46" column="67" selection-start-line="46" selection-start-column="67" selection-end-line="46" selection-end-column="67" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#3769#3770#0" expanded="true" />
+            <element signature="e#3801#3802#0" expanded="true" />
           </folding>
         </state>
       </provider>

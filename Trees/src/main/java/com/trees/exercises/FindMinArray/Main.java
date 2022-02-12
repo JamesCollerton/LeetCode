@@ -6,64 +6,56 @@ import java.util.*;
 
 class Main {
 
-    // Add any helper functions you may need here
-    private final int INDEX = 0;
-    private final int VALUE = 1;
-
     int[] findMinArray(int[] arr, int k) {
         // Write your code here
 
-        // This orders items by value, then by
-        // index so lowest numbers further down
-        // the array come first.
-        Queue<int[]> queue = new PriorityQueue<>((a, b) -> {
-            int valueDifference = a[VALUE] - b[VALUE];
-            if(valueDifference != 0) {
-                return valueDifference
-            }
-            return b[INDEX] - a[INDEX];
-        });
-
-        // We need to populate the queue
-
-        // Where we want to move our item to and
-        // how many swaps we have left
-        int smallestStart = 0;
         int remaining = k;
+        int smallestStart = 0;
 
-        // While we've got places to move to
-        while(!queue.isEmpty() && k > 0) {
+        while(remaining > 0) {
 
-            // Get the furthest away item with the smallest value
-            int[] smallestValue = queue.poll();
-            int value = smallestValue[VALUE];
-            int index = smallestValue[INDEX];
+            // Find minimum furthest away
+            int minFurthAway = findMinimumFurthestAway(smallestStart, remaining, arr);
 
-            // If this isn't already in the right place
-            if(index != smallestStart) {
-
-                int placesToShuffle;
-                if(index - smallestStart <= remaining) {
-                    placesToShuffle = index - smallestStart;
-                } else {
-                    placesToShuffle = remaining;
-                }
-
-                int i = index;
-
-                while(placesToShuffle > 0) {
-                    arr[i] = arr[i - 1]
+            // If it's not in the right place move as far ahead as possible
+            if(minFurthAway != smallestStart) {
+                int i = minFurthAway;
+                while(i != smallestStart && remaining > 0) {
+                    swap(arr, i);
                     i--;
-                    placesToShuffle--;
+                    remaining--;
                 }
-
-                arr[i] = value;
-
-                remaining -= placesToShuffle;
             }
+
+            // Always want to increment where we've sorted to
             smallestStart++;
         }
 
+        return arr;
+    }
+
+    private void swap(int[] arr, int i) {
+        int temp = arr[i];
+        arr[i] = arr[i - 1];
+        arr[i - 1] = temp;
+    }
+
+    private int findMinimumFurthestAway(int start, int remaining, int[] arr) {
+
+        System.out.println(start);
+        System.out.println(remaining);
+
+        int minValue = Integer.MAX_VALUE;
+        int index = -1;
+
+        for(int i = start; i < Math.min(arr.length, start + remaining + 1); i++) {
+            if(arr[i] < minValue || arr[i] == minValue && i > index) {
+                minValue = arr[i];
+                index = i;
+            }
+        }
+
+        return index;
     }
 
 
