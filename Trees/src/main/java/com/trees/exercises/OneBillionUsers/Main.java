@@ -10,7 +10,7 @@ class Main {
     // Add any helper functions you may need here
 
 
-    int getBillionUsersDay(float[] growthRates) {
+    public int getBillionUsersDay(float[] growthRates) {
         // Write your code here
 
         float maxGrowthRate = 0.0f;
@@ -19,44 +19,28 @@ class Main {
             maxGrowthRate = maxGrowthRate > growthRate ? maxGrowthRate : growthRate;
         }
 
-        System.out.println("Max growth rate " + maxGrowthRate);
+        int left = 0;
+        int right = (int) (Math.log(1_000_000_000) / Math.log(maxGrowthRate));
+        double billion = 1_000_000_000;
 
-        double upperBarrier = Math.log(1000000000000d) / Math.log(maxGrowthRate);
+        while(left <= right) {
+            int mid = left + (right - left) / 2;
 
-        System.out.println("Upper barrier " + upperBarrier);
+            double total = 0;
+            for(float growthRate: growthRates) {
+                total += Math.pow(growthRate, mid);
+            }
 
-        return (int) findDay(0, upperBarrier + 1, growthRates);
-    }
-
-    double findDay(double left, double right, float[] growthRates) {
-
-        double mid = left + (right - left) / 2;
-
-        float midValue = 0;
-        for(float growthRate: growthRates) {
-            midValue += Math.pow(growthRate, mid);
+            if(total == billion) {
+                return mid;
+            }
+            else if(total > billion) {
+                right = mid;
+            } else {
+                left = mid + 1;
+            }
         }
-
-        float midMinusOneValue = 0;
-        for(float growthRate: growthRates) {
-            midMinusOneValue += Math.pow(growthRate, mid - 1);
-        }
-
-        System.out.println("");
-        System.out.println("Left " + left);
-        System.out.println("Right " + right);
-        System.out.println("Mid " + mid);
-        System.out.println("Mid value " + midValue);
-        System.out.println("Mid minus one value " + midMinusOneValue);
-
-        if(midValue >= 1000000000000f && midMinusOneValue < 1000000000000f) {
-            return mid;
-        } else if(midValue >= 1000000000000f) {
-            return findDay(left, mid - 1, growthRates);
-        } else {
-            return findDay(mid + 1, right, growthRates);
-        }
-
+        return left;
     }
 
 
