@@ -24,34 +24,17 @@ class Main {
     int countDistinctTriangles(ArrayList<Sides> arr) {
         // Write your code here
 
-        int[][] sidesArr = new int[arr.size()][3];
+        Set<Set<Integer>> set = new HashSet<>();
 
-        for(int i = 0; i < arr.size(); i++) {
-            Sides sides = arr.get(i);
-            int[] newArr = new int[]{sides.a, sides.b, sides.c};
-            Arrays.sort(newArr);
-            sidesArr[i] = newArr;
+        for (Sides sides : arr) {
+            Set<Integer> sidesSet = new HashSet<>();
+            sidesSet.add(sides.a);
+            sidesSet.add(sides.b);
+            sidesSet.add(sides.c);
+            set.add(sidesSet);
         }
 
-        Arrays.sort(sidesArr, Comparator.comparingInt(a -> a[0]));
-
-        int pointerOne = 0;
-        int count = 0;
-
-        while(pointerOne < sidesArr.length) {
-            count++;
-            int pointerTwo = pointerOne + 1;
-            while(pointerTwo < sidesArr.length && trianglesSame(sidesArr[pointerOne], sidesArr[pointerTwo])) {
-                pointerTwo++;
-            }
-            pointerOne = pointerTwo;
-        }
-
-        return count;
-    }
-
-    boolean trianglesSame(int[] triangleOne, int[] triangleTwo) {
-        return triangleOne[0] == triangleTwo[0] && triangleOne[1] == triangleTwo[1] && triangleOne[2] == triangleTwo[2];
+        return set.size();
     }
 
 
