@@ -29,7 +29,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/trees/exercises/BalanceBrackets/Main.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="142">
@@ -39,6 +39,20 @@
                 <element signature="e#2014#2015#0" expanded="true" />
                 <element signature="e#2435#2436#0" expanded="true" />
                 <element signature="e#2467#2468#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/trees/exercises/QueueRemovals/Main.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="276">
+              <caret line="41" column="13" lean-forward="true" selection-start-line="41" selection-start-column="13" selection-end-line="41" selection-end-column="13" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#3142#3143#0" expanded="true" />
+                <element signature="e#3174#3175#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -70,7 +84,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/trees/AVLNodeExamples.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/trees/Fibonacci.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/trees/utilities/DigitDp.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/trees/DigitDp.java" />
@@ -121,6 +134,7 @@
         <option value="$PROJECT_DIR$/src/main/java/com/trees/exercises/BalancedSplitExists/Main.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/trees/exercises/CountingTriangles/Main.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/trees/exercises/BalanceBrackets/Main.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/trees/exercises/QueueRemovals/Main.java" />
       </list>
     </option>
   </component>
@@ -198,7 +212,7 @@
               <item name="com" type="462c0819:PsiDirectoryNode" />
               <item name="trees" type="462c0819:PsiDirectoryNode" />
               <item name="exercises" type="462c0819:PsiDirectoryNode" />
-              <item name="BalanceBrackets" type="462c0819:PsiDirectoryNode" />
+              <item name="QueueRemovals" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="example" type="b2602c69:ProjectViewProjectNode" />
@@ -261,14 +275,14 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Main">
-    <configuration name="Main (2)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.trees.exercises.EncryptedWords.Main" />
+  <component name="RunManager" selected="Application.Main (1)">
+    <configuration name="Main (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.trees.exercises.QueueRemovals.Main" />
       <module name="Trees" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.trees.exercises.EncryptedWords.*" />
+          <option name="PATTERN" value="com.trees.exercises.QueueRemovals.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -359,19 +373,19 @@
       <listeners />
     </configuration>
     <list>
-      <item itemvalue="Application.Main (2)" />
       <item itemvalue="Application.Main (3)" />
       <item itemvalue="Application.Main (4)" />
       <item itemvalue="Application.Main (5)" />
       <item itemvalue="Application.Main" />
+      <item itemvalue="Application.Main (1)" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Main (1)" />
         <item itemvalue="Application.Main" />
         <item itemvalue="Application.Main (5)" />
         <item itemvalue="Application.Main (4)" />
         <item itemvalue="Application.Main (3)" />
-        <item itemvalue="Application.Main (2)" />
       </list>
     </recent_temporary>
   </component>
@@ -463,13 +477,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/trees/utilities/BinarySearchTreeGenerator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="355">
-          <caret line="28" selection-start-line="28" selection-end-line="28" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/trees/model/Node.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="94">
@@ -976,6 +983,18 @@
             <element signature="e#2014#2015#0" expanded="true" />
             <element signature="e#2435#2436#0" expanded="true" />
             <element signature="e#2467#2468#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/trees/exercises/QueueRemovals/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="276">
+          <caret line="41" column="13" lean-forward="true" selection-start-line="41" selection-start-column="13" selection-end-line="41" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#3142#3143#0" expanded="true" />
+            <element signature="e#3174#3175#0" expanded="true" />
           </folding>
         </state>
       </provider>
