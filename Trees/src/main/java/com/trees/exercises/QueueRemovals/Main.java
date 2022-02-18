@@ -6,68 +6,64 @@ import java.util.stream.Collectors;
 // Add any extra import statements you may need here
 
 
+import java.io.*;
+import java.util.*;
+// Add any extra import statements you may need here
+
+
 class Main {
 
     // Add any helper functions you may need here
-
     class OriginalPosition {
         int val;
-        int position;
-        OriginalPosition(int val, int position) {
+        int index;
+        OriginalPosition(int val, int index) {
             this.val = val;
-            this.position = position;
+            this.index = index;
         }
     }
 
     int[] findPositions(int[] arr, int x) {
         // Write your code here
 
-        int counter = x;
+        int iterations = 0;
+        int[] result = new int[x];
+
         Queue<OriginalPosition> queue = new LinkedList<>();
 
         for(int i = 0; i < arr.length; i++) {
             queue.offer(new OriginalPosition(arr[i], i + 1));
         }
 
-        while(counter > 0) {
-            OriginalPosition max = null;
-            int passed = 0;
+        while(iterations < x) {
 
-            while(passed < x && !queue.isEmpty()) {
+            Queue<OriginalPosition> tempQueue = new LinkedList<>();
+
+            int counter = x;
+            OriginalPosition max = null;
+
+            while(counter > 0 && !queue.isEmpty()) {
                 OriginalPosition originalPosition = queue.poll();
-                if(originalPosition.val > max.val) {
+                if(max == null || originalPosition.val > max.val) {
                     max = originalPosition;
                 }
-                passed++;
+                tempQueue.offer(originalPosition);
+                counter--;
             }
 
-            i = 0;
-            passed = 0;
-            set.add(maxIndex + 1);
-
-            while(i < arr.length && passed < x - 1) {
-                if(!set.contains(i + 1)) {
-                    arr[i] = arr[i] > 0 ? arr[i] - 1 : 0;
-                    passed++;
+            while(!tempQueue.isEmpty()) {
+                OriginalPosition originalPosition = tempQueue.poll();
+                if(!max.equals(originalPosition)) {
+                    if(originalPosition.val != 0) {
+                        originalPosition.val = originalPosition.val - 1;
+                    }
+                    queue.offer(originalPosition);
+                } else {
+                    result[iterations] = originalPosition.index;
                 }
-                i++;
             }
 
-            System.out.println();
-            System.out.println();
-            System.out.println("Max: " + max);
-            System.out.println("Max Index: " + maxIndex);
-            System.out.println("Set: " + set);
-            Arrays.stream(arr).forEach(j -> System.out.print(j + " "));
-
-            counter--;
-        }
-
-        int[] result = new int[set.size()];
-        int i = 0;
-        for(int r: set) {
-            result[i] = r;
-            i++;
+            iterations++;
         }
 
         return result;
