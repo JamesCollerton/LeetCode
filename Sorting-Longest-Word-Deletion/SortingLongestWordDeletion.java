@@ -1,21 +1,24 @@
 class Solution {
     public String findLongestWord(String s, List<String> dictionary) {
         
-        Map<Character, Integer> sCharCountMap = creatCharCountMap(s);
-        
         String result = "";
         
         for(String word: dictionary) {
-            Map<Character, Integer> wordCharCountMap = creatCharCountMap(word);
-            boolean solution = true;
-            for(Map.Entry<Character, Integer> entry: wordCharCountMap.entrySet()) {
-                char c = entry.getKey();
-                int val = entry.getValue();
-                if(!(sCharCountMap.containsKey(c) && sCharCountMap.get(c) >= val)) {
-                    solution = false;
+            
+            int sPointer = 0;
+            int wPointer = 0;
+            
+            while(sPointer < s.length() && wPointer < word.length()) {
+                while(sPointer < s.length() && s.charAt(sPointer) != word.charAt(wPointer)) {
+                    sPointer++;    
+                }
+                if(sPointer < s.length()) {
+                    sPointer++;
+                    wPointer++;
                 }
             }
-            if(solution) {
+            
+            if(wPointer >= word.length()) {     
                 if(word.length() > result.length()) {
                     result = word;
                 } else if(word.length() == result.length()){
@@ -26,15 +29,5 @@ class Solution {
         
         return result;
     }
-    
-    private Map<Character, Integer> creatCharCountMap(String string) {
-        
-        Map<Character, Integer> charCountMap = new HashMap<>();
-        
-        for(char c: string.toCharArray()) {
-            charCountMap.put(c, charCountMap.getOrDefault(c, 0) + 1);
-        }
-        
-        return charCountMap;
-    }
+
 }
