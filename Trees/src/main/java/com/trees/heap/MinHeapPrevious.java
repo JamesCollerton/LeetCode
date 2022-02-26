@@ -76,8 +76,7 @@ public class MinHeapPrevious {
         // If the node is a non-leaf node and greater
         // than any of its children
         if (!isLeaf(pos)) {
-            if (heap[pos] > heap[leftChild(pos)]
-                    || heap[pos] > heap[rightChild(pos)]) {
+            if (heap[pos] > heap[leftChild(pos)] || heap[pos] > heap[rightChild(pos)]) {
 
                 // Always swap with largest value
 
