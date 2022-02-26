@@ -4,15 +4,15 @@ public class MinHeap {
 
     private int[] heap;
     private int size;
-    private int maxsize;
+    private int maxSize;
 
-    private static final int FRONT = 1;
+    private final int FRONT = 1;
 
     public MinHeap(int maxsize)
     {
-        this.maxsize = maxsize;
-        this.heap = new int[maxsize + 1];
+        this.maxSize = maxsize;
         this.size = 0;
+        this.heap = new int[maxsize + 1];
         heap[0] = Integer.MIN_VALUE;
     }
 
@@ -31,8 +31,7 @@ public class MinHeap {
 
     private boolean isLeaf(int pos)
     {
-        // Can alternatively do if you're in the last half
-        return leftChild(pos) > size || rightChild(pos) > size ;
+        return pos > size / 2 && pos <= size;
     }
 
     private void swap(int fpos, int spos)
@@ -60,15 +59,16 @@ public class MinHeap {
 
     public void insert(int element)
     {
-        if(size >= maxsize) {
+        if(size >= maxSize) {
             return;
         }
+
         size++;
         heap[size] = element;
 
         int currentPosition = size;
 
-        while(currentPosition < parent(currentPosition)) {
+        while(heap[currentPosition] < heap[parent(currentPosition)]) {
             swap(currentPosition, parent(currentPosition));
             currentPosition = parent(currentPosition);
         }
