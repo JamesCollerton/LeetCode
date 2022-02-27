@@ -21,8 +21,8 @@ public class BubbleSort {
             pointer++;
         }
 
-        for(int i: arr) {
-            System.out.print(i + " ");
+        for(int num: arr) {
+            System.out.print(num + " ");
         }
 
     }
