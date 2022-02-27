@@ -40,49 +40,55 @@ public class Djikstra {
         e.adjacentNodes.put(d, 6);
 
         djikstra(graph, a);
+
+        System.out.println(a);
+        System.out.println(b);
+        System.out.println(c);
+        System.out.println(d);
+        System.out.println(e);
     }
 
     private static void djikstra(Graph graph, Node source) {
 
         Set<Node> seen = new HashSet<>();
-        Queue<Node> queue = new PriorityQueue<>();
+        Queue<Node> queue = new PriorityQueue<>((a, b) -> a.distance - b.distance);
 
         source.distance = 0;
-        queue.add(source);
+        queue.offer(source);
 
         while(!queue.isEmpty()) {
 
-            Node currentNode = queue.remove();
+            Node node = queue.poll();
 
-            if(!seen.contains(currentNode)) {
+            if(!seen.contains(node)) {
 
-                seen.add(currentNode);
+                seen.add(node);
 
-                for(Map.Entry<Node, Integer> entry: currentNode.adjacentNodes.entrySet()) {
-                    Node node = entry.getKey();
-                    int distance = entry.getValue();
+                for(Map.Entry<Node, Integer> entry: node.adjacentNodes.entrySet()) {
+                    Node connectedNode = entry.getKey();
+                    int distanceFromCurrentNode = entry.getValue();
 
-                    calculateMinimumDistance(node, distance, currentNode);
-                    queue.add(node);
+                    if(!seen.contains(connectedNode)) {
+                        calculateMinDistance(node, connectedNode, distanceFromCurrentNode);
+                        queue.offer(connectedNode);
+                    }
                 }
 
             }
 
         }
 
-        graph.nodes.forEach(System.out::println);
-
     }
 
-    private static void calculateMinimumDistance(Node node, int distance, Node previousNode) {
+    private static void calculateMinDistance(Node node, Node connectedNode, int distanceFromCurrentNode) {
 
-        int newDistance = previousNode.distance + distance;
+        int newDistance = node.distance + distanceFromCurrentNode;
 
-        if(newDistance < node.distance) {
-            node.distance = newDistance;
-            List<Node> newPath = new LinkedList<>(previousNode.path);
-            newPath.add(previousNode);
-            node.path = newPath;
+        if(connectedNode.distance > newDistance) {
+            connectedNode.distance = newDistance;
+            List<Node> newPath = new ArrayList<>(node.path);
+            newPath.add(node);
+            connectedNode.path = newPath;
         }
 
     }
