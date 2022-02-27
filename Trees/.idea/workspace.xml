@@ -13,11 +13,14 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="MergeSort.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/trees/sorting/array/MergeSort.java">
+      <file leaf-file-name="TopologicalSort.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/trees/sorting/graph/TopologicalSort.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="207">
-              <caret line="32" column="38" selection-start-line="32" selection-start-column="38" selection-end-line="32" selection-end-column="38" />
+            <state relative-caret-position="185">
+              <caret line="57" column="101" selection-start-line="57" selection-start-column="101" selection-end-line="57" selection-end-column="101" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -60,7 +63,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/trees/sorting/InsertionSort.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/trees/sorting/MergeSort.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/trees/sorting/QuickSort.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/trees/sorting/graph/TopologicalSort.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/trees/colourfulnumber/ColourfulNumber.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/trees/Example.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/trees/exercises/RotationalCipher.java" />
@@ -99,6 +101,7 @@
         <option value="$PROJECT_DIR$/src/main/java/com/trees/sorting/array/BubbleSort.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/trees/sorting/array/InsertionSort.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/trees/sorting/array/MergeSort.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/trees/sorting/graph/TopologicalSort.java" />
       </list>
     </option>
   </component>
@@ -176,7 +179,7 @@
               <item name="com" type="462c0819:PsiDirectoryNode" />
               <item name="trees" type="462c0819:PsiDirectoryNode" />
               <item name="sorting" type="462c0819:PsiDirectoryNode" />
-              <item name="array" type="462c0819:PsiDirectoryNode" />
+              <item name="graph" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -210,7 +213,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.MergeSort">
+  <component name="RunManager" selected="Application.TopologicalSort">
     <configuration name="BubbleSort" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.trees.sorting.array.BubbleSort" />
       <module name="Trees" />
@@ -233,17 +236,6 @@
         </pattern>
       </extension>
     </configuration>
-    <configuration name="Knapsack" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.trees.knapsack.Knapsack" />
-      <module name="Trees" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.trees.knapsack.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-    </configuration>
     <configuration name="MergeSort" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.trees.sorting.array.MergeSort" />
       <module name="Trees" />
@@ -262,6 +254,17 @@
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.trees.sorting.array.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+    </configuration>
+    <configuration name="TopologicalSort" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.trees.sorting.graph.TopologicalSort" />
+      <module name="Trees" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.trees.sorting.graph.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -308,19 +311,19 @@
       <listeners />
     </configuration>
     <list>
-      <item itemvalue="Application.Knapsack" />
       <item itemvalue="Application.SelectionSort" />
       <item itemvalue="Application.BubbleSort" />
       <item itemvalue="Application.InsertionSort" />
       <item itemvalue="Application.MergeSort" />
+      <item itemvalue="Application.TopologicalSort" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.TopologicalSort" />
         <item itemvalue="Application.MergeSort" />
         <item itemvalue="Application.InsertionSort" />
         <item itemvalue="Application.BubbleSort" />
         <item itemvalue="Application.SelectionSort" />
-        <item itemvalue="Application.Knapsack" />
       </list>
     </recent_temporary>
   </component>
@@ -446,16 +449,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1358">
           <caret line="85" column="13" selection-start-line="85" selection-start-column="13" selection-end-line="85" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/trees/sorting/graph/TopologicalSort.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="38" column="9" selection-start-line="38" selection-start-column="9" selection-end-line="38" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -926,8 +919,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/trees/sorting/array/MergeSort.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="32" column="38" selection-start-line="32" selection-start-column="38" selection-end-line="32" selection-end-column="38" />
+        <state relative-caret-position="90">
+          <caret line="6" column="44" lean-forward="true" selection-start-line="6" selection-start-column="44" selection-end-line="6" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/trees/sorting/graph/TopologicalSort.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="185">
+          <caret line="57" column="101" selection-start-line="57" selection-start-column="101" selection-end-line="57" selection-end-column="101" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

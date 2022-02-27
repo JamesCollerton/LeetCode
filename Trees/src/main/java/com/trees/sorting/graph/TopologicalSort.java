@@ -2,7 +2,6 @@ package com.trees.sorting.graph;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.PriorityQueue;
 
 public class TopologicalSort {
 
@@ -10,51 +9,60 @@ public class TopologicalSort {
 
         List<List<Integer>> adjacencyList = new ArrayList<>();
 
-        for(int i = 0; i < 5; i++) {
+        for(int i = 0; i < 7; i++) {
             adjacencyList.add(new ArrayList<>());
         }
+
+        // 5 -> 3 -> 4
+        // 1 -> 2 -> 4
+        // 0 -> 2 - > 4
+        //
 
         adjacencyList.get(0).add(2);
         adjacencyList.get(1).add(2);
         adjacencyList.get(2).add(4);
         adjacencyList.get(3).add(4);
+        adjacencyList.get(5).add(3);
 
-        int[] ordered = topologicalSort(adjacencyList, 5);
+        int[] ordered = topologicalSort(adjacencyList, 7);
 
         for(int i: ordered) {
             System.out.print(i + " ");
         }
     }
 
-    public static int[] topologicalSort(List<List<Integer>> adjacencyList, int numberNodes) {
+    private static int[] topologicalSort(List<List<Integer>> adjacencyList, int numberNodes) {
 
         int[] ordering = new int[numberNodes];
-        boolean[] visited = new boolean[numberNodes];
+        boolean[] seen = new boolean[numberNodes];
         int orderingPosition = numberNodes - 1;
 
-        for(int i = 0; i < numberNodes; i++) {
-            if(!visited[i]) {
-                orderingPosition = dfs(orderingPosition, i, visited, ordering, adjacencyList);
+        for(int node = 0; node < numberNodes; node++) {
+            if(!seen[node]) {
+                orderingPosition = dfs(ordering, seen, adjacencyList, orderingPosition, node);
             }
         }
 
         return ordering;
     }
 
-    // Basically do DFS and add to ordering as we recurse back up
-    private static int dfs(
-            int orderingPosition, int currentNode, boolean[] visited, int[] ordering, List<List<Integer>> adjacencyList) {
+    private static int dfs(int[] ordering, boolean[] seen, List<List<Integer>> adjacencyList, int orderingPosition, int node) {
+        if(seen[node]) {
+            return orderingPosition;
+        }
 
-        visited[currentNode] = true;
+        seen[node] = true;
 
-        for(int node: adjacencyList.get(currentNode)) {
-            if(!visited[node]) {
-                orderingPosition = dfs(orderingPosition, node, visited, ordering, adjacencyList);
+        for(int connectedNode: adjacencyList.get(node)) {
+            if(!seen[connectedNode]) {
+                orderingPosition = dfs(ordering, seen, adjacencyList, orderingPosition, connectedNode);
             }
         }
 
-        ordering[orderingPosition--] = currentNode;
-        return orderingPosition;
+        ordering[orderingPosition] = node;
+
+        return orderingPosition - 1;
     }
+
 
 }
