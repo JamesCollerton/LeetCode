@@ -4,17 +4,13 @@ public class InsertionSort {
 
     public static void main(String[] args) {
 
-        Integer.valueOf("9646324351");
-        Integer.valueOf("2147483647");
-
         int[] arr = new int[]{1, 3, 6, 2, 8, 9, 10, 8, 7};
 
-        int pointer = 1;
+        int pointer = 0;
 
         while(pointer < arr.length) {
-
-            int pointerValue = arr[pointer];
             int i = pointer;
+            int pointerValue = arr[pointer];
 
             while(i > 0 && arr[i - 1] > pointerValue) {
                 arr[i] = arr[i - 1];

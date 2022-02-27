@@ -22,11 +22,20 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BubbleSort.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="BubbleSort.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/trees/sorting/array/BubbleSort.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="332">
-              <caret line="24" column="37" selection-start-line="24" selection-start-column="37" selection-end-line="24" selection-end-column="37" />
+            <state relative-caret-position="316">
+              <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="InsertionSort.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/trees/sorting/array/InsertionSort.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="120">
+              <caret line="8" column="8" selection-start-line="8" selection-start-column="8" selection-end-line="8" selection-end-column="8" />
             </state>
           </provider>
         </entry>
@@ -72,7 +81,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/trees/sorting/QuickSort.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/trees/sorting/graph/TopologicalSort.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/trees/colourfulnumber/ColourfulNumber.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/trees/sorting/array/InsertionSort.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/trees/Example.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/trees/exercises/RotationalCipher.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/trees/exercises/RotationalCipher/Main.java" />
@@ -108,6 +116,7 @@
         <option value="$PROJECT_DIR$/src/main/java/com/trees/heap/MinHeap.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/trees/sorting/array/SelectionSort.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/trees/sorting/array/BubbleSort.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/trees/sorting/array/InsertionSort.java" />
       </list>
     </option>
   </component>
@@ -219,9 +228,20 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.BubbleSort">
+  <component name="RunManager" selected="Application.InsertionSort">
     <configuration name="BubbleSort" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.trees.sorting.array.BubbleSort" />
+      <module name="Trees" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.trees.sorting.array.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+    </configuration>
+    <configuration name="InsertionSort" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.trees.sorting.array.InsertionSort" />
       <module name="Trees" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <extension name="coverage">
@@ -238,17 +258,6 @@
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.trees.knapsack.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-    </configuration>
-    <configuration name="Main (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.trees.exercises.QueueRemovals.Main" />
-      <module name="Trees" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.trees.exercises.QueueRemovals.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -317,19 +326,19 @@
       <listeners />
     </configuration>
     <list>
-      <item itemvalue="Application.Main (1)" />
       <item itemvalue="Application.Main (2)" />
       <item itemvalue="Application.Knapsack" />
       <item itemvalue="Application.SelectionSort" />
       <item itemvalue="Application.BubbleSort" />
+      <item itemvalue="Application.InsertionSort" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.InsertionSort" />
         <item itemvalue="Application.BubbleSort" />
         <item itemvalue="Application.SelectionSort" />
         <item itemvalue="Application.Knapsack" />
         <item itemvalue="Application.Main (2)" />
-        <item itemvalue="Application.Main (1)" />
       </list>
     </recent_temporary>
   </component>
@@ -506,13 +515,6 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/trees/sorting/array/InsertionSort.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
         </state>
       </provider>
     </entry>
@@ -935,8 +937,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/trees/sorting/array/BubbleSort.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="332">
-          <caret line="24" column="37" selection-start-line="24" selection-start-column="37" selection-end-line="24" selection-end-column="37" />
+        <state relative-caret-position="316">
+          <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/trees/sorting/array/InsertionSort.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="8" selection-start-line="8" selection-start-column="8" selection-end-line="8" selection-end-column="8" />
         </state>
       </provider>
     </entry>
