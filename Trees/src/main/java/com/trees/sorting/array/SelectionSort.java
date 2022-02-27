@@ -8,25 +8,20 @@ public class SelectionSort {
 
         int[] arr = new int[]{7, 3, 1, 4, 2, 9, 7};
 
-        int pointer = 0;
-
-        while(pointer < arr.length) {
-
+        for(int pointer = 0; pointer < arr.length; pointer++) {
             int minIndex = pointer;
-
-            for(int i = pointer; i < arr.length; i++) {
-                minIndex = arr[minIndex] < arr[i] ? minIndex : i;
+            for(int pointerTwo = pointer; pointerTwo < arr.length; pointerTwo++) {
+                if(arr[pointerTwo] < arr[minIndex]) {
+                    minIndex = pointerTwo;
+                }
             }
-
             int temp = arr[pointer];
             arr[pointer] = arr[minIndex];
             arr[minIndex] = temp;
-
-            pointer++;
         }
 
-        for(int i : arr) {
-            System.out.println(i + " ");
+        for(int num: arr) {
+            System.out.print(num + " ");
         }
 
     }
