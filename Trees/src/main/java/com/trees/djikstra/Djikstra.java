@@ -62,17 +62,18 @@ public class Djikstra {
 
             if(!seen.contains(node)) {
 
-                seen.add(node);
-
                 for(Map.Entry<Node, Integer> entry: node.adjacentNodes.entrySet()) {
                     Node connectedNode = entry.getKey();
-                    int distanceFromCurrentNode = entry.getValue();
+                    Integer distance = entry.getValue();
+
+                    calculateMinimumDistance(node, connectedNode, distance);
 
                     if(!seen.contains(connectedNode)) {
-                        calculateMinDistance(node, connectedNode, distanceFromCurrentNode);
                         queue.offer(connectedNode);
                     }
                 }
+
+                seen.add(node);
 
             }
 
@@ -80,14 +81,14 @@ public class Djikstra {
 
     }
 
-    private static void calculateMinDistance(Node node, Node connectedNode, int distanceFromCurrentNode) {
+    private static void calculateMinimumDistance(Node currentNode, Node connectedNode, int distance) {
 
-        int newDistance = node.distance + distanceFromCurrentNode;
+        int newDistance = currentNode.distance + distance;
 
-        if(connectedNode.distance > newDistance) {
+        if(newDistance < connectedNode.distance) {
             connectedNode.distance = newDistance;
-            List<Node> newPath = new ArrayList<>(node.path);
-            newPath.add(node);
+            List<Node> newPath = new ArrayList<>(currentNode.path);
+            newPath.add(currentNode);
             connectedNode.path = newPath;
         }
 
