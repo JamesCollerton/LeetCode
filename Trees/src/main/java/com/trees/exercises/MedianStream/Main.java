@@ -11,53 +11,35 @@ class Main {
 
 
     int[] findMedian(int[] arr) {
-        // Write your code here
 
-        // Smallest queue puts largest at front
-        // Largest queue puts smallest at front
-        Queue<Integer> smallestQueue = new PriorityQueue<>((a, b) -> b - a);
-        Queue<Integer> largestQueue = new PriorityQueue<>((a, b) -> a - b);
-
+        Queue<Integer> lowHeap = new PriorityQueue<>((a, b) -> b - a);
+        Queue<Integer> topHeap = new PriorityQueue<>((a, b) -> a - b);
         int[] result = new int[arr.length];
 
         for(int i = 0; i < arr.length; i++) {
 
-            int next = arr[i];
+            int num = arr[i];
 
-            if(smallestQueue.isEmpty()) {
-                smallestQueue.offer(next);
-                // Can we move this out?
-                result[i] = next;
+            if(lowHeap.isEmpty()) {
+                lowHeap.offer(num);
             } else {
-
-                if(next <= smallestQueue.peek()) {
-                    // Can simplify this logic
-                    if(smallestQueue.size() < largestQueue.size() + 1) {
-                        smallestQueue.offer(next);
-                    } else {
-                        largestQueue.offer(smallestQueue.poll());
-                        smallestQueue.offer(next);
+                if(num <= lowHeap.peek()) {
+                    if(i % 2 == 1) {
+                        topHeap.offer(lowHeap.poll());
                     }
+                    lowHeap.offer(num);
                 } else {
-
-                    if(smallestQueue.size() < largestQueue.size() + 1) {
-                        if(next < largestQueue.peek()) {
-                            smallestQueue.offer(next);
-                        } else {
-                            smallestQueue.offer(largestQueue.poll());
-                            largestQueue.offer(next);
-                        }
-                    } else {
-                        largestQueue.offer(next);
+                    if(i % 2 == 0) {
+                        lowHeap.offer(topHeap.poll());
                     }
-
+                    topHeap.offer(num);
                 }
+            }
 
-                if(i % 2 == 0) {
-                    result[i] = smallestQueue.peek();
-                } else {
-                    result[i] = (smallestQueue.peek() + largestQueue.peek()) / 2;
-                }
+            if(i % 2 == 0) {
+                result[i] = lowHeap.peek();
+            } else {
+                result[i] = (topHeap.peek() + lowHeap.peek()) / 2;
             }
         }
 
