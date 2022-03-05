@@ -11,19 +11,20 @@ class Main {
 
 
     int numberOfWays(int[] arr, int k) {
-        // Write your code here
-        int count = 0;
+
+        int result = 0;
         Map<Integer, Integer> numberToCountMap = new HashMap<>();
 
         for(int num: arr) {
-            int target = k - num;
-            if(numberToCountMap.containsKey(target)) {
-                count += numberToCountMap.get(target);
+            int remainder = k - num;
+            if(numberToCountMap.containsKey(remainder)) {
+                result += numberToCountMap.get(remainder);
             }
-            numberToCountMap.put(num, numberToCountMap.getOrDefault(target, 0) + 1);
+            numberToCountMap.put(num, numberToCountMap.getOrDefault(num, 0) + 1);
         }
 
-        return count;
+
+        return result;
     }
 
 
