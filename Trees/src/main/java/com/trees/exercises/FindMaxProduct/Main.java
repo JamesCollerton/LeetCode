@@ -11,24 +11,25 @@ class Main {
 
 
     int[] findMaxProduct(int[] arr) {
-        // Write your code here
-        Queue<Integer> queue = new PriorityQueue<Integer>((a, b) -> b - a);
+
+        Queue<Integer> queue = new PriorityQueue<>((a, b) -> b - a);
+
         int[] result = new int[arr.length];
 
         for(int i = 0; i < arr.length; i++) {
             queue.offer(arr[i]);
             if(queue.size() < 3) {
-                result[i] = - 1;
+                result[i] = -1;
             } else {
-                Stack<Integer> stack = new Stack<>();
-                for(int j = 0; j < 3; j++) {
-                    stack.push(queue.poll());
-                }
                 int multiplication = 1;
-                while(!stack.isEmpty()) {
-                    int value = stack.pop();
-                    multiplication *= value;
-                    queue.offer(value);
+                Stack<Integer> topThreeStack = new Stack<>();
+                for(int j = 0; j < 3; j++) {
+                    int num = queue.poll();
+                    topThreeStack.push(num);
+                    multiplication *= num;
+                }
+                while(!topThreeStack.isEmpty()) {
+                    queue.offer(topThreeStack.pop());
                 }
                 result[i] = multiplication;
             }
