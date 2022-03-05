@@ -11,24 +11,26 @@ class Main {
 
 
     boolean areTheyEqual(int[] array_a, int[] array_b) {
-        // Write your code here
-        Map<Integer, Integer> arrayAIntCountMap = new HashMap<>();
-        Map<Integer, Integer> arrayBIntCountMap = new HashMap<>();
 
-        for(int i = 0; i < array_a.length; i++) {
-            arrayAIntCountMap.put(array_a[i], arrayAIntCountMap.getOrDefault(array_a[i], 0) + 1);
-        }
-        for(int i = 0; i < array_b.length; i++) {
-            arrayBIntCountMap.put(array_b[i], arrayBIntCountMap.getOrDefault(array_b[i], 0) + 1);
+        Map<Integer, Integer> aIntToCountMap = new HashMap<>();
+        Map<Integer, Integer> bIntToCountMap = new HashMap<>();
+
+        for(int num: array_a) {
+            aIntToCountMap.put(num, aIntToCountMap.getOrDefault(num, 0) + 1);
         }
 
-        if(!arrayAIntCountMap.keySet().equals(arrayBIntCountMap.keySet())) {
-
-            return false;
+        for(int num: array_b) {
+            bIntToCountMap.put(num, bIntToCountMap.getOrDefault(num, 0) + 1);
         }
 
-        for(Integer mapAKey: arrayAIntCountMap.keySet()) {
-            if(!arrayAIntCountMap.get(mapAKey).equals(arrayBIntCountMap.get(mapAKey))) {
+        for(int aKey: aIntToCountMap.keySet()) {
+            if(!bIntToCountMap.containsKey(aKey) || !(bIntToCountMap.get(aKey).equals(aIntToCountMap.get(aKey)))) {
+                return false;
+            }
+        }
+
+        for(int bKey: bIntToCountMap.keySet()) {
+            if(!aIntToCountMap.containsKey(bKey) || !(bIntToCountMap.get(bKey).equals(aIntToCountMap.get(bKey)))) {
                 return false;
             }
         }
