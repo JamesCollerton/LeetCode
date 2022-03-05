@@ -11,22 +11,23 @@ class Main {
 
 
     int[] countSubarrays(int[] arr) {
-        // Write your code here
+
         int[] result = new int[arr.length];
 
         for(int i = 0; i < arr.length; i++) {
+            int num = arr[i];
+            int numSubArrays = 1;
             int leftPointer = i - 1;
             int rightPointer = i + 1;
-            int count = 1;
-            while(leftPointer >= 0 && arr[leftPointer] < arr[i]) {
+            while(leftPointer >= 0 && arr[leftPointer] < num) {
                 leftPointer--;
-                count++;
+                numSubArrays++;
             }
-            while(rightPointer < arr.length && arr[rightPointer] < arr[i]) {
+            while(rightPointer < arr.length && arr[rightPointer] < num) {
                 rightPointer++;
-                count++;
+                numSubArrays++;
             }
-            result[i] = count;
+            result[i] = numSubArrays;
         }
 
         return result;

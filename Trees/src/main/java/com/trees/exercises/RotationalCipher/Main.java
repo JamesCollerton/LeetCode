@@ -3,72 +3,41 @@ package com.trees.exercises.RotationalCipher;
 class Main {
 
     // Add any helper functions you may need here
-
-
     String rotationalCipher(String input, int rotationFactor) {
-        if(rotationFactor == 0) {
-            return input;
-        }
 
         StringBuilder stringBuilder = new StringBuilder();
 
         for(int i = 0; i < input.length(); i++) {
             char c = input.charAt(i);
-            if(Character.isDigit(c)) {
-
-                int position = c - '0';
-
-                // Check these again
-                int maxPosition = 9;
-                int rotation = rotationFactor % 10;
-
-                int toMoveTo;
-                if(position + rotation > maxPosition) {
-                    toMoveTo = rotation - (maxPosition - position) - 1;
-                } else {
-                    toMoveTo = position + rotation;
-                }
-
-                char newCharacter = (char) (toMoveTo + '0');
-
-                stringBuilder.append(newCharacter);
-
-            } else if(c <= 'z' && c >= 'A') {
-
-                int position;
-                if(c >= 'a') {
-                    position = c - 'a';
-                } else {
-                    position = c - 'A';
-                }
-                // Check these again
-                int maxPosition = 25;
-                int rotation = rotationFactor % 26;
-
-                int toMoveTo;
-                if(position + rotation > maxPosition) {
-                    toMoveTo = rotation - (maxPosition - position) - 1;
-                } else {
-                    toMoveTo = position + rotation;
-                }
-
-                char newCharacter;
-                if(c >= 'a') {
-                    newCharacter = (char) (toMoveTo + 'a');
-                } else {
-                    newCharacter = (char) (toMoveTo + 'A');
-                }
-                stringBuilder.append(newCharacter);
-
+            char toAdd;
+            if(c >= 'A' && c <= 'Z') {
+                toAdd = findRotatedChar(c, rotationFactor, 26, 'A');
+            } else if(c >= 'a' && c <= 'z') {
+                toAdd = findRotatedChar(c, rotationFactor, 26, 'a');
+            } else if(Character.isDigit(c)) {
+                toAdd = findRotatedChar(c, rotationFactor, 10, '0');
             } else {
-                stringBuilder.append(c);
+                toAdd = c;
             }
+            stringBuilder.append(toAdd);
         }
 
-        // Write your code here
         return stringBuilder.toString();
     }
 
+    private char findRotatedChar(char currentChar, int rotationFactor, int upperLimit, char lowestChar) {
+
+        int numSteps = rotationFactor % upperLimit;
+        int currentPosition = currentChar - lowestChar;
+        int nextPosition = currentPosition + numSteps;
+
+        if(nextPosition >= upperLimit) {
+            nextPosition = numSteps - (upperLimit - currentPosition);
+        }
+
+        return (char) (lowestChar + nextPosition);
+
+    }
 
 
 
