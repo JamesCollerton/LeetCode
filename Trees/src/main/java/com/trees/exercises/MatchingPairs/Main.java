@@ -13,39 +13,30 @@ class Main {
     int matchingPairs(String s, String t) {
         // Write your code here
 
-        Map<Character, Integer> gotCharacterToIndexMap = new HashMap<>();
-        int matchedCounter = 0;
-        int maxSwapIncrement = 0;
+        int result = 0;
+        boolean canSwap = false;
+        Set<Character> swappable = new HashSet<>();
 
         for(int i = 0; i < s.length(); i++) {
+
             char sChar = s.charAt(i);
             char tChar = t.charAt(i);
 
             if(sChar == tChar) {
-                matchedCounter++;
+                result++;
             } else {
-                if(gotCharacterToIndexMap.containsKey(tChar)) {
-                    char characterWeHave = sChar;
-                    char characterWeNeed = tChar;
-                    int characterWeNeedIndex = gotCharacterToIndexMap.get(characterWeNeed);
-                    char characterWeNeedAtNeededIndex = t.charAt(characterWeNeedIndex);
-                    if(characterWeNeedAtNeededIndex == characterWeHave) {
-                        maxSwapIncrement = 2;
-                    } else {
-                        maxSwapIncrement = maxSwapIncrement > 1 ? maxSwapIncrement : 1;
-                    }
+                if(swappable.contains(tChar)) {
+                    canSwap = true;
                 }
-                gotCharacterToIndexMap.put(sChar, i);
+                swappable.add(sChar);
             }
         }
 
-        if(matchedCounter == s.length()) {
-            return matchedCounter - 2;
-        } else {
-            return matchedCounter + maxSwapIncrement;
+        if(result == s.length()) {
+            return result - 2;
         }
 
-
+        return canSwap ? result + 2 : result;
     }
 
 

@@ -13,15 +13,27 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/trees/exercises/FindMaxProduct/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="271">
-              <caret line="31" column="51" selection-start-line="31" selection-start-column="51" selection-end-line="31" selection-end-column="51" />
+            <state relative-caret-position="288">
+              <caret line="39" selection-start-line="39" selection-end-line="39" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#2857#2858#0" expanded="true" />
                 <element signature="e#2889#2890#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/trees/exercises/MatchingPairs/Main.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="167">
+              <caret line="22" column="17" selection-start-line="22" selection-start-column="17" selection-end-line="22" selection-end-column="17" />
+              <folding>
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -72,7 +84,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/trees/exercises/SlowSums/Main.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/trees/exercises/FindMinArray/Main.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/trees/exercises/MaxAwkwardness/Main.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/trees/exercises/MatchingPairs/Main.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/trees/exercises/MinimumLengthSubstrings/Main.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/trees/exercises/NumberVisibleNodes/Main.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/trees/exercises/CountOfNodes/Main.java" />
@@ -104,6 +115,7 @@
         <option value="$PROJECT_DIR$/src/main/java/com/trees/exercises/ReverseToMakeEqual/Main.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/trees/exercises/PassingYearbooks/Main.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/trees/exercises/FindMaxProduct/Main.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/trees/exercises/MatchingPairs/Main.java" />
       </list>
     </option>
   </component>
@@ -185,6 +197,17 @@
             </path>
             <path>
               <item name="example" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Trees" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="trees" type="462c0819:PsiDirectoryNode" />
+              <item name="exercises" type="462c0819:PsiDirectoryNode" />
+              <item name="MatchingPairs" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="example" type="b2602c69:ProjectViewProjectNode" />
               <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
             </path>
             <path>
@@ -245,14 +268,14 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Main">
-    <configuration name="Main (2)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.trees.exercises.CountSubarrays.Main" />
+  <component name="RunManager" selected="Application.Main (1)">
+    <configuration name="Main (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.trees.exercises.MatchingPairs.Main" />
       <module name="Trees" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.trees.exercises.CountSubarrays.*" />
+          <option name="PATTERN" value="com.trees.exercises.MatchingPairs.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -343,19 +366,19 @@
       <listeners />
     </configuration>
     <list>
-      <item itemvalue="Application.Main (2)" />
       <item itemvalue="Application.Main (3)" />
       <item itemvalue="Application.Main (4)" />
       <item itemvalue="Application.Main (5)" />
       <item itemvalue="Application.Main" />
+      <item itemvalue="Application.Main (1)" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Main (1)" />
         <item itemvalue="Application.Main" />
         <item itemvalue="Application.Main (5)" />
         <item itemvalue="Application.Main (4)" />
         <item itemvalue="Application.Main (3)" />
-        <item itemvalue="Application.Main (2)" />
       </list>
     </recent_temporary>
   </component>
@@ -897,16 +920,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/trees/exercises/MatchingPairs/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-207">
-          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/trees/exercises/PairSums/Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="282">
@@ -939,12 +952,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/trees/exercises/FindMaxProduct/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="271">
-          <caret line="31" column="51" selection-start-line="31" selection-start-column="51" selection-end-line="31" selection-end-column="51" />
+        <state relative-caret-position="288">
+          <caret line="39" selection-start-line="39" selection-end-line="39" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#2857#2858#0" expanded="true" />
             <element signature="e#2889#2890#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/trees/exercises/MatchingPairs/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="167">
+          <caret line="22" column="17" selection-start-line="22" selection-start-column="17" selection-end-line="22" selection-end-column="17" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
