@@ -14,14 +14,14 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/trees/exercises/QueueRemovals/Main.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/trees/exercises/SlowSums/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="275">
-              <caret line="61" column="43" selection-start-line="61" selection-start-column="43" selection-end-line="61" selection-end-column="43" />
+            <state relative-caret-position="242">
+              <caret line="29" column="42" selection-start-line="29" selection-start-column="42" selection-end-line="29" selection-end-column="42" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#3357#3358#0" expanded="true" />
-                <element signature="e#3389#3390#0" expanded="true" />
+                <element signature="e#1611#1612#0" expanded="true" />
+                <element signature="e#1658#1659#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -69,7 +69,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/trees/exercises/RotationalCipher.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/trees/exercises/PairSums/PairSums.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/trees/exercises/MaxCandies/Main.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/trees/exercises/SlowSums/Main.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/trees/exercises/FindMinArray/Main.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/trees/exercises/MaxAwkwardness/Main.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/trees/exercises/MinimumLengthSubstrings/Main.java" />
@@ -80,7 +79,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/trees/exercises/EncryptedWords/Main.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/trees/exercises/CanGetExactChange/Main.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/trees/exercises/BalancedSplitExists/Main.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/trees/exercises/CountingTriangles/Main.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/trees/exercises/BalanceBrackets/Main.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/trees/exercises/MinOperations/Main.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/trees/knapsack/Knapsack.java" />
@@ -105,6 +103,8 @@
         <option value="$PROJECT_DIR$/src/main/java/com/trees/exercises/MinimisingPermutations/Main.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/trees/exercises/ReverseOperations/Main.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/trees/exercises/QueueRemovals/Main.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/trees/exercises/CountingTriangles/Main.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/trees/exercises/SlowSums/Main.java" />
       </list>
     </option>
   </component>
@@ -182,7 +182,7 @@
               <item name="com" type="462c0819:PsiDirectoryNode" />
               <item name="trees" type="462c0819:PsiDirectoryNode" />
               <item name="exercises" type="462c0819:PsiDirectoryNode" />
-              <item name="QueueRemovals" type="462c0819:PsiDirectoryNode" />
+              <item name="SlowSums" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="example" type="b2602c69:ProjectViewProjectNode" />
@@ -246,18 +246,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Main (4)">
-    <configuration name="Main (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.trees.exercises.MatchingPairs.Main" />
-      <module name="Trees" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.trees.exercises.MatchingPairs.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-    </configuration>
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Main (2)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.trees.exercises.MinimisingPermutations.Main" />
       <module name="Trees" />
@@ -291,13 +280,24 @@
         </pattern>
       </extension>
     </configuration>
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.trees.exercises.FindMaxProduct.Main" />
+    <configuration name="Main (5)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.trees.exercises.CountingTriangles.Main" />
       <module name="Trees" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.trees.exercises.FindMaxProduct.*" />
+          <option name="PATTERN" value="com.trees.exercises.CountingTriangles.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+    </configuration>
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.trees.exercises.SlowSums.Main" />
+      <module name="Trees" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.trees.exercises.SlowSums.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -344,19 +344,19 @@
       <listeners />
     </configuration>
     <list>
-      <item itemvalue="Application.Main" />
-      <item itemvalue="Application.Main (1)" />
       <item itemvalue="Application.Main (2)" />
       <item itemvalue="Application.Main (3)" />
       <item itemvalue="Application.Main (4)" />
+      <item itemvalue="Application.Main (5)" />
+      <item itemvalue="Application.Main" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.Main (5)" />
         <item itemvalue="Application.Main (4)" />
         <item itemvalue="Application.Main (3)" />
         <item itemvalue="Application.Main (2)" />
-        <item itemvalue="Application.Main (1)" />
-        <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
   </component>
@@ -424,13 +424,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/trees/SelectionSort.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="15" column="24" selection-start-line="15" selection-start-column="24" selection-end-line="15" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/trees/BubbleSort.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
@@ -515,20 +508,6 @@
             <element signature="e#1400#1401#0" expanded="true" />
             <element signature="e#1905#1906#0" expanded="true" />
             <element signature="e#1937#1938#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/trees/exercises/SlowSums/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="89" column="41" selection-start-line="89" selection-start-column="41" selection-end-line="89" selection-end-column="41" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1611#1612#0" expanded="true" />
-            <element signature="e#1658#1659#0" expanded="true" />
-            <element signature="e#2071#2072#0" expanded="true" />
-            <element signature="e#2103#2104#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -675,20 +654,6 @@
             <element signature="e#1963#1964#0" expanded="true" />
             <element signature="e#2413#2414#0" expanded="true" />
             <element signature="e#2445#2446#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/trees/exercises/CountingTriangles/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="37" column="5" selection-start-line="37" selection-start-column="5" selection-end-line="37" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2117#2118#0" expanded="true" />
-            <element signature="e#2164#2165#0" expanded="true" />
-            <element signature="e#2938#2939#0" expanded="true" />
-            <element signature="e#2970#2971#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -952,12 +917,41 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/trees/exercises/QueueRemovals/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="275">
+        <state relative-caret-position="171">
           <caret line="61" column="43" selection-start-line="61" selection-start-column="43" selection-end-line="61" selection-end-column="43" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#3357#3358#0" expanded="true" />
             <element signature="e#3389#3390#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/trees/exercises/CountingTriangles/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="79">
+          <caret line="29" column="24" lean-forward="true" selection-start-line="29" selection-start-column="24" selection-end-line="29" selection-end-column="24" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///usr/local/Cellar/openjdk@11/11.0.10/libexec/openjdk.jdk/Contents/Home/lib/src.zip!/java.base/java/util/Comparator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="138">
+          <caret line="149" column="8" selection-start-line="149" selection-start-column="8" selection-end-line="149" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/trees/exercises/SlowSums/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="29" column="42" selection-start-line="29" selection-start-column="42" selection-end-line="29" selection-end-column="42" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1611#1612#0" expanded="true" />
+            <element signature="e#1658#1659#0" expanded="true" />
           </folding>
         </state>
       </provider>

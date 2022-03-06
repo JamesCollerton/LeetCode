@@ -1,6 +1,7 @@
 package com.trees.exercises.CountingTriangles;
 
 import java.io.*;
+import java.text.SimpleDateFormat;
 import java.util.*;
 // Add any extra import statements you may need here
 
@@ -24,17 +25,50 @@ class Main {
     int countDistinctTriangles(ArrayList<Sides> arr) {
         // Write your code here
 
-        Set<Set<Integer>> set = new HashSet<>();
+        int[][] sortedTriangles = new int[arr.size()][3];
 
-        for (Sides sides : arr) {
-            Set<Integer> sidesSet = new HashSet<>();
-            sidesSet.add(sides.a);
-            sidesSet.add(sides.b);
-            sidesSet.add(sides.c);
-            set.add(sidesSet);
+        for(int i = 0; i < arr.size(); i++) {
+
+            Sides side = arr.get(i);
+
+            int[] sides = new int[]{side.a, side.b, side.c};
+            Arrays.sort(sides);
+
+            sortedTriangles[i] = sides;
         }
 
-        return set.size();
+        Arrays.sort(sortedTriangles, (a, b) -> {
+            if(a[0] == b[0]) {
+                if(a[1] == b[1]) {
+                    if(a[2] == b[2]) {
+                        return 0;
+                    } else {
+                        return a[2] - b[2];
+                    }
+                } else {
+                    return a[1] - b[1];
+                }
+            } else {
+                return a[0] - b[0];
+            }
+        });
+
+        int[] previousTriangle = new int[]{-1, -1, -1};
+
+        int numberTriangles = 0;
+
+        for(int i = 0; i < sortedTriangles.length; i++) {
+            if(!trianglesEqual(previousTriangle, sortedTriangles[i])) {
+                numberTriangles++;
+            }
+            previousTriangle = sortedTriangles[i];
+        }
+
+        return numberTriangles;
+    }
+
+    private boolean trianglesEqual(int[] triangleA, int[] triangleB) {
+        return triangleA[0] == triangleB[0] && triangleA[1] == triangleB[1] && triangleB[2] == triangleB[2];
     }
 
 

@@ -20,22 +20,15 @@ class Main {
     // [10]
 
     int getTotalTime(int[] arr) {
-        // Write your code here
-        if(arr.length < 2) {
-            return 0;
-        }
 
-        Arrays.sort(arr);
+        arr = Arrays.stream(arr).boxed().sorted(Collections.reverseOrder()).mapToInt(Integer::intValue).toArray();;
 
-        int pointer = arr.length - 1;
-        int penalty = 0;
+        int penalty = arr[0] + arr[1];
+        int currentTotal = penalty;
 
-        while(pointer != 0) {
-            int lastValue = arr[pointer];
-            int secondLastValue = arr[pointer -1];
-            arr[pointer - 1] = lastValue + secondLastValue;
-            penalty += lastValue + secondLastValue;
-            pointer--;
+        for(int i = 2; i < arr.length; i++) {
+            penalty += (currentTotal + arr[i]);
+            currentTotal += arr[i];
         }
 
         return penalty;
