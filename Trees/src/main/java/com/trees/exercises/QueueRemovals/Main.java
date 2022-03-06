@@ -13,57 +13,64 @@ import java.util.*;
 
 class Main {
 
-    // Add any helper functions you may need here
-    class OriginalPosition {
-        int val;
-        int index;
-        OriginalPosition(int val, int index) {
-            this.val = val;
-            this.index = index;
+    private class Order {
+        int value;
+        int position;
+        Order(int value, int position) {
+            this.value = value;
+            this.position = position;
         }
     }
 
-    int[] findPositions(int[] arr, int x) {
-        // Write your code here
+    private int[] findPositions(int[] arr, int x) {
 
-        int iterations = 0;
         int[] result = new int[x];
 
-        Queue<OriginalPosition> queue = new LinkedList<>();
+        Queue<Order> queue = new LinkedList<>();
 
         for(int i = 0; i < arr.length; i++) {
-            queue.offer(new OriginalPosition(arr[i], i + 1));
+            queue.offer(new Order(arr[i], i + 1));
         }
 
-        while(iterations < x) {
+        int counter = 0;
 
-            Queue<OriginalPosition> tempQueue = new LinkedList<>();
+        while(counter < x) {
 
-            int counter = x;
-            OriginalPosition max = null;
+            Queue<Order> orders = new LinkedList<>();
 
-            while(counter > 0 && !queue.isEmpty()) {
-                OriginalPosition originalPosition = queue.poll();
-                if(max == null || originalPosition.val > max.val) {
-                    max = originalPosition;
-                }
-                tempQueue.offer(originalPosition);
-                counter--;
-            }
+            int polled = 0;
+            Order max = null;
 
-            while(!tempQueue.isEmpty()) {
-                OriginalPosition originalPosition = tempQueue.poll();
-                if(!max.equals(originalPosition)) {
-                    if(originalPosition.val != 0) {
-                        originalPosition.val = originalPosition.val - 1;
-                    }
-                    queue.offer(originalPosition);
+            while(polled < x && !queue.isEmpty()) {
+
+                Order order = queue.poll();
+
+                if(max == null) {
+                    max = order;
                 } else {
-                    result[iterations] = originalPosition.index;
+                    if(max.value < order.value) {
+                        max = order;
+                    }
+                }
+
+                orders.offer(order);
+
+                polled++;
+            }
+
+            while(!orders.isEmpty()) {
+                Order order = orders.poll();
+                if(order == max) {
+                    result[counter] = max.position;
+                } else {
+                    if(order.value != 0) {
+                        order.value--;
+                    }
+                    queue.offer(order);
                 }
             }
 
-            iterations++;
+            counter++;
         }
 
         return result;
