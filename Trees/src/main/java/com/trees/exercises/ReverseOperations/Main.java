@@ -1,7 +1,9 @@
 package com.trees.exercises.ReverseOperations;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 // Add any extra import statements you may need here
 
 
@@ -20,66 +22,96 @@ class Main {
 
 
     Node reverse(Node head) {
-        // Write your code here
 
-        List<Node> list = new ArrayList<>();
+        Map<Node, Node> startToEndBlockMap = new HashMap<>();
 
+        Node previous = null;
         Node node = head;
+        boolean inBlock = false;
+
+        Node startOfBlock = null;
 
         while(node != null) {
-            list.add(node);
+
+            if(node.data % 2 == 0 && !inBlock) {
+                startOfBlock = node;
+                inBlock = true;
+            } else if(node.data % 2 == 1 && inBlock) {
+                inBlock = false;
+                startToEndBlockMap.put(startOfBlock, previous);
+            }
+
+            previous = node;
             node = node.next;
         }
 
-        int start = -1;
+        if(inBlock) {
+            startToEndBlockMap.put(startOfBlock, previous);
+        }
 
-        for(int i = 0; i < list.size(); i++) {
+        previous = null;
+        node = head;
 
-            if(list.get(i).data % 2 == 0 && i != list.size() - 1) {
-                if(start == -1) {
-                    start = i;
+        while(node != null) {
+
+            if(startToEndBlockMap.containsKey(node)) {
+
+                if(previous != null) {
+                    previous.next = null;
                 }
-            } else if(list.get(i).data % 2 == 1 || i == list.size() - 1) {
-                if(start != -1) {
-                    if(i != list.size() -1) {
-                        reverseList(list, start, i - 1);
-                    } else {
-                        reverseList(list, start, i);
-                    }
-                    start = -1;
+
+                Node lastEvenNode = startToEndBlockMap.get(node);
+
+                Node nextOddNode = lastEvenNode == null ? null : lastEvenNode.next;
+
+                if(lastEvenNode != null) {
+                    lastEvenNode.next = null;
                 }
+
+                reverseSubArray(node);
+
+                if(previous != null) {
+                    previous.next = lastEvenNode;
+                } else {
+                    head = lastEvenNode;
+                }
+
+                node.next = nextOddNode;
+
+                previous = node;
+                node = nextOddNode;
+            } else {
+                previous = node;
+                node = node.next;
             }
 
         }
 
-        for(int i = 0; i < list.size() - 1; i++) {
-            list.get(i).next = list.get(i + 1);
-        }
-
-        list.get(list.size() - 1).next = null;
-
-        return list.get(0);
+        return head;
     }
 
-    private void reverseList(List<Node> list, int start, int end) {
-        while(start < end) {
-            Node temp = list.get(start);
-            list.set(start, list.get(end));
-            list.set(end, temp);
-            start++;
-            end--;
+    private void reverseSubArray(Node startNode) {
+
+        if(startNode.next == null) {
+            return;
+        }
+
+        Node node = startNode;
+        Node nextNode = startNode.next;
+        Node nextNextNode = startNode.next.next;
+
+        while(nextNode != null) {
+
+            nextNode.next = node;
+
+            node = nextNode;
+            nextNode = nextNextNode;
+            if(nextNextNode != null) {
+                nextNextNode = nextNextNode.next;
+            }
+
         }
     }
-
-
-
-
-
-
-
-
-
-
 
 
     // These are the tests we use to determine if the solution is correct.
