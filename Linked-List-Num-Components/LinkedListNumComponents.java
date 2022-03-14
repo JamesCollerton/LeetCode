@@ -18,19 +18,19 @@ class Solution {
         }
         
         ListNode node = head;
-        int max = 0;
-        int runningCount = 0;
+        int groups = 0;
+        boolean inGroup = false;
         
         while(node != null) {
-            if(set.contains(node.val)) {
-                runningCount++;
-            } else {
-                runningCount = 0;
+            if(set.contains(node.val) && !inGroup) {
+                inGroup = true;
+                groups++;
+            } else if(!set.contains(node.val) && inGroup) {
+                inGroup = false;
             }
-            max = Math.max(max, runningCount);
             node = node.next;
         }
         
-        return max;
+        return groups;
     }
 }
