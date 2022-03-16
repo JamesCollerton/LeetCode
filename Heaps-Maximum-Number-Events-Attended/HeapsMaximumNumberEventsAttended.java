@@ -1,42 +1,26 @@
 class Solution {
     
-    public int maxEvents(int[][] events) {
+    public int maxEvents(int[][] arr) {
         
-        Queue<int[]> queue = new PriorityQueue<>((a, b) -> {
-            if(a[0] == b[0]) {
-                return a[1] - b[1];
-            } else {
-                return a[0] - b[0];
+        Queue<int[]> queue = new PriorityQueue<int[]>((a, b) -> a[1] - b[1]);
+        Arrays.sort(arr, (a, b) -> a[0] - b[0]);
+        
+        int i = 0;
+        int result = 0;
+        
+        for(int j = 0; j <= 100000; j++) {
+            while(!queue.isEmpty() && queue.peek()[1] < j) {
+                queue.poll();
             }
-        });
-        
-        for(int[] event: events) {
-            queue.offer(event);
+            while(i < arr.length && arr[i][0] == j) {
+                queue.offer(arr[i++]);
+            }
+            if (!queue.isEmpty()) {
+                queue.poll();
+                result++;
+            }
         }
         
-        int count = 0;
-        
-        while(!queue.isEmpty()) {
-            
-            count++;
-            
-            int[] event = queue.poll();
-            
-            int start = event[0];
-            
-            while(!queue.isEmpty() && queue.peek()[0] == start) {
-                
-                int[] clashingEvent = queue.poll();
-                if(clashingEvent[0] != clashingEvent[1]) {
-                    int[] newEvent = new int[]{start + 1, clashingEvent[1]};
-                    queue.offer(newEvent);
-                }
-                
-            }
-            
-        }
-   
-        return count;
-        
+        return result;
     }
 }
