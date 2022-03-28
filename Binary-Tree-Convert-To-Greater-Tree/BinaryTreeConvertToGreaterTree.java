@@ -14,29 +14,29 @@
  * }
  */
 class Solution {
+    
+    private int sum = 0;
+    
     public TreeNode convertBST(TreeNode root) {
         if(root == null) {
             return null;
         }
         
-        convert(root, 0);
+        reverseInOrder(root);
         
         return root;
     }
     
-    private int convert(TreeNode node, int aboveSum) {
+    private void reverseInOrder(TreeNode node) {
         if(node == null) {
-            return aboveSum;
+            return;
         }
         
-        int rightSum = node.right == null ? 0 : convert(node.right, aboveSum);
+        reverseInOrder(node.right);
+        int currentVal = node.val;
+        sum += node.val;
+        node.val = sum;
+        reverseInOrder(node.left);
         
-        int oldNodeVal = node.val;
-        int newValue = aboveSum + oldNodeVal + rightSum;
-        node.val = newValue;
-        
-        int leftSum = node.left == null ? 0 : convert(node.left, newValue);
-        
-        return rightSum + oldNodeVal + leftSum;
     }
 }
