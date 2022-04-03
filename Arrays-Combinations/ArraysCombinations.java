@@ -18,14 +18,14 @@ class Solution {
     
     private void backtrack(int curr, List<Integer> list, int k, int n) {
         if(list.size() == k) {
-            result.add(list);
+            result.add(new LinkedList<>(list));
             return;
         }
         
         for(int i = curr + 1; i <= n; i++) {
-            List<Integer> newList = new LinkedList<>(list);
-            newList.add(i);
-            backtrack(i, newList, k, n);
+            list.add(i);
+            backtrack(i, list, k, n);
+            list.remove(list.size() - 1);
         }
     }
 }
