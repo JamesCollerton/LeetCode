@@ -1,51 +1,64 @@
 class Solution {
-    
-    private int numberDistinctGroups = 0;
-    private int numberSpareCables = 0;
-    
+        
+    // [0,1]
+    // [1,1]
+    // [1,2]
+    // [0,2]
+    // n = 5
     public int makeConnected(int n, int[][] connections) {
+        
+        if(connections.length < n - 1) {
+            return -1;
+        }
         
         List<List<Integer>> adjacencyList = new ArrayList<>();
         
         for(int i = 0; i < n; i++) {
-            adjacencyList.add(new ArrayList<>());
+            adjacencyList.add(new LinkedList<>());
         }
         
-        for(int i = 0; i < connections.length; i++) {
-            adjacencyList.get(connections[i][0]).add(connections[i][1]);
-            adjacencyList.get(connections[i][1]).add(connections[i][0]);
+        // 0 -> 1, 2
+        // 1 -> 0, 1, 2
+        // 2 -> 0, 1
+        // 3
+        // 4
+        for(int[] connection: connections) {
+            adjacencyList.get(connection[0]).add(connection[1]);
+            adjacencyList.get(connection[1]).add(connection[0]);
         }
         
-        Set<Integer> seenNodes = new HashSet<>();
+        Set<Integer> seen = new HashSet<>();
         
-        for(int node = 0; node < n; node++) {
-            if(!seenNodes.contains(node)) {
-                countDistinctGroupsAndSpareCables(adjacencyList, node, seenNodes);
-                System.out.println(node);
-                numberDistinctGroups++;
-            }            
+        int numberGroups = 0;
+        
+        for(int i = 0; i < n; i++) {
+            if(!seen.contains(i)) {
+                numberGroups++;
+                dfs(i, adjacencyList, seen);
+            }
         }
         
-        return numberSpareCables >= numberDistinctGroups - 1 ? numberDistinctGroups - 1 : -1;
+        return numberGroups - 1;
     }
+
+    // Spare cables: 1, 2
+    // Seen: 0, 1, 2
     
-    private void countDistinctGroupsAndSpareCables(
-        List<List<Integer>> adjacencyList, 
-        int node, 
-        Set<Integer> seenNodes
-    ) {
+    // 0 -> 1, 2
+    // 1 -> 1, 2
+    // 2 -> 0, 1
+    // 3
+    // 4
+    private void dfs(int node, List<List<Integer>> adjacencyList, Set<Integer> seen) {
         
-        seenNodes.add(node);
+        seen.add(node);
         
-        for(int nextNodeIndex = 0; nextNodeIndex < adjacencyList.get(node).size(); nextNodeIndex++) {
-            int nextNode = adjacencyList.get(node).get(nextNodeIndex);
-            
-            if(seenNodes.contains(nextNode)) {
-                numberSpareCables++;
-            } else {
-                countDistinctGroupsAndSpareCables(adjacencyList, nextNode, seenNodes);
+        for(int connectedNode: new HashSet<>(adjacencyList.get(node))) {
+            if(!seen.contains(connectedNode)) {
+                dfs(connectedNode, adjacencyList, seen);
             }
         }
         
     }
+    
 }
