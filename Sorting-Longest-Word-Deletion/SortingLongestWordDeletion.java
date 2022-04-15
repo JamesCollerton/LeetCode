@@ -1,33 +1,48 @@
 class Solution {
     public String findLongestWord(String s, List<String> dictionary) {
-        
-        String result = "";
-        
-        for(String word: dictionary) {
-            
-            int sPointer = 0;
-            int wPointer = 0;
-            
-            while(sPointer < s.length() && wPointer < word.length()) {
-                while(sPointer < s.length() && s.charAt(sPointer) != word.charAt(wPointer)) {
-                    sPointer++;    
-                }
-                if(sPointer < s.length()) {
-                    sPointer++;
-                    wPointer++;
-                }
+
+        Collections.sort(dictionary, (a, b) -> {
+            if(a.length() - b.length() > 0) {
+                return -1;
+            } else if(a.length() - b.length() < 0) {
+                return 1;
+            } else {
+                return a.compareTo(b);
             }
-            
-            if(wPointer >= word.length()) {     
-                if(word.length() > result.length()) {
-                    result = word;
-                } else if(word.length() == result.length()){
-                    result = result.compareTo(word) < 0 ? result : word;
-                }
-            }
+        });
+        
+        Map<Character, Integer> charToCountMap = new HashMap<>();
+        
+        for(char c: s.toCharArray()) {
+            charToCountMap.put(c, charToCountMap.getOrDefault(c, 0) + 1);
         }
         
-        return result;
+        // bappler
+        // apple, bpple, app, bp, ting
+        for(String word: dictionary) {
+            
+            Map<Character, Integer> wordCharToCountMap = new HashMap<>(charToCountMap);
+                        
+            boolean matches = true;
+            
+            for(char c: word.toCharArray()) {
+                if(wordCharToCountMap.containsKey(c)) {
+                    if(wordCharToCountMap.get(c) > 0) {
+                        wordCharToCountMap.put(c, wordCharToCountMap.get(c) - 1);
+                    } else {
+                        matches = false;
+                    }
+                } else {
+                    matches = false;
+                }
+            }
+            
+            if(matches) {
+                return word;
+            }
+        }
+
+        return "";
     }
 
 }
