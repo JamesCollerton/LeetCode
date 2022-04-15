@@ -10,36 +10,25 @@ class Solution {
                 return a.compareTo(b);
             }
         });
-        
-        Map<Character, Integer> charToCountMap = new HashMap<>();
-        
-        for(char c: s.toCharArray()) {
-            charToCountMap.put(c, charToCountMap.getOrDefault(c, 0) + 1);
-        }
-        
-        // bappler
-        // apple, bpple, app, bp, ting
+
         for(String word: dictionary) {
             
-            Map<Character, Integer> wordCharToCountMap = new HashMap<>(charToCountMap);
-                        
-            boolean matches = true;
+            int sPointer = 0;
+            int wPointer = 0;
             
-            for(char c: word.toCharArray()) {
-                if(wordCharToCountMap.containsKey(c)) {
-                    if(wordCharToCountMap.get(c) > 0) {
-                        wordCharToCountMap.put(c, wordCharToCountMap.get(c) - 1);
-                    } else {
-                        matches = false;
-                    }
+            while(sPointer < s.length() && wPointer < word.length()) {
+                if(s.charAt(sPointer) == word.charAt(wPointer)) {
+                    sPointer++;
+                    wPointer++;
                 } else {
-                    matches = false;
+                    sPointer++;
                 }
             }
             
-            if(matches) {
+            if(wPointer >= word.length()) {
                 return word;
             }
+            
         }
 
         return "";
