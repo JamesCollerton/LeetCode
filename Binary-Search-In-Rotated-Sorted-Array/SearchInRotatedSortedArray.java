@@ -1,140 +1,79 @@
 class Solution {
     public int search(int[] nums, int target) {
-        // The array is already sorted, search it normally
+        // Check if just do normal search
         if(nums[0] < nums[nums.length - 1]) {
-            System.out.println("Detected normal search straight away");
-            return normalSearch(nums, target, 0, (nums.length - 1));
-            
-            
-        // The array is not sorted, do the pivot search
-        } else {
-            System.out.println("Detected pivot search straight away");
-            return pivotSearch(nums, target, 0, (nums.length - 1));
-            
+            // System.out.println("Detected doing normal search");
+            return normalSearch(nums, target, 0, nums.length - 1);
         }
+        
+        // System.out.println("Doing pivot search");
+        // Do pivot search
+        return pivotSearch(nums, target, 0, nums.length - 1);
     }
     
-    private int pivotSearch(int[] nums, int target, int startPointer, int endPointer) {
-                
-        // If we've gone through the entire array
-        if(startPointer > endPointer) {
-            System.out.println("Gone through entire array in pivot search");
-            return -1;
-            
-        // If we're at the end of the search and we found the target, return the index
-        }
-        else if(startPointer == endPointer && nums[startPointer] == target) {
-            
-            System.out.println("Found value in pivot search");
-            return startPointer;
-            
-        // If we're at the end of the search and the target isn't found, return -1
-        } else if(startPointer == endPointer) {
-            
-            System.out.println("At the end of search in pivot search");
+    private int pivotSearch(int[] nums, int target, int left, int right) {
+        
+        // System.out.println("In pivot search!");
+        
+        if(left > right) {
+            // System.out.println("Detected left > right");
             return -1;
         }
         
-        if(nums[startPointer] == target) {
-            return startPointer;
-        }
-        if(nums[endPointer] == target) {
-            return endPointer;
-        }
-        if(nums.length == 2) {
-            return -1;
+        int mid = left + (right - left) / 2;
+        // System.out.println("Left is " + left + " value " + nums[left]);
+        // System.out.println("Right is " + right + " value " + nums[right]);
+        // System.out.println("Mid is " + mid + " value " + nums[mid]);
+        
+        if(nums[mid] == target) {
+            return mid;
         }
         
-        // Find the middle of the array
-        int middle = (startPointer + endPointer) / 2;
-        System.out.println("Middle is " + middle + " in pivot search");
-        
-        // Check to see if the middle is the solution
-        if(nums[middle] == target) {
-            System.out.println("Found target as middle " + middle + " in pivot search");
-            return middle;
-        }
-        
-        // The LHS of the array is sorted
-        if(nums[startPointer] < nums[middle]) {
-                        
-            System.out.println("The LHS of the array is sorted in pivot search");
+        // Pivot on left
+        if(nums[mid] < nums[left]) {
             
-            // The value if exists is in the sorted LHS
-            if(nums[startPointer] <= target && target < nums[middle]) {
-                System.out.println("The target is in the sorted LHS in pivot search");
-                
-                return normalSearch(nums, target, startPointer, middle - 1);
-                
-            // The value if exists is in the not sorted RHS
+            // System.out.println("Detected pivot on left");
+            
+            // Value in normal RHS
+            if(nums[mid] <= target && target <= nums[right]) {
+                // System.out.println("Detected target in normal RHS");
+                return normalSearch(nums, target, mid + 1, right);
             } else {
-                System.out.println("The target is in the unsorted RHS in pivot search");
-                
-                return pivotSearch(nums, target, middle + 1, endPointer);
+                // System.out.println("Detected target in pivoted LHS");
+                return pivotSearch(nums, target, left, mid - 1);
             }
-            
-        // The RHS of the array is sorted
+        // Pivot on right
         } else {
             
-            System.out.println("The RHS of the array is sorted in pivot search");
-            System.out.println("Endpointer " + endPointer);
+            // System.out.println("Detected pivot on right");
             
-            // The value if exists is in the sorted RHS
-            if(nums[middle] < target && target <= nums[endPointer]) {
-                System.out.println("The target is in the sorted RHS in pivot search");
-                
-                return normalSearch(nums, target, middle + 1, endPointer);
-                
-            // The value if exists is in the not sorted LHS
+            // Value in normal LHS
+            if(nums[left] <= target && target <= nums[mid]) {
+                // System.out.println("Detected target in normal LHS");
+                return normalSearch(nums, target, left, mid - 1);
             } else {
-                System.out.println("The target is in the unsorted LHS in pivot search");
-                
-                return pivotSearch(nums, target, startPointer, middle - 1);
+                // System.out.println("Detected target in pivoted RHS");
+                return pivotSearch(nums, target, mid + 1, right);
             }
-            
         }
+        
     }
     
-    // This is the search when we know it's sorted
-    private int normalSearch(int[] nums, int target, int startPointer, int endPointer) {
-                
-        // If we've gone through the entire array
-        if(startPointer > endPointer) {
-            return -1;
-            
-        // If we're at the end of the search and we found the target, return the index
-        }
-        if(startPointer == endPointer && nums[startPointer] == target) {
-            return startPointer;
-            
-        // If we're at the end of the search and the target isn't found, return -1
-        } else if(startPointer == endPointer) {
+    private int normalSearch(int[] nums, int target, int left, int right) {
+        
+        if(left > right) {
             return -1;
         }
         
-        if(nums[startPointer] == target) {
-            return startPointer;
-        }
-        if(nums[endPointer] == target) {
-            return endPointer;
-        }
-        if(nums.length == 2) {
-            return -1;
-        }
+        int mid = left + (right - left) / 2;
         
-        // Find the middle of the array
-        int middle = (startPointer + endPointer) / 2;
-        if(nums[middle] == target) {
-            return middle;
-        }
-        
-        // The number is on the LHS
-        if(target < nums[middle]) {
-            return normalSearch(nums, target, startPointer, middle - 1);
-            
-        // The number is on the RHS
+        if(nums[mid] == target) {
+            return mid;
+        } else if(target < nums[mid]) {
+            return normalSearch(nums, target, left, mid - 1);
         } else {
-            return normalSearch(nums, target, middle + 1, endPointer);
+            return normalSearch(nums, target, mid + 1, right);
         }
+        
     }
 }
