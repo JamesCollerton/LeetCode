@@ -6,11 +6,11 @@ public class BubbleSort {
 
         int[] arr = new int[]{1, 5, 4, 7, 9, 10, 11, 7};
 
-        int pointer = 0;
+        int pointer = arr.length - 1;
 
-        while(pointer < arr.length) {
+        while(pointer > 0) {
 
-            for(int i = 0; i < arr.length - 1 - pointer; i++) {
+            for(int i = 0; i < pointer; i++) {
                 if(arr[i] > arr[i + 1]) {
                     int temp = arr[i];
                     arr[i] = arr[i + 1];
@@ -18,7 +18,7 @@ public class BubbleSort {
                 }
             }
 
-            pointer++;
+            pointer--;
         }
 
         for(int num: arr) {
