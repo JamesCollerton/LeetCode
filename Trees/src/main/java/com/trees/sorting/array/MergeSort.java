@@ -20,18 +20,21 @@ public class MergeSort {
             return;
         }
 
-        int midPoint = arr.length / 2;
+        int mid = arr.length / 2;
 
-        int[] leftSubArray = new int[midPoint];
-        int[] rightSubArray = new int[arr.length - midPoint];
+        int[] leftSubArray = new int[mid];
+        int[] rightSubArray = new int[arr.length - mid];
 
-        for(int i = 0; i < midPoint; i++) {
+        for(int i = 0; i < mid; i++) {
             leftSubArray[i] = arr[i];
         }
 
-        for(int i = midPoint; i < arr.length; i++) {
-            rightSubArray[i - midPoint] = arr[i];
+        for(int i = 0; i < arr.length - mid; i++) {
+            rightSubArray[i] = arr[mid + i];
         }
+
+//        System.arraycopy(arr, 0, leftSubArray, 0, mid);
+//        System.arraycopy(arr, mid + 1, rightSubArray, 0, arr.length - mid);
 
         mergeSort(leftSubArray);
         mergeSort(rightSubArray);
@@ -43,23 +46,32 @@ public class MergeSort {
 
         int leftPointer = 0;
         int rightPointer = 0;
-        int i = 0;
+        int arrPointer = 0;
 
-        while(leftPointer < leftSubArray.length && rightPointer < rightSubArray.length) {
+        while (leftPointer < leftSubArray.length && rightPointer < rightSubArray.length) {
             if(leftSubArray[leftPointer] < rightSubArray[rightPointer]) {
-                arr[i++] = leftSubArray[leftPointer++];
+                arr[arrPointer] = leftSubArray[leftPointer];
+                arrPointer++;
+                leftPointer++;
             } else {
-                arr[i++] = rightSubArray[rightPointer++];
+                arr[arrPointer] = rightSubArray[rightPointer];
+                arrPointer++;
+                rightPointer++;
             }
         }
 
-        while(leftPointer < leftSubArray.length) {
-            arr[i++] = leftSubArray[leftPointer++];
+        while (leftPointer < leftSubArray.length) {
+            arr[arrPointer] = leftSubArray[leftPointer];
+            arrPointer++;
+            leftPointer++;
         }
 
-        while(rightPointer < rightSubArray.length) {
-            arr[i++] = rightSubArray[rightPointer++];
+        while (rightPointer < rightSubArray.length) {
+            arr[arrPointer] = rightSubArray[rightPointer];
+            arrPointer++;
+            rightPointer++;
         }
+
     }
 
 }
