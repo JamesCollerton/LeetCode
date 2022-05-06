@@ -6,20 +6,18 @@ public class InsertionSort {
 
         int[] arr = new int[]{1, 3, 6, 2, 8, 9, 10, 8, 7, 3};
 
-        for(int pointer = 0; pointer < arr.length; pointer++) {
+        // 4, 2, 3, 1
+        for(int pointer = 1; pointer < arr.length; pointer++) {
 
-            int minIndex = pointer;
+            int moving = pointer - 1;
+            int temp = arr[pointer];
 
-            for(int i = pointer + 1; i < arr.length; i++) {
-                if(arr[i] < arr[minIndex]) {
-                    minIndex = i;
-                }
+            while(moving >= 0 && arr[moving] > temp) {
+                arr[moving + 1] = arr[moving];
+                moving--;
             }
 
-            int temp = arr[pointer];
-            arr[pointer] = arr[minIndex];
-            arr[minIndex] = temp;
-
+            arr[moving + 1] = temp;
         }
 
         for(int i: arr) {

@@ -5,7 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="60082f2f-e1e1-45b0-893a-db6583079688" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/trees/sorting/array/InsertionSort.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/trees/sorting/array/InsertionSort.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -235,7 +234,7 @@
       <command value="mvn clean install" />
     </option>
   </component>
-  <component name="RunManager" selected="Application.BubbleSort">
+  <component name="RunManager" selected="Application.InsertionSort">
     <configuration name="BubbleSort" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.trees.sorting.array.BubbleSort" />
       <module name="Trees" />
@@ -337,8 +336,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.BubbleSort" />
         <item itemvalue="Application.InsertionSort" />
+        <item itemvalue="Application.BubbleSort" />
         <item itemvalue="Application.DjikstraTwo" />
         <item itemvalue="Application.Main" />
         <item itemvalue="Application.Main (5)" />
