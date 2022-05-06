@@ -4,22 +4,22 @@ public class InsertionSort {
 
     public static void main(String[] args) {
 
-        int[] arr = new int[]{1, 3, 6, 2, 8, 9, 10, 8, 7};
+        int[] arr = new int[]{1, 3, 6, 2, 8, 9, 10, 8, 7, 3};
 
-        int pointer = 0;
+        for(int pointer = 0; pointer < arr.length; pointer++) {
 
-        while(pointer < arr.length) {
-            int i = pointer;
-            int pointerValue = arr[pointer];
+            int minIndex = pointer;
 
-            while(i > 0 && arr[i - 1] > pointerValue) {
-                arr[i] = arr[i - 1];
-                i--;
+            for(int i = pointer + 1; i < arr.length; i++) {
+                if(arr[i] < arr[minIndex]) {
+                    minIndex = i;
+                }
             }
 
-            arr[i] = pointerValue;
+            int temp = arr[pointer];
+            arr[pointer] = arr[minIndex];
+            arr[minIndex] = temp;
 
-            pointer++;
         }
 
         for(int i: arr) {
